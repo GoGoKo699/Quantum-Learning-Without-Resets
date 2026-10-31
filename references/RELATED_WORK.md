@@ -2,7 +2,7 @@
 
 The contribution studied here is a limit on the information obtainable from a fixed supply of initialized purity in a known Pauli-channel detection task. Memory size, query count, measurement count, and the ability to reprepare registers are distinct resources. The [model](../science/model.md) includes every accessible register in one processor and allows arbitrary global unital controls between ordinary channel calls.
 
-For $M=4^n-1$ hidden nonidentity Pauli modes and initial collision purity $\mathcal P=D\operatorname{Tr}(\rho_{\mathrm{in}}^2)$, the [common-decision theorem](../science/decision_bound.md) proves, for every query count $T$ and $0\le\lambda<1$,
+For $M=4^n-1$ hidden nonidentity Pauli modes and initial collision purity $\mathcal P=D\mathrm{Tr}(\rho_{\mathrm{in}}^2)$, the [common-decision theorem](../science/decision_bound.md) proves, for every query count $T$ and $0\le\lambda<1$,
 
 ```math
 D_{\mathrm{tr}}\!\left(\frac1M\sum_a\rho_T^a,\rho_T^0\right)
@@ -37,7 +37,7 @@ Their controls explicitly permit reinitialization. Algorithm 1, step 7, Eq. (11)
 ```math
 X\longmapsto
 \left[\frac{I+P_{t+1}}d\otimes|0\rangle\langle0|\right]
-\operatorname{Tr}X
+\mathrm{Tr}X
 ```
 
 to the working register and first ancilla. Algorithm 3, Eqs. (21)–(22), similarly reprepares clean auxiliaries. These are nonunital channels. Consequently, small memory and a small number of measurements in their model do not imply a bounded total purity supply. The present converse adds that resource constraint and therefore does not contradict their upper bounds.
@@ -66,27 +66,24 @@ The feedback decomposition and geometric-series estimate used in the common-deci
 
 **Yu Luo and Yongming Li, [*Robustness of purity: an operational approach to resource theory of purity*](https://doi.org/10.1140/epjd/e2019-90693-y), European Physical Journal D 73, 89 (2019).** The publisher's abstract connects purity robustness to optimal advantage in mixed-unitary discrimination games. Operational discrimination value for purity is therefore prior work. Only the abstract and bibliographic material were accessible for this comparison; no theorem-level comparison with its full text is asserted. The concrete resource used here is dimension-normalized collision purity in a fixed sequential experiment.
 
-## Three educational anchors
+## Educational anchor: Watrous
 
-These three references support the channel model and proof prerequisites. **Watrous is the recommended starting point** because it directly covers all the required operator-space and decision-theoretic ingredients.
+**John Watrous, *The Theory of Quantum Information*, Cambridge University Press (2018)** is the educational anchor for this project. The [author's book page](https://cs.uwaterloo.ca/~watrous/TQI/) provides the [complete manuscript](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf), individual chapters and [errata](https://cs.uwaterloo.ca/~watrous/TQI/TQI.errata.pdf). The locators below were checked against the author's **standard-layout chapter PDFs** and use their printed page numbers.
 
-### 1. Watrous — recommended
+| Project ingredient | Verified Watrous locator | Application here |
+|---|---|---|
+| Operator-space geometry | [Chapter 1](https://cs.uwaterloo.ca/~watrous/TQI/TQI.1.pdf), §1.1.2, Eq. (1.112), pp. 21–22; Eqs. (1.127)–(1.134), pp. 23–24 | Adjoint maps and the operator-vector correspondence used by the [decision proof](../science/decision_bound.md). |
+| Partial trace | Chapter 1, §1.1.2, Eqs. (1.120)–(1.121), p. 22 | The protected-workspace projection $Q_0$ in [the sector decomposition](../science/purity_bound.md). |
+| Operator norms | Chapter 1, §1.1.3, Eqs. (1.165)–(1.181), pp. 32–34 | Trace norm, Frobenius norm and the conversion from squared signal energy to distinguishability. |
+| Physical channels | [Chapter 2](https://cs.uwaterloo.ca/~watrous/TQI/TQI.2.pdf), §2.2.1, Definition 2.13, p. 73; §2.2.2, Theorem 2.22, p. 82, and Corollary 2.27, p. 89 | Complete positivity and normalized Kraus representations for [the oracle and controls](../science/model.md). Theorem 2.22 alone characterizes complete positivity; Corollary 2.27 includes trace preservation. |
+| Adjoint controls | Chapter 2, Proposition 2.18 and its following remark, p. 76; Theorem 2.26, p. 87 | A unital CPTP control has a unital CPTP adjoint, as required by the backward budget. |
+| Final binary decision | [Chapter 3](https://cs.uwaterloo.ca/~watrous/TQI/TQI.3.pdf), §3.1, Theorem 3.4, pp. 128–129 | The Holevo–Helstrom relation between a common final effect, trace distance and success probability. |
+| Channel perturbations | Chapter 3, §3.3.2, Definition 3.43, p. 170; Theorem 3.46, p. 173; Proposition 3.48(2), p. 174 | The diamond norm and the composition estimate underlying the [protocol's hybrid error bound](../science/protocols.md). |
+| Hilbert–Schmidt contraction | [Chapter 4](https://cs.uwaterloo.ca/~watrous/TQI/TQI.4.pdf), §4.2.2, Theorem 4.27, p. 231; natural representation in Chapter 2, Eqs. (2.60)–(2.63), p. 77 | The operator norm of $K(\Phi)$ is the induced Hilbert–Schmidt norm of $\Phi$. A positive trace-preserving endomorphism is unital exactly when this norm is one. |
 
-**John Watrous, *The Theory of Quantum Information*, Cambridge University Press (2018).** [Author's book page](https://cs.uwaterloo.ca/~watrous/TQI/) and [free prepublication PDF](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf).
+Watrous calls $\|X\|_2$ the **Frobenius norm**, which is the Hilbert–Schmidt norm used here. On p. 34 he uses the full $\|\rho-\sigma\|_1$ as trace distance; this repository uses $D_{\mathrm{tr}}=\tfrac12\|\rho-\sigma\|_1$. Thus equal-prior success is $(1+D_{\mathrm{tr}})/2$. The prior denoted $\lambda$ in his Theorem 3.4 is a different parameter from this project's spike strength.
 
-Section 1.1.3 develops Schatten norms. Sections 2.2.1–2.2.2 and Theorem 2.22 cover channel representations. Theorem 2.26 relates trace preservation to unitality of the adjoint. Theorem 3.4 is the Holevo–Helstrom discrimination theorem. Section 4.2.2, Theorem 4.27 (printed p. 231), gives the induced Hilbert–Schmidt contraction characterization through the natural matrix representation. These locations provide a short path from complete-processor channels to both directions of the energy proof.
-
-### 2. Nielsen and Chuang
-
-**Michael A. Nielsen and Isaac L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition, Cambridge University Press (2010).** The [official frontmatter and detailed contents](https://assets.cambridge.org/97811070/02173/frontmatter/9781107002173_frontmatter.pdf) are freely accessible; the full chapters may require purchased or institutional access.
-
-Sections 8.2.2–8.2.4 introduce environments, operator-sum representations, and axiomatic quantum operations. Section 8.3.1 covers partial trace; Sections 8.3.3–8.3.4 cover phase-flip and depolarizing channels. Section 9.2.1 introduces trace distance. These section locations were checked against the publisher's contents. For the precise Hilbert–Schmidt contraction theorem, use Watrous or Pérez-García et al.
-
-### 3. Wilde
-
-**Mark M. Wilde, *Quantum Information Theory*, second edition, Cambridge University Press (2017).** [Publisher record](https://doi.org/10.1017/9781316809976), [author's open draft](https://www.markwilde.com/qit-notes.pdf), and [arXiv book record](https://arxiv.org/abs/1106.1445).
-
-The following locations refer to the author draft titled *From Classical to Quantum Shannon Theory*, dated December 5, 2021: Sections 4.6.1–4.6.2 cover preparation and discarding, Section 4.6.6 covers measurement channels, and Section 5.3 treats coherent instruments. Sections 9.1.3–9.1.5 develop probability differences, discrimination, and monotonicity. Definition 9.1.2 uses the full trace norm as “trace distance”; translate to the factor-$1/2$ convention used here.
+The book supplies these prerequisites. The hidden-sector budgets, their combination in the feedback argument, and the finite Pauli-pointer constructions are developed in this repository's science files. The [source-to-project bridge](../learning/WATROUS_BRIDGE.md) and [milestone map](../learning/MILESTONES.md) organize that connection.
 
 ## Scope of the contribution
 

@@ -9,6 +9,7 @@ The proof is a finite-dimensional linear-algebra argument on Hilbert–Schmidt o
 Let $h_T(\lambda)=\sum_{j=0}^{T-1}\lambda^j$, with $h_0(\lambda)=0$. Under [the complete-processor model](model.md),
 
 ```math
+\begin{aligned}
 \boxed{
 D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 \le
@@ -17,12 +18,14 @@ D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 \right\},
 \qquad 0\le\lambda\le1.
 }
+\end{aligned}
 \tag{D1}
 ```
 
 For $0\le\lambda\lt1$, this implies the query-independent bound
 
 ```math
+\begin{aligned}
 \boxed{
 D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 \le
@@ -30,6 +33,7 @@ D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 \frac{\lambda\sqrt{\mathcal P-1}}{2M(1-\lambda)}
 \right\}.
 }
+\end{aligned}
 \tag{D2}
 ```
 
@@ -40,13 +44,15 @@ Equation (D2) is a **mixture** trace-distance bound. It does not assert the same
 
 ## 2. Open the signal sector
 
-Use the orthogonal projections $Q_0,Q_a$ from (P1). Fix a label $a$. For arbitrary operator $x_0$ and port inputs $v_t\in\operatorname{ran}Q_a$, define
+Use the orthogonal projections $Q_0,Q_a$ from (P1). Fix a label $a$. For arbitrary operator $x_0$ and port inputs $v_t\in\mathrm{ran}Q_a$, define
 
 ```math
+\begin{aligned}
 u_t=Q_a\mathcal C_t(x_{t-1}),
 \qquad
 x_t=Q_0\mathcal C_t(x_{t-1})+v_t,
 \qquad 1\le t\le T.
+\end{aligned}
 \tag{D3}
 ```
 
@@ -65,16 +71,20 @@ Because $Q_0$ and $Q_a$ have orthogonal ranges,
 The last step uses Hilbert–Schmidt contraction of the unital CPTP control. Summing in time proves that the map
 
 ```math
+\begin{aligned}
 (x_0,v_1,\ldots,v_T)
 \longmapsto (x_T,u_1,\ldots,u_T)
+\end{aligned}
 \tag{D5}
 ```
 
 is a contraction between Hilbert-space direct sums. Write its blocks as
 
 ```math
+\begin{aligned}
 x_T=A x_0+B_a v,\qquad
 u=F_a x_0+G_a v.
+\end{aligned}
 \tag{D6}
 ```
 
@@ -83,18 +93,22 @@ Here $A=Q_0\mathcal C_T\cdots Q_0\mathcal C_1$ is the null evolution and does no
 Close the ports with $v=\lambda u$. Equations (D3) then reproduce the alternative evolution exactly. Nilpotence gives
 
 ```math
+\begin{aligned}
 R_a(\lambda):=(I-\lambda G_a)^{-1}
 =\sum_{j=0}^{T-1}\lambda^jG_a^j,
 \qquad
 \|R_a(\lambda)\|_{2\to2}\le h_T(\lambda).
+\end{aligned}
 \tag{D7}
 ```
 
 In particular, no convergence limit or infinite-time inverse is needed at $\lambda=1$. The difference from the null output is
 
 ```math
+\begin{aligned}
 \rho_T^a-\rho_T^0
 =\lambda B_aR_a(\lambda)F_a(\rho_{\mathrm{in}}).
+\end{aligned}
 \tag{D8}
 ```
 
@@ -122,15 +136,19 @@ This statement holds for arbitrary operators, not just density matrices. The sam
 Fix an arbitrary terminal operator $E$ and set $y_T=E$,
 
 ```math
+\begin{aligned}
 y_{t-1}=\mathcal C_t^\dagger Q_0(y_t),
 \qquad t=T,\ldots,1.
+\end{aligned}
 \tag{D10}
 ```
 
 The adjoint of a unital trace-preserving CP map is again unital and trace preserving, and hence also contracts the Hilbert–Schmidt norm. The response of the final effect to an inserted port input at time $t$ is
 
 ```math
+\begin{aligned}
 (B_a^\dagger E)_t=Q_a(y_t).
+\end{aligned}
 \tag{D11}
 ```
 
@@ -156,9 +174,11 @@ A protected memory can preserve both signals and effects. The estimate does not 
 Unitality and trace preservation allow us to replace the input and effect by
 
 ```math
+\begin{aligned}
 x_0=\rho_{\mathrm{in}}-\frac{I}{D},
 \qquad
-E_0=E-\frac{\operatorname{Tr}E}{D}I
+E_0=E-\frac{\mathrm{Tr}E}{D}I
+\end{aligned}
 \tag{D13}
 ```
 
@@ -169,7 +189,7 @@ Apply (D7)–(D12), first for each label and then Cauchy–Schwarz across labels
 ```math
 \begin{aligned}
 \left|
-\operatorname{Tr}E(\bar\rho_T-\rho_T^0)
+\mathrm{Tr}E(\bar\rho_T-\rho_T^0)
 \right|
 &\le\frac{\lambda h_T(\lambda)}M
 \sum_a\|B_a^\dagger E_0\|_2\|F_a x_0\|_2\\
@@ -182,9 +202,11 @@ Apply (D7)–(D12), first for each label and then Cauchy–Schwarz across labels
 For an effect $0\le E\le I$, its eigenvalues lie in $[0,1]$. Their variance is at most $1/4$. Therefore
 
 ```math
+\begin{aligned}
 \|E_0\|_2\le\frac{\sqrt D}{2},
 \qquad
 \|x_0\|_2=\sqrt{\frac{\mathcal P-1}{D}}.
+\end{aligned}
 \tag{D15}
 ```
 
@@ -195,9 +217,11 @@ Taking the optimal effect proves (D1). Bounding the finite geometric sum by $(1-
 If a single decision rule has error at most $\delta\lt1/2$ under the null and every alternative, then (M9) and (D2) require
 
 ```math
+\begin{aligned}
 1-2\delta
 \le
 \frac{\lambda\sqrt{\mathcal P-1}}{2M(1-\lambda)}.
+\end{aligned}
 \tag{D16}
 ```
 
@@ -206,8 +230,10 @@ For one clean qubit, constant error below one half is therefore impossible along
 For an initialization of $c$ pure qubits and otherwise mixed qubits, the same necessary condition is
 
 ```math
+\begin{aligned}
 2^c-1\ge
 4M^2(1-2\delta)^2\frac{(1-\lambda)^2}{\lambda^2}.
+\end{aligned}
 \tag{D17}
 ```
 

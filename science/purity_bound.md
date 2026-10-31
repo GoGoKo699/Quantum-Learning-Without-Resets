@@ -12,9 +12,9 @@ On operators of $SA$, define
 
 ```math
 \begin{aligned}
-Q_0(X)&=\frac{I}{d}\otimes\operatorname{Tr}_S X,\\
+Q_0(X)&=\frac{I}{d}\otimes\mathrm{Tr}_S X,\\
 Q_a(X)&=\frac{P_a}{d}\otimes
-\operatorname{Tr}_S[(P_a\otimes I_A)X],
+\mathrm{Tr}_S[(P_a\otimes I_A)X],
 \qquad 1\le a\le M.
 \end{aligned}
 \tag{P1}
@@ -23,15 +23,19 @@ Q_a(X)&=\frac{P_a}{d}\otimes
 These are orthogonal projections for the Hilbert–Schmidt inner product, and
 
 ```math
+\begin{aligned}
 Q_a^\dagger=Q_a,\quad Q_aQ_b=\delta_{ab}Q_a,
 \quad \sum_{a=0}^{M}Q_a=\mathrm{id}.
+\end{aligned}
 \tag{P2}
 ```
 
 Only $Q_0$ must itself be a channel. The individual nonidentity sector projections need not be positive; they are mathematical components of the physical map
 
 ```math
+\begin{aligned}
 \mathcal E_{a,\lambda}\otimes\mathrm{id}_A=Q_0+\lambda Q_a.
+\end{aligned}
 \tag{P3}
 ```
 
@@ -40,9 +44,11 @@ The null retains the whole protected-workspace algebra. In particular, $Q_0$ is 
 A unital CPTP map contracts the Hilbert–Schmidt norm. For any operator $X$, the Kadison–Schwarz inequality and trace preservation give
 
 ```math
+\begin{aligned}
 \|\mathcal C(X)\|_2^2
-\le\operatorname{Tr}\mathcal C(X^\dagger X)
+\le\mathrm{Tr}\mathcal C(X^\dagger X)
 =\|X\|_2^2.
+\end{aligned}
 \tag{P4}
 ```
 
@@ -53,20 +59,23 @@ This standard fact is attributed to [Pérez-García et al. and Watrous](../refer
 For $0\le\lambda\lt1$ and every finite $T$,
 
 ```math
+\begin{aligned}
 \frac1M\sum_{a=1}^{M}
 \|\rho_T^a-\rho_T^0\|_2^2
 \le
 \frac{\lambda^2}{M(1-\lambda^2)}
 \left[
-\operatorname{Tr}(\rho_{\mathrm{in}}^2)
--\operatorname{Tr}((\rho_T^0)^2)
+\mathrm{Tr}(\rho_{\mathrm{in}}^2)
+-\mathrm{Tr}((\rho_T^0)^2)
 \right].
+\end{aligned}
 \tag{P5}
 ```
 
 Consequently,
 
 ```math
+\begin{aligned}
 \boxed{
 \frac1M\sum_{a=1}^{M}
 D_{\mathrm{tr}}(\rho_T^a,\rho_T^0)
@@ -76,6 +85,7 @@ D_{\mathrm{tr}}(\rho_T^a,\rho_T^0)
 \sqrt{\frac{\mathcal P-1}{M}}
 \right\}.
 }
+\end{aligned}
 \tag{P6}
 ```
 
@@ -86,9 +96,11 @@ The bound has no factor depending on the number of calls. The dimension of prote
 Let $\sigma=\rho_{t-1}^0$ and $\delta_a=\rho_{t-1}^a-\rho_{t-1}^0$. At the next call, with $\mathcal C=\mathcal C_t$,
 
 ```math
+\begin{aligned}
 \delta'_a
 =Q_0\mathcal C(\delta_a)
 +\lambda Q_a\mathcal C(\delta_a+\sigma).
+\end{aligned}
 \tag{P7}
 ```
 
@@ -108,11 +120,13 @@ Put $x=Q_a\mathcal C(\delta_a)$ and $y=Q_a\mathcal C(\sigma)$. Orthogonality and
 Completing the square gives
 
 ```math
+\begin{aligned}
 -\|x\|_2^2+\lambda^2\|x+y\|_2^2
 =
 -(1-\lambda^2)
 \left\|x-\frac{\lambda^2}{1-\lambda^2}y\right\|_2^2
 +\frac{\lambda^2}{1-\lambda^2}\|y\|_2^2.
+\end{aligned}
 \tag{P9}
 ```
 
@@ -133,7 +147,7 @@ The null state after this step is $\sigma'=Q_0\mathcal C(\sigma)$. Summing the s
 
 Every alternative uses the same null trajectory. Thus one can sum (P8)–(P10) over time without conditioning on an unknown-label-dependent state. Since every initial difference is zero, the right side telescopes and proves (P5).
 
-Finally, $\|X\|_1\le\sqrt D\|X\|_2$, Cauchy–Schwarz over labels, and $\operatorname{Tr}((\rho_T^0)^2)\ge1/D$ give
+Finally, $\|X\|_1\le\sqrt D\|X\|_2$, Cauchy–Schwarz over labels, and $\mathrm{Tr}((\rho_T^0)^2)\ge1/D$ give
 
 ```math
 \begin{aligned}
@@ -142,7 +156,7 @@ Finally, $\|X\|_1\le\sqrt D\|X\|_2$, Cauchy–Schwarz over labels, and $\operato
 \sqrt{\frac1M\sum_a\|\rho_T^a-\rho_T^0\|_2^2}\\
 &\le
 \frac{\lambda}{2\sqrt{1-\lambda^2}}
-\sqrt{\frac{D\operatorname{Tr}(\rho_{\mathrm{in}}^2)-1}{M}}.
+\sqrt{\frac{D\mathrm{Tr}(\rho_{\mathrm{in}}^2)-1}{M}}.
 \end{aligned}
 ```
 

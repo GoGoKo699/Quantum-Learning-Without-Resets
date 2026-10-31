@@ -5,11 +5,13 @@ The main result concerns how much one final decision can learn about a hidden Pa
 For one clean qubit, write $M=4^n-1$. The [matched law](protocols.md) is
 
 ```math
+\begin{aligned}
 \Delta_1(n,\lambda)
 =\Theta\!\left(
 \min\left\{1,\frac{\lambda}{M(1-\lambda)}\right\}
 \right)
 \qquad (0\le\lambda\lt1).
+\end{aligned}
 \tag{I1}
 ```
 
@@ -39,7 +41,7 @@ The null channel is $Q_0=\mathcal D_S\otimes\mathrm{id}_A$. It leaves every oper
 
 For example, take one query qubit in $|0\rangle$ and one protected qubit maximally mixed. Query the channel with hidden mode $Z$, swap the two qubits, and then make arbitrarily many further calls on the query register without coupling the stored output back. A signal of trace distance $\lambda/2$ remains in the protected qubit. This uses one initial pure qubit and demonstrates the failure of a blanket per-call contraction claim. It does not violate the hidden-label theorem: this example privileges the known trial direction $Z$ rather than detecting every unknown Pauli with that signal.
 
-The normalized initial purity $D\operatorname{Tr}\rho^2$ stays unchanged when independent maximally mixed memory is appended. Both converse bounds are independent of its amount. Mixed memory can implement useful control schedules and retain correlations, but cannot evade the theorem by increasing width.
+The normalized initial purity $D\mathrm{Tr}\rho^2$ stays unchanged when independent maximally mixed memory is appended. Both converse bounds are independent of its amount. Mixed memory can implement useful control schedules and retain correlations, but cannot evade the theorem by increasing width.
 
 ## 4. What resets supply to existing learning algorithms
 
