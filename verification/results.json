@@ -1,0 +1,63 @@
+{
+  "numpy_version": "2.3.5",
+  "seed": 2026103102,
+  "purity_potential": {
+    "instances": 360,
+    "largest_positive_violation": 0.0
+  },
+  "exact_pointer_gadget": {
+    "cases": 702,
+    "max_entry_error": 0.0
+  },
+  "feedback": {
+    "open_port_cases": 126,
+    "state_bound_cases": 270,
+    "max_feedback_operator_norm_error": 1.5769139213040116e-16,
+    "max_block_contraction_excess": 4.440892098500626e-16,
+    "max_forward_budget_psd_violation": 2.505158811755278e-15,
+    "max_backward_budget_psd_violation": 9.993313358138423e-16,
+    "max_nilpotence_operator_norm_error": 0.0,
+    "max_trace_bound_violation": 1.6653345369377346e-16,
+    "max_T1_saturation_error": 0.0
+  },
+  "finite_crossover": {
+    "cases": 51,
+    "max_root_formula_error": 3.0946356588401613e-12,
+    "max_API_output_error": 1.7085360903834612e-12,
+    "min_gap_over_predicted_scale": 0.014582589609261227,
+    "required_universal_constant": 0.0078125
+  },
+  "full_density_circuits": {
+    "scan_cases": 12,
+    "max_scan_bloch_formula_error": 2.0095036745715333e-14,
+    "mixed_label_cases": 16,
+    "max_mixed_label_formula_error": 0.0
+  },
+  "near_unit_scan": {
+    "cases": 87,
+    "boundary_dephasing": true,
+    "max_ideal_formula_error": 3.907985046680551e-13,
+    "max_hidden_position_formula_error": 1.4664564007560443e-09,
+    "max_observed_error_at_gamma_M_0.001": 0.0581335342950281,
+    "max_certified_error_at_gamma_M_0.001": 0.07434802200655982
+  },
+  "endpoint_and_gate_conventions": {
+    "endpoint_cases": 36,
+    "local_multiplexer_max_entry_error": 0.0
+  },
+  "numerical_guard_regressions": {
+    "nonfinite_negative_controls_passed": 4,
+    "NaN_probability_gap_injection_rejected": true,
+    "out_of_domain_rejections": 8,
+    "n12_analytic_apis_still_available": true,
+    "supported_boundary_cases": 36,
+    "max_boundary_endpoint_formula_error": 4.992006807924554e-12
+  },
+  "scan_output_domain": {
+    "n_min": 1,
+    "n_max": 5,
+    "block_length_min": 2,
+    "block_length_max_multiple_of_M": 100
+  },
+  "scope": "Finite floating-point diagnostics, not absolute or interval certificates; analytical proofs are separate."
+}

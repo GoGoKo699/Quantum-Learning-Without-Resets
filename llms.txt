@@ -1,0 +1,29 @@
+# Quantum Learning Without Resets
+
+Purpose: scientific account and self-directed learning for hidden-Pauli channel detection with one initial purity supply.
+
+Read README.md for the result and scope, then science/README.md for the route.
+Authoritative scientific files:
+- science/model.md: channel promise, complete processor, ordinary oracle interface, unital controls, collision purity, one-clean initialization, error conventions and Delta_1.
+- science/purity_bound.md: Pauli-sector projections and average individual-distance theorem from a telescoping null-purity potential.
+- science/decision_bound.md: common-decision mixture bound, finite-T feedback proof, centered state/effect budgets and purity consequences.
+- science/protocols.md: exact pointer gadget; one-query mixed-label branch; finite crossover construction and constants; near-unit specified-error scan; gate, mixed-workspace and accuracy costs.
+- science/interpretation.md: scientific meaning, protected-memory example, resets and repeated experiments, non-claims and open directions.
+- references/RELATED_WORK.md: source-level attribution and nearest-model comparisons.
+- references/references.bib: bibliographic records.
+- verification/README.md: executable checks, independent representations and numerical limitations.
+- verification/protocols.py: reusable formulas and finite protocol APIs.
+- verification/run_checks.py: deterministic numerical reconstruction checks.
+- verification/results.json: output of the committed check suite.
+
+Essential conventions:
+- D_tr is half the trace norm. Equal-prior success advantage is D_tr/2.
+- The hidden Pauli label is fixed across queries. Lambda is known for the constructive algorithms.
+- Mixture distance and the average of individually optimized distances are different.
+- Initial purity counts every accessible register. Maximally mixed workspace is free in amount; pure resets and fresh pure records are not.
+- A common terminal POVM is arbitrary. Its physical readout cost is outside the premeasurement initialized-purity model.
+- The one-clean result optimizes over all finite query counts, not polynomial runtime.
+- A small constant bias is not automatically error at most one third.
+- Tightness in arbitrary initial purity, optimal query complexity, tomography and thermodynamic cost are not established.
+
+Contact: Ruge Lin, gogoko699@gmail.com.
