@@ -37,8 +37,7 @@ D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 \tag{D2}
 ```
 
-At $\lambda=1$, (D1) reads $D_{\mathrm{tr}}\le
-\min\{1,T\sqrt{\mathcal P-1}/(2M)\}$. This is a necessary query bound, not a query-optimality claim.
+At $\lambda=1$, (D1) reads $D_{\mathrm{tr}}\le \min\{1,T\sqrt{\mathcal P-1}/(2M)\}$. This is a necessary query bound, not a query-optimality claim.
 
 Equation (D2) is a **mixture** trace-distance bound. It does not assert the same bound for $M^{-1}\sum_aD_{\mathrm{tr}}(\rho_T^a,\rho_T^0)$. For that quantity use [the separate purity theorem](purity_bound.md). Convexity makes that individual-distance estimate a valid mixture bound too, so one may take the smaller of the two. Before capping at one, (D2) is stronger precisely when $M(1-\lambda)\ge1+\lambda$, for nonzero strength and excess purity.
 
