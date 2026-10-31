@@ -15,11 +15,13 @@ s=\frac{\lambda}{M(1-\lambda)}.
 The quantity $\Delta_1(n,\lambda)$ is defined in (M10). The [decision converse](decision_bound.md) and the algorithms below establish
 
 ```math
+\begin{aligned}
 \boxed{
 \frac1{128}\min\{1,s\}
 \le\Delta_1(n,\lambda)
 \le\min\{1,s/2\}.
 }
+\end{aligned}
 \tag{A1}
 ```
 
@@ -28,15 +30,16 @@ At $\lambda=0$, the value is zero. At $\lambda=1$, its supremum is one. Every al
 The two constructive branches use
 
 ```math
-Q=
+\begin{aligned}
+Q&=
 \begin{cases}
 1,&0\lt\lambda\le1/2,\\
 M\left\lceil 32/g\right\rceil
 \le33M\min\{(1-\lambda)^{-1},M\},
 &1/2\lt\lambda\le1,
-\end{cases}
-\qquad
-g=\max\{1-\lambda,1/M\}.
+\end{cases}\\
+g&=\max\{1-\lambda,1/M\}.
+\end{aligned}
 \tag{A2}
 ```
 
@@ -47,17 +50,21 @@ At $\lambda=1$, the minimum on the right is $M$. These are sufficient query coun
 Initialize $S$ in $I/d$ and let the pointer state be $\sigma$. For a known nonidentity Pauli $P_b$, use
 
 ```math
+\begin{aligned}
 V_b=I_S\otimes|0\rangle\langle0|
 +P_b\otimes|1\rangle\langle1|.
+\end{aligned}
 \tag{A3}
 ```
 
 Apply $V_b$, query the unknown channel on $S$, and apply $V_b$ again. The exact effect is
 
 ```math
+\begin{aligned}
 \frac Id\otimes\sigma
 \longmapsto
 \frac Id\otimes\mathcal Z_{\eta_b}(\sigma),
+\end{aligned}
 \tag{A4}
 ```
 
@@ -74,17 +81,21 @@ For $0\lt\lambda\le1/2$, put the clean pointer in $|+\rangle$. Supply a $2n$-qub
 The pointer's $X$ expectations are
 
 ```math
+\begin{aligned}
 x_0=\frac1{M+1},\qquad
 x_a=\frac{1+\lambda}{M+1}.
+\end{aligned}
 \tag{A5}
 ```
 
 The identity trial contributes in both cases; exactly one additional trial contributes under every alternative. The fixed measurement has probability gap
 
 ```math
+\begin{aligned}
 \Delta_{\mathrm{small}}=\frac{\lambda}{2(M+1)}
 =\frac{M(1-\lambda)}{2(M+1)}s
 \ge\frac3{16}s.
+\end{aligned}
 \tag{A6}
 ```
 
@@ -118,6 +129,7 @@ Boundary dephasing preserves the populations carrying the accumulated signal; it
 For $c=\cos\theta$ and $v=\sin\theta$, the real Bloch vector transforms in one step as
 
 ```math
+\begin{aligned}
 \begin{pmatrix}x\\z\end{pmatrix}
 \longmapsto
 A_\eta
@@ -128,22 +140,27 @@ A_\eta=
 \eta c&\eta v\\
 -v&c
 \end{pmatrix}.
+\end{aligned}
 \tag{A8}
 ```
 
 Put $k_0=c^L$ and $k_\ell=(A_\ell^L)_{22}$. Every block begins with zero $x$ component. Therefore the exact final pointer values are
 
 ```math
+\begin{aligned}
 z_0=k_0^M,\qquad
 z_a=k_0^{M-1}k_\ell,
+\end{aligned}
 \tag{A9}
 ```
 
 independent of the active label's position. The final outcome one has probability gap
 
 ```math
+\begin{aligned}
 \Delta_{\mathrm{scan}}
 =\frac{k_0^{M-1}}2(k_0-k_\ell).
+\end{aligned}
 \tag{A10}
 ```
 
@@ -152,75 +169,93 @@ independent of the active label's position. The final outcome one has probabilit
 The characteristic roots of $A_\ell$ are
 
 ```math
+\begin{aligned}
 r_\pm=
 \frac{(1+\ell)c\pm g\sqrt{1-h^2u}}2.
+\end{aligned}
 \tag{A11}
 ```
 
 Because $h\ge3$, $h/L\le1/16$ and $t\le1/(16h)$,
 
 ```math
+\begin{aligned}
 h^2u=\frac{2h^2t}{L}\le\frac{h}{8L}\le\frac1{128}.
+\end{aligned}
 \tag{A12}
 ```
 
 The roots are real, distinct and positive. Their product is $\ell$ and their sum is positive. The sequence $(A_\ell^j)_{22}$ starts at $1,c$, so
 
 ```math
+\begin{aligned}
 k_\ell=(1+b)r_+^L-b r_-^L,\qquad
 b=\frac12\left(\frac{c}{\sqrt{1-h^2u}}-1\right).
+\end{aligned}
 \tag{A13}
 ```
 
 Using $(1-y)^{-1/2}\le1+2y$ for $0\le y\le1/2$ gives $0\le b\le h^2u$. Also,
 
 ```math
+\begin{aligned}
 r_+\le1-\frac{hu}{2}=1-\frac{ht}{L}.
+\end{aligned}
 \tag{A14}
 ```
 
 This follows by applying $\sqrt{1-y}\le1-y/2$ separately to the two square roots in (A11). It implies
 
 ```math
+\begin{aligned}
 k_\ell\le r_+^L+b
 \le1-ht+\frac{(ht)^2}{2}+b.
+\end{aligned}
 \tag{A15}
 ```
 
 Bernoulli's inequality gives $k_0=(1-u)^{L/2}\ge1-t$. Let $\tau=(h-1)t$. Then
 
 ```math
+\begin{aligned}
 \frac{(ht)^2}{2\tau}
 \le\frac3{64},
 \qquad
 \frac b\tau
 \le\frac{2h^2}{L(h-1)}
 \le\frac3{16}.
+\end{aligned}
 \tag{A16}
 ```
 
 Thus
 
 ```math
+\begin{aligned}
 k_0-k_\ell\ge\frac{49}{64}\tau,\qquad
 k_0^{M-1}\ge1-(M-1)t\ge\frac{15}{16}.
+\end{aligned}
 \tag{A17}
 ```
 
 Substitution in (A10) proves the explicit finite inequality
 
 ```math
+\begin{aligned}
 \Delta_{\mathrm{scan}}
 \ge\frac{\tau}{4}
 =\frac{\ell}{32(Mg+1+\ell)}.
+\end{aligned}
 \tag{A18}
 ```
 
 If no clipping occurred, then $\ell=\lambda$ and $g=1-\lambda$. For $\lambda\ge1/2$,
 
 ```math
+\begin{aligned}
 \frac{\lambda}{M(1-\lambda)+1+\lambda}
 \ge\frac14\min\!\left\{1,\frac{\lambda}{M(1-\lambda)}\right\}.
+\end{aligned}
 \tag{A19}
 ```
 
@@ -235,7 +270,9 @@ For a target error $0\lt\delta\lt1/2$, use the same gadget without clipping. In 
 At $\lambda=1$, the active block is exactly $R_y(\pi)$ and flips the pointer. With $c=\cos(\pi/L)$,
 
 ```math
+\begin{aligned}
 z_0=c^{ML},\qquad z_a=-c^{(M-1)L}.
+\end{aligned}
 \tag{A20}
 ```
 
@@ -244,21 +281,25 @@ Later inactive blocks preserve the flipped sign. Both error probabilities are at
 For $\lambda=1-\gamma$, only the $L$ steps in the active block change. The diamond distance between $\mathcal Z_{1-\gamma}$ and the identity is $\gamma$. A hybrid argument therefore changes any final probability by at most $L\gamma/2$. Hence
 
 ```math
+\begin{aligned}
 p_{\mathrm{err,worst}}
 \le
 \max\left\{
 \frac{1-c^{ML}}2,\,
 \frac{1-c^{(M-1)L}}2+\frac{L\gamma}2
 \right\}.
+\end{aligned}
 \tag{A21}
 ```
 
 Take $L=\lceil\pi^2M/(2\delta)\rceil$ and $\gamma\le\delta/L$. Then both errors are at most $\delta$. In particular,
 
 ```math
+\begin{aligned}
 L=100M,\qquad 1-\lambda\le10^{-3}/M
 \quad\Longrightarrow\quad
 p_{\mathrm{err,worst}}\lt0.097.
+\end{aligned}
 \tag{A22}
 ```
 

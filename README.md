@@ -61,6 +61,12 @@ Start with the [scientific reading route](science/README.md) and the [model](sci
 
 The [LLM reading guide](llms.txt) maps scientific questions to the same authoritative files.
 
+## Learn the project
+
+The single educational anchor is **John Watrous, *The Theory of Quantum Information* (2018)**, using the [author's available manuscript](https://cs.uwaterloo.ca/~watrous/TQI/). The [Watrous bridge](learning/WATROUS_BRIDGE.md) identifies the relevant sections, translates the notation and explains the additional steps needed for the purity bounds and finite protocols.
+
+The [30-milestone map](learning/MILESTONES.md) gives a common route through the project: **10 background/preliminaries milestones** build the complete-processor and decision framework, and **20 narrative/innovation milestones** connect the two converse arguments, finite protocols and resource consequences. Each milestone specifies a central question, an understanding target, earlier dependencies, a conceptual connection and source pointers. Use the map alongside the bridge for self-directed study.
+
 ## Reproduce the checks
 
 Use Python 3.12 and the pinned NumPy dependency:
@@ -80,4 +86,4 @@ Repeated experiments with newly prepared probes supply more purity. Existing sma
 
 ## Purpose and contact
 
-This repository serves as a record of the work and a guide for the author's self-directed learning. For discussion or potential collaboration, please contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).
+This repository serves as a record of the work and a guide for the author’s self-directed learning. For discussion or potential collaboration, please contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).

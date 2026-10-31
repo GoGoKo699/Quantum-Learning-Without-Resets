@@ -9,17 +9,17 @@ The unknown channel is fixed throughout a run. The learner has ordinary channel 
 Let $n\ge1$, $d=2^n$, and $M=d^2-1$. Choose the Hermitian Pauli basis $P_0=I,P_1,\ldots,P_M$, with
 
 ```math
-\operatorname{Tr}(P_aP_b)=d\,\delta_{ab}.
+\mathrm{Tr}(P_aP_b)=d\,\delta_{ab}.
 ```
 
 The null is complete depolarization. An alternative retains one nonidentity Pauli coefficient:
 
 ```math
 \begin{aligned}
-\mathcal D(X)&=\frac{I}{d}\operatorname{Tr}X,\\
+\mathcal D(X)&=\frac{I}{d}\mathrm{Tr}X,\\
 \mathcal E_{a,\lambda}(X)
-&=\frac{I\operatorname{Tr}X+
-\lambda P_a\operatorname{Tr}(P_aX)}{d},
+&=\frac{I\mathrm{Tr}X+
+\lambda P_a\mathrm{Tr}(P_aX)}{d},
 \qquad a\in\{1,\ldots,M\},\quad 0\le\lambda\le1.
 \end{aligned}
 \tag{M1}
@@ -30,9 +30,11 @@ The label $a$ is unknown and is never supplied during the computation. It is fix
 These maps are completely positive, trace preserving and unital. One direct check is their Pauli-error representation. For symplectic Pauli labels $a,v$,
 
 ```math
+\begin{aligned}
 p_0(v)=\frac1{d^2},\qquad
 p_{a,\lambda}(v)=
 \frac{1+\lambda(-1)^{[a,v]}}{d^2}.
+\end{aligned}
 \tag{M2}
 ```
 
@@ -60,7 +62,9 @@ There are $T$ ordinary calls. A known channel $\mathcal C_t$ acts on all of $SA$
 Every $\mathcal C_t$ is completely positive, trace preserving and **unital**:
 
 ```math
+\begin{aligned}
 \mathcal C_t(I)=I.
+\end{aligned}
 \tag{M4}
 ```
 
@@ -77,16 +81,20 @@ The fixed dimension presents no restriction on how much mixed memory is availabl
 Define the dimension-normalized collision purity
 
 ```math
-\mathcal P=D\,\operatorname{Tr}(\rho_{\mathrm{in}}^2),
+\begin{aligned}
+\mathcal P=D\,\mathrm{Tr}(\rho_{\mathrm{in}}^2),
 \qquad 1\le\mathcal P\le D.
+\end{aligned}
 \tag{M5}
 ```
 
 Its excess above one has the useful geometric form
 
 ```math
+\begin{aligned}
 \mathcal P-1=
 D\left\|\rho_{\mathrm{in}}-\frac{I}{D}\right\|_2^2.
+\end{aligned}
 \tag{M6}
 ```
 
@@ -98,22 +106,26 @@ Collision purity is a resource parameter for this theorem. It is not a measured 
 
 ## 4. Decision statistics and error conventions
 
-For a fixed terminal effect $0\le F\le I$, let outcome one occur with probability $p_a=\operatorname{Tr}(F\rho_T^a)$ and let $p_0=\operatorname{Tr}(F\rho_T^0)$. The same effect must handle every hidden label.
+For a fixed terminal effect $0\le F\le I$, let outcome one occur with probability $p_a=\mathrm{Tr}(F\rho_T^a)$ and let $p_0=\mathrm{Tr}(F\rho_T^0)$. The same effect must handle every hidden label.
 
 We use the halved trace norm
 
 ```math
+\begin{aligned}
 D_{\mathrm{tr}}(\rho,\sigma)
 =\frac12\|\rho-\sigma\|_1.
+\end{aligned}
 \tag{M7}
 ```
 
 The uniform-mixture output is $\bar\rho_T=M^{-1}\sum_a\rho_T^a$. Its trace distance from the null equals the largest absolute difference in the probability of one event:
 
 ```math
+\begin{aligned}
 D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 =\max_{0\le F\le I}
 \left|\frac1M\sum_a p_a-p_0\right|.
+\end{aligned}
 \tag{M8}
 ```
 
@@ -122,8 +134,10 @@ For equal prior probabilities of the null and this alternative mixture, optimal 
 A worst-case error guarantee $\delta\lt1/2$ requires one decision rule with
 
 ```math
+\begin{aligned}
 p_0\le\delta,\qquad p_a\ge1-\delta
 \quad\text{for every }a.
+\end{aligned}
 \tag{M9}
 ```
 
@@ -132,10 +146,12 @@ Consequently its mixture trace distance is at least $1-2\delta$. A mixture conve
 For the optimal-bias result, define
 
 ```math
+\begin{aligned}
 \Delta_1(n,\lambda)=
 \sup_{\substack{T\text{ finite}\\
 \text{one-clean-qubit protocols}}}
 D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0).
+\end{aligned}
 \tag{M10}
 ```
 

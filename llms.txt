@@ -16,6 +16,17 @@ Authoritative scientific files:
 - verification/run_checks.py: deterministic numerical reconstruction checks.
 - verification/results.json: output of the committed check suite.
 
+Learning entrypoints:
+- learning/MILESTONES.md: the canonical project-defined map of exactly M01 through M30, with 10 background/preliminaries targets and 20 narrative/innovation targets. Each has dependencies, a conceptual connection and source pointers.
+- learning/WATROUS_BRIDGE.md: the single selected educational anchor, John Watrous's The Theory of Quantum Information (2018), with verified source locations, notation mapping, worked explanations and the additional project-specific reasoning.
+
+Reader routes:
+- Scientific story: start with science/model.md, follow the two converse proofs and finite protocols, and connect the conclusions in science/interpretation.md.
+- Self-directed study: use the Watrous bridge alongside the milestone map. The targets depend on the project and remain independent of any reader's assessment history.
+- Theorem inspection: read the model and error conventions before the relevant proof. Use purity_bound.md for average individual distances, decision_bound.md for a common final effect, and protocols.md for finite attainability.
+- Reproduction: read verification/README.md before running verification/run_checks.py. The bound/parameter formulas and the restricted floating-point scan-output evaluators have different numerical domains.
+- Attribution: consult references/RELATED_WORK.md before describing the task, serial testing, weak driving, Zeno mechanism or purity-progress idea as original.
+
 Essential conventions:
 - D_tr is half the trace norm. Equal-prior success advantage is D_tr/2.
 - The hidden Pauli label is fixed across queries. Lambda is known for the constructive algorithms.
@@ -25,5 +36,6 @@ Essential conventions:
 - The one-clean result optimizes over all finite query counts, not polynomial runtime.
 - A small constant bias is not automatically error at most one third.
 - Tightness in arbitrary initial purity, optimal query complexity, tomography and thermodynamic cost are not established.
+- Watrous supplies foundations, while this repository supplies the hidden-sector budgets and matched finite construction. Primary research citations remain necessary for attribution; they are not additional educational anchors.
 
 Contact: Ruge Lin, gogoko699@gmail.com.
