@@ -31,15 +31,14 @@ The two constructive branches use
 
 ```math
 \begin{aligned}
-Q=
+Q&=
 \begin{cases}
 1,&0\lt\lambda\le1/2,\\
 M\left\lceil 32/g\right\rceil
 \le33M\min\{(1-\lambda)^{-1},M\},
 &1/2\lt\lambda\le1,
-\end{cases}
-\qquad
-g=\max\{1-\lambda,1/M\}.
+\end{cases}\\
+g&=\max\{1-\lambda,1/M\}.
 \end{aligned}
 \tag{A2}
 ```

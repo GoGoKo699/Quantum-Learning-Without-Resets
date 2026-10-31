@@ -12,7 +12,7 @@ D_{\mathrm{tr}}\!\left(\frac1M\sum_a\rho_T^a,\rho_T^0\right)
 \right\}.
 ```
 
-Here $D_{\mathrm{tr}}=\tfrac12\|\cdot\|_1$. This bounds the distance of the **uniform mixture of final states** from the null. It concerns one measurement common to every hidden label. The average of the individually optimized distances, $M^{-1}\sum_aD_{\mathrm{tr}}(\rho_T^a,\rho_T^0)$, satisfies a [separate bound](../science/purity_bound.md) and is not interchangeable with this quantity.
+Here $D_{\mathrm{tr}}=\tfrac12\lVert\cdot\rVert_1$. This bounds the distance of the **uniform mixture of final states** from the null. It concerns one measurement common to every hidden label. The average of the individually optimized distances, $M^{-1}\sum_aD_{\mathrm{tr}}(\rho_T^a,\rho_T^0)$, satisfies a [separate bound](../science/purity_bound.md) and is not interchangeable with this quantity.
 
 The [finite protocols](../science/protocols.md), with known $\lambda$ and one initially pure qubit, establish the matching scaling
 
@@ -62,7 +62,7 @@ The feedback decomposition and geometric-series estimate used in the common-deci
 
 ## Operator norm foundations
 
-**David Pérez-García, Michael M. Wolf, Dénes Petz, and Mary Beth Ruskai, [*Contractivity of positive and trace preserving maps under $L_p$ norms*](https://doi.org/10.1063/1.2218675), Journal of Mathematical Physics 47, 083506 (2006).** Theorem II.4 in the [primary manuscript](https://arxiv.org/pdf/math-ph/0601063) gives the unital Schatten-norm contractivity used in both energy estimates. A unital CPTP map and its adjoint are Hilbert–Schmidt contractions. This does not hold for arbitrary nonunital CPTP maps. Theorems II.2–II.3 also give the standard interpolation/Russo–Dye route to $\|\mathcal C\|_{2\to2}^2\le\|\mathcal C(I)\|_\infty$ for a CPTP map. These norm facts are established foundations, not new results of this work.
+**David Pérez-García, Michael M. Wolf, Dénes Petz, and Mary Beth Ruskai, [*Contractivity of positive and trace preserving maps under Lₚ norms*](https://doi.org/10.1063/1.2218675), Journal of Mathematical Physics 47, 083506 (2006).** Theorem II.4 in the [primary manuscript](https://arxiv.org/pdf/math-ph/0601063) gives the unital Schatten-norm contractivity used in both energy estimates. A unital CPTP map and its adjoint are Hilbert–Schmidt contractions. This does not hold for arbitrary nonunital CPTP maps. Theorems II.2–II.3 also give the standard interpolation/Russo–Dye route to $\lVert\mathcal C\rVert_{2\to2}^2\le\lVert\mathcal C(I)\rVert_\infty$ for a CPTP map. These norm facts are established foundations, not new results of this work.
 
 **Yu Luo and Yongming Li, [*Robustness of purity: an operational approach to resource theory of purity*](https://doi.org/10.1140/epjd/e2019-90693-y), European Physical Journal D 73, 89 (2019).** The publisher's abstract connects purity robustness to optimal advantage in mixed-unitary discrimination games. Operational discrimination value for purity is therefore prior work. Only the abstract and bibliographic material were accessible for this comparison; no theorem-level comparison with its full text is asserted. The concrete resource used here is dimension-normalized collision purity in a fixed sequential experiment.
 
@@ -81,7 +81,7 @@ The feedback decomposition and geometric-series estimate used in the common-deci
 | Channel perturbations | Chapter 3, §3.3.2, Definition 3.43, p. 170; Theorem 3.46, p. 173; Proposition 3.48(2), p. 174 | The diamond norm and the composition estimate underlying the [protocol's hybrid error bound](../science/protocols.md). |
 | Hilbert–Schmidt contraction | [Chapter 4](https://cs.uwaterloo.ca/~watrous/TQI/TQI.4.pdf), §4.2.2, Theorem 4.27, p. 231; natural representation in Chapter 2, Eqs. (2.60)–(2.63), p. 77 | The operator norm of $K(\Phi)$ is the induced Hilbert–Schmidt norm of $\Phi$. A positive trace-preserving endomorphism is unital exactly when this norm is one. |
 
-Watrous calls $\|X\|_2$ the **Frobenius norm**, which is the Hilbert–Schmidt norm used here. On p. 34 he uses the full $\|\rho-\sigma\|_1$ as trace distance; this repository uses $D_{\mathrm{tr}}=\tfrac12\|\rho-\sigma\|_1$. Thus equal-prior success is $(1+D_{\mathrm{tr}})/2$. The prior denoted $\lambda$ in his Theorem 3.4 is a different parameter from this project's spike strength.
+Watrous calls $\lVert X\rVert_2$ the **Frobenius norm**, which is the Hilbert–Schmidt norm used here. On p. 34 he uses the full $\lVert\rho-\sigma\rVert_1$ as trace distance; this repository uses $D_{\mathrm{tr}}=\tfrac12\lVert\rho-\sigma\rVert_1$. Thus equal-prior success is $(1+D_{\mathrm{tr}})/2$. The prior denoted $\lambda$ in his Theorem 3.4 is a different parameter from this project's spike strength.
 
 The book supplies these prerequisites. The hidden-sector budgets, their combination in the feedback argument, and the finite Pauli-pointer constructions are developed in this repository's science files. The [source-to-project bridge](../learning/WATROUS_BRIDGE.md) and [milestone map](../learning/MILESTONES.md) organize that connection.
 

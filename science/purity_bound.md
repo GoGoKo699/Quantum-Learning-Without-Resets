@@ -147,7 +147,7 @@ The null state after this step is $\sigma'=Q_0\mathcal C(\sigma)$. Summing the s
 
 Every alternative uses the same null trajectory. Thus one can sum (P8)–(P10) over time without conditioning on an unknown-label-dependent state. Since every initial difference is zero, the right side telescopes and proves (P5).
 
-Finally, $\|X\|_1\le\sqrt D\|X\|_2$, Cauchy–Schwarz over labels, and $\mathrm{Tr}((\rho_T^0)^2)\ge1/D$ give
+Finally, $\lVert X\rVert_1\le\sqrt D\lVert X\rVert_2$, Cauchy–Schwarz over labels, and $\mathrm{Tr}((\rho_T^0)^2)\ge1/D$ give
 
 ```math
 \begin{aligned}

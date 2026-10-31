@@ -37,7 +37,7 @@ D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 \tag{D2}
 ```
 
-At $\lambda=1$, (D1) reads $D_{\mathrm{tr}}\le \min\{1,T\sqrt{\mathcal P-1}/(2M)\}$. This is a necessary query bound, not a query-optimality claim.
+At $\lambda=1$, (D1) reads $D_{\mathrm{tr}}\le \min\lbrace1,T\sqrt{\mathcal P-1}/(2M)\rbrace$. This is a necessary query bound, not a query-optimality claim.
 
 Equation (D2) is a **mixture** trace-distance bound. It does not assert the same bound for $M^{-1}\sum_aD_{\mathrm{tr}}(\rho_T^a,\rho_T^0)$. For that quantity use [the separate purity theorem](purity_bound.md). Convexity makes that individual-distance estimate a valid mixture bound too, so one may take the smaller of the two. Before capping at one, (D2) is stronger precisely when $M(1-\lambda)\ge1+\lambda$, for nonzero strength and excess purity.
 
@@ -87,7 +87,7 @@ u=F_a x_0+G_a v.
 \tag{D6}
 ```
 
-Here $A=Q_0\mathcal C_T\cdots Q_0\mathcal C_1$ is the null evolution and does not depend on $a$. The matrix $G_a$ is strictly lower triangular in the time index, because $u_t$ depends only on $v_1,\ldots,v_{t-1}$. Therefore $G_a^T=0$, where the superscript $T$ here denotes the integer power equal to the number of calls. Every block of a contraction has operator norm at most one, so $\|G_a\|_{2\to2}\le1$.
+Here $A=Q_0\mathcal C_T\cdots Q_0\mathcal C_1$ is the null evolution and does not depend on $a$. The matrix $G_a$ is strictly lower triangular in the time index, because $u_t$ depends only on $v_1,\ldots,v_{t-1}$. Therefore $G_a^T=0$, where the superscript $T$ here denotes the integer power equal to the number of calls. Every block of a contraction has operator norm at most one, so $\lVert G_a\rVert_{2\to2}\le1$.
 
 Close the ports with $v=\lambda u$. Equations (D3) then reproduce the alternative evolution exactly. Nilpotence gives
 
@@ -113,7 +113,7 @@ In particular, no convergence limit or infinite-time inverse is needed at $\lamb
 
 ## 3. One forward budget for every hidden label
 
-With all ports zero, set $x_t^0=Q_0\mathcal C_t(x_{t-1}^0)$. Then the time-$t$ component of $F_a x_0$ is $Q_a\mathcal C_t(x_{t-1}^0)$. Orthogonality gives
+With all ports zero, set $x_t^0=Q_0\mathcal C_t(x_{t-1}^0)$. Then the component at time $t$ of $F_a x_0$ is $Q_a\mathcal C_t(x_{t-1}^0)$. Orthogonality gives
 
 ```math
 \begin{aligned}

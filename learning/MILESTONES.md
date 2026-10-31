@@ -99,7 +99,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** How is one clean qubit distinguished from a large amount of mixed memory?
 
-**Understanding target.** Interpret the dimension-normalized collision purity $\mathcal P=D\mathrm{Tr}(\rho_{\mathrm{in}}^2)$ and its centered form $\mathcal P-1=D\|\rho_{\mathrm{in}}-I/D\|_2^2$. Derive $\mathcal P=2^c$ for $c$ pure qubits with otherwise maximally mixed registers. Explain why appending independent maximally mixed registers leaves $\mathcal P$ unchanged and why the theorem does not identify this number with heat or work.
+**Understanding target.** Interpret the dimension-normalized collision purity $\mathcal P=D\mathrm{Tr}(\rho_{\mathrm{in}}^2)$ and its centered form $\mathcal P-1=D\lVert\rho_{\mathrm{in}}-I/D\rVert_2^2$. Derive $\mathcal P=2^c$ for $c$ pure qubits with otherwise maximally mixed registers. Explain why appending independent maximally mixed registers leaves $\mathcal P$ unchanged and why the theorem does not identify this number with heat or work.
 
 **Dependencies and story role.** [M01](#m01-states-and-observable-probabilities), [M02](#m02-the-complete-processor-and-its-marginals), [M04](#m04-unital-processing-and-preparation), [M06](#m06-operator-geometry-and-channel-adjoints). Turns the control restriction into a quantitative input resource.
 
@@ -161,7 +161,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** Why does repeated depolarization not erase every useful signal?
 
-**Understanding target.** Identify the invariant operator algebra $\{I_S\otimes X_A:X_A\in\mathsf L(A)\}$ of the null channel, whose density operators have the form $I_S/d\otimes\rho_A$. Follow the query-and-swap example in which a signal is stored in protected memory and survives later calls. Explain why this invalidates strict contraction on the full traceless processor space without violating a hidden-label average bound.
+**Understanding target.** Identify the invariant operator algebra $\lbrace I_S\otimes X_A:X_A\in\mathsf L(A)\rbrace$ of the null channel, whose density operators have the form $I_S/d\otimes\rho_A$. Follow the query-and-swap example in which a signal is stored in protected memory and survives later calls. Explain why this invalidates strict contraction on the full traceless processor space without violating a hidden-label average bound.
 
 **Dependencies and story role.** [M02](#m02-the-complete-processor-and-its-marginals), [M06](#m06-operator-geometry-and-channel-adjoints), [M10](#m10-the-complete-operational-question), [M11](#m11-a-physical-channel-with-one-hidden-pauli-mode). Isolates the obstacle that the converse must actually overcome.
 
@@ -269,11 +269,11 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** How do the two exposure budgets yield a law for one readable decision?
 
-**Understanding target.** Combine the finite resolvent with Cauchy–Schwarz across labels and the centered-effect variance bound. Recover the factor $\sqrt{\mathcal P-1}/(2M)$, both the finite-$T$ and uniform-$T$ inequalities, and the distinction from the individual-distance bound. Read the necessary clean-qubit condition as a converse rather than an optimal general-purity tradeoff.
+**Understanding target.** Combine the finite resolvent with Cauchy–Schwarz across labels and the centered-effect variance bound. Recover the factor $\sqrt{\mathcal P-1}/(2M)$, both the inequalities for finite $T$ and those uniform in $T$, and the distinction from the individual-distance bound. Read the necessary clean-qubit condition as a converse rather than an optimal general-purity tradeoff.
 
 **Dependencies and story role.** [M07](#m07-collision-purity-and-mixed-workspace), [M08](#m08-one-final-decision-and-two-distance-questions), [M18](#m18-finite-feedback-and-the-geometric-query-factor), [M19](#m19-the-forward-exposure-budget), [M20](#m20-the-backward-exposure-budget). Synthesizes the second converse before turning to attainability.
 
-**Conceptual connection.** The factor $1/M$ comes from jointly budgeting state access and one final effect across hidden directions. The finite-$T$ endpoint gives a necessary query count, not a matching algorithm. The two converse bounds are numerically tighter in different parameter regimes.
+**Conceptual connection.** The factor $1/M$ comes from jointly budgeting state access and one final effect across hidden directions. The endpoint bound for finite $T$ gives a necessary query count, not a matching algorithm. The two converse bounds are numerically tighter in different parameter regimes.
 
 **Source pointers.** [Decision theorem and consequences](../science/decision_bound.md), (D1)–(D2), (D14)–(D17); [feedback bridge](WATROUS_BRIDGE.md#the-common-decision-feedback-bound).
 
@@ -317,7 +317,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** Why does the weak scan need neither an infinite-time limit nor an uncontrolled expansion?
 
-**Understanding target.** Understand the deliberate clipping of the active multiplier, the finite choice of block length and rotation angle, and the resulting root estimates. Relate the active-versus-inactive population difference to the finite lower bound and the scale $\min\{1,\lambda/[M(1-\lambda)]\}$. Include $\lambda=1$ through clipping while keeping the construction finite.
+**Understanding target.** Understand the deliberate clipping of the active multiplier, the finite choice of block length and rotation angle, and the resulting root estimates. Relate the active-versus-inactive population difference to the finite lower bound and the scale $\min\lbrace1,\lambda/[M(1-\lambda)]\rbrace$. Include $\lambda=1$ through clipping while keeping the construction finite.
 
 **Dependencies and story role.** [M18](#m18-finite-feedback-and-the-geometric-query-factor), [M21](#m21-the-finite-query-common-decision-theorem), [M24](#m24-weak-rotations-and-block-boundary-dephasing). Provides the quantitative attainability argument and its explicit query budget.
 

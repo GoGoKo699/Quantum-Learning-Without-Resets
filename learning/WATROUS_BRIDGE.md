@@ -30,8 +30,8 @@ The pointer's elementary Bloch and rotation formulas below are locally derived a
 | Source convention | Project convention | Interpretation |
 |---|---|---|
 | Hilbert spaces $\mathcal X,\mathcal Y$ | Registers $S,A$ | Query register and protected workspace |
-| Vector $u$, adjoint $u^*$, projector $uu^*$ | $\lvert\psi\rangle$, $\langle\psi\rvert$, $\lvert\psi\rangle\langle\psi\rvert$ | Pure-state notation |
-| Superoperator adjoint $\Phi^*$ | $\mathcal C^\dagger$ | Adjoint for the Hilbert–Schmidt inner product |
+| Vector $u$, adjoint $u^\ast$, projector $uu^\ast$ | $\lvert\psi\rangle$, $\langle\psi\rvert$, $\lvert\psi\rangle\langle\psi\rvert$ | Pure-state notation |
+| Superoperator adjoint $\Phi^\ast$ | $\mathcal C^\dagger$ | Adjoint for the Hilbert–Schmidt inner product |
 | Frobenius norm $\lVert X\rVert_2$ | Hilbert–Schmidt norm $\lVert X\rVert_2$ | The same operator-space norm |
 | Natural matrix representation $\mathrm K(\Phi)$ | A matrix representing $\mathcal C$ on operator space | Its spectral norm is the induced Hilbert–Schmidt norm, not the diamond norm |
 | Full norm $\lVert\rho-\sigma\rVert_1$ called trace distance | $D_{\mathrm{tr}}(\rho,\sigma)=\lVert\rho-\sigma\rVert_1/2$ | An explicit factor-of-two translation |
@@ -207,7 +207,7 @@ Summing the source energy over all hidden directions gives
 \sum_{a=1}^{M}\|Q_a\mathcal C(\sigma)\|_2^2
 \le\|\sigma\|_2^2-\|Q_0\mathcal C(\sigma)\|_2^2.
 ```
-This is a drop along one common null trajectory. Summing over time cancels all intermediate terms. The trace-norm conversion $\|X\|_1\le\sqrt D\|X\|_2$, followed by Cauchy–Schwarz across labels, yields
+This is a drop along one common null trajectory. Summing over time cancels all intermediate terms. The trace-norm conversion $\lVert X\rVert_1\le\sqrt D\lVert X\rVert_2$, followed by Cauchy–Schwarz across labels, yields
 ```math
 \frac1M\sum_aD_{\mathrm{tr}}(\rho_T^a,\rho_T^0)
 \le
@@ -270,7 +270,7 @@ Unitality and trace preservation ensure that this leaves the signal unchanged. I
 =\mathrm{Tr}(F^2)-D\mu^2
 \le D\mu(1-\mu)\le\frac D4.
 ```
-Meanwhile $\|x_0\|_2^2=(\mathcal P-1)/D$. Apply Cauchy–Schwarz across hidden labels to the product of the two exposure histories. Optimizing the common effect gives
+Meanwhile $\lVert x_0\rVert_2^2=(\mathcal P-1)/D$. Apply Cauchy–Schwarz across hidden labels to the product of the two exposure histories. Optimizing the common effect gives
 ```math
 D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 \le
@@ -349,7 +349,7 @@ z_0=c^{ML},\qquad
 z_a=-c^{(M-1)L},
 \qquad c=\cos(\pi/L).
 ```
-Writing $\gamma=1-\lambda$, the noisy active dephasing differs from the identity in diamond norm by exactly $\gamma$. This follows from its random-$Z$ representation and the orthogonal outputs of identity and $Z$ on $|+\rangle$. Only $L$ calls in the active block change. The composition bound in Watrous Proposition 3.48 therefore changes any final probability by at most $L\gamma/2$.
+Writing $\gamma=1-\lambda$, the noisy active dephasing differs from the identity in diamond norm by exactly $\gamma$. This follows from its representation as a mixture of identity and $Z$, whose outputs on $|+\rangle$ are orthogonal. Only $L$ calls in the active block change. The composition bound in Watrous Proposition 3.48 therefore changes any final probability by at most $L\gamma/2$.
 
 For a target error $0\lt\delta\lt1/2$, choose
 ```math
