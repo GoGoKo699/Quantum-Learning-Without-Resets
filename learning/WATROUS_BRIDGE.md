@@ -2,11 +2,11 @@
 
 An unknown noisy device is available for repeated use. A learner can keep a protected quantum memory, apply known controls, and finally read one decision bit. This project asks whether an arbitrarily long experiment can replace a missing supply of fresh initialization.
 
-The question is made precise for a channel that either erases every nonidentity Pauli coefficient or retains one unknown coefficient. The processor begins with a fixed amount of purity. All known controls are unital quantum channels, so a reset to a pure state is an additional resource. The result bounds the information in the final decision for every finite number of ordinary channel calls and gives finite protocols that attain the one-clean-qubit scaling.
+The question is made precise for a channel that either erases every nonidentity Pauli coefficient or retains one unknown coefficient. The processor begins with a fixed amount of purity. All known controls are unital quantum channels, so a reset to a pure state is an additional resource. The result bounds the information in the final decision for every finite number of ordinary channel calls and gives finite protocols that attain the one-clean-qubit scaling. A second, stronger entropy theorem for weight-one spikes at attenuation $1/2$ rules out logarithmic initial purity even with arbitrary protected memory and query time.
 
 The sole educational anchor is **John Watrous, *The Theory of Quantum Information*, Cambridge University Press (2018)**. Source locations below refer to the author's 2018 prepublication manuscript, available through the [author's book page](https://cs.uwaterloo.ca/~watrous/TQI/) and [free complete PDF](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf). The book is linked, not reproduced here. The [30-milestone map](MILESTONES.md) organizes the understanding route; [science/model.md](../science/model.md) owns the assumptions and [the scientific reading route](../science/README.md) locates the complete proofs.
 
-Watrous supplies states, channels, measurements, operator norms, and channel-distance tools. The Pauli exposure budgets, finite feedback argument, and matched construction are additional steps developed in this project. They are explained below rather than attributed to a textbook theorem.
+Watrous supplies states, channels, measurements, operator norms, channel-distance tools, and entropy inequalities. The Pauli exposure budgets, finite feedback argument, matched construction, and reverse-relative-entropy query coupling are additional steps developed in this project. They are explained below rather than attributed to a textbook theorem.
 
 ## Targeted reading from Watrous
 
@@ -22,8 +22,11 @@ These are focused lookups within one source.
 | Dephasing | Chapter 2, §2.2.3, Eqs. (2.162)–(2.169) | A physical unital operation |
 | Final decisions | Chapter 2, §2.3.1, Definition 2.34 and Eqs. (2.199)–(2.201), printed pp. 100–101; [Chapter 3](https://cs.uwaterloo.ca/~watrous/TQI/TQI.3.pdf), §3.1.1, Theorem 3.4, pp. 128–129 | Effects and optimal binary discrimination |
 | Accumulated implementation error | Chapter 3, §3.3.2: Definition 3.43, Theorem 3.46, Proposition 3.48(2), Eq. (3.273), printed pp. 170–174 | Diamond norm, protected auxiliaries, and composition bounds |
+| Relative entropy of mixed states | [Chapter 5](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf), §5.2; Corollary 5.33, printed p. 279, and Theorem 5.35, pp. 280–281 | Joint convexity and data processing; foundations of the reverse-query coupling |
+| Local-to-global entropy | Chapter 5, Theorem 5.36, printed pp. 281–282 | Strong subadditivity with quantum side information |
+| Entropy to decision distance | Chapter 5, Theorem 5.38, printed p. 282 | Pinsker in base-two units and the explicit natural-logarithm conversion |
 
-The pointer's elementary Bloch and rotation formulas below are locally derived applications of the channel framework. No additional textbook is needed for them.
+The Chapter 5 locators were checked in the author's standard-layout chapter PDF. The pointer's elementary Bloch and rotation formulas below are locally derived applications of the channel framework. No additional textbook is needed for them.
 
 ## Notation and operational assumptions
 
@@ -74,6 +77,31 @@ Thus mixed workspace can grow without adding initial purity. One pure qubit with
 All accessible records belong to the processor. Deferring an intermediate measurement into a record register does not make that register's pure initialization free. Nonselective unital dephasing is allowed. Starting another experiment with a fresh clean pointer supplies new purity and is a different resource account.
 
 The one-clean-qubit constructions use a particular product initialization. The converse covers every initial state with the stated $\mathcal P$, a potentially larger class. Collision purity is not identified with a temperature, energy, or thermodynamic work cost.
+
+## Entropy conventions and a second initial resource
+
+The entropy proof uses bits. Watrous writes base-two logarithms as $\log$ and natural logarithms as $\ln$. We make the base explicit by writing
+
+```math
+D_2(\rho\Vert\sigma)
+=\mathrm{Tr}\rho(\log_2\rho-\log_2\sigma),
+\qquad
+D_{\mathrm{nat}}=(\ln2)D_2,
+\qquad
+H_{\mathrm{nat}}=(\ln2)H.
+```
+
+Relative entropy is not a metric and its order matters. The new converse follows $D_2(\rho_T^0\Vert\rho_T^a)$, with the null in the first argument. Corollary 5.33 supplies joint convexity and Theorem 5.35 supplies data processing; neither permits exchanging those arguments.
+
+For the full initialized processor, define
+
+```math
+C=\log_2 D-H(\rho_{\mathrm{in}}).
+```
+
+This entropy deficit equals $c$ for $c$ initially pure qubits and otherwise maximally mixed registers. Appending independent mixed memory leaves it unchanged. For a general state $C\le\log_2\mathcal P$, since von Neumann entropy is at least collision entropy; this does not make $C$ and $\mathcal P$ identical resource functions. Unital controls cannot raise $C$, by data processing relative to $I/D$.
+
+Watrous's Theorem 5.38 is $`D_2(\rho\Vert\sigma)\ge\|\rho-\sigma\|_1^2/(2\ln2)`$. In natural-logarithm units it becomes $`D_{\mathrm{nat}}\ge2D_{\mathrm{tr}}^2`$, because this project halves the trace norm. The exact worst-case error constant below uses binary relative entropy directly and is stronger than merely applying Pinsker. Entropy deficit is an information resource here, with no asserted heat or work conversion.
 
 ## One common effect and two distances
 
@@ -282,6 +310,70 @@ For $T=0$, define $h_0=0$ and the states coincide. For $\lambda\lt1$, $h_T\le(1-
 
 This application of the forward and backward budgets, including their centering constants, is the project-specific step beyond the textbook foundations. [Science/decision_bound.md](../science/decision_bound.md) gives the full time-indexed proof. It bounds the mixture distance, not the average of individual distances.
 
+## Weight-one entropy coupling and null budget
+
+The original collision-purity theorem applies immediately to any restricted orthogonal label family: in the two exposure budgets, a subset sum is at most the full sum. For the $3n$ weight-one labels and $\lambda=1/2$, it gives
+
+```math
+D_{\mathrm{tr}}\!\left(\rho_T^0,\frac1{3n}\sum_a\rho_T^a\right)
+\le\min\left\{1,\frac{\sqrt{\mathcal P-1}}{6n}\right\}.
+```
+
+At error $1/3$ and $\mathcal P=2^c$, this inherited result requires only $c\ge\log_2(1+4n^2)$. It leaves the proposed logarithmic-purity corner open. The [new entropy theorem](../science/entropy_bound.md) replaces the exponential resource dependence by a linear entropy budget.
+
+### One local query with memory-bearing alternatives
+
+Let $R_a=Q_0+Q_a$, which is a physical conditional expectation although $Q_a$ alone need not be positive. For arbitrary null and alternative prequery states $\sigma,\rho$, set $\sigma'=R_a\sigma$, $\rho'=R_a\rho$, $\omega=Q_0\sigma$, and $\zeta=Q_0\rho$. The two positive Pauli-eigenspace blocks of $\sigma'$ can be exchanged by an anticommuting Pauli, producing $\sigma_{\mathrm{flip}}=2\omega-\sigma'$. This hidden-label-dependent flip is used in a proof; it is not a supplied learner operation.
+
+At attenuation $1/2$, the null output is the average of $\sigma'$ and its flip, while the alternative output is $(\rho'+\zeta)/2$. Joint convexity, the conditional-expectation entropy identity, and data processing give the query inequality
+
+```math
+D_2(Q_0\sigma\Vert\mathcal E_{a,1/2}\rho)
+\le D_2(\sigma\Vert\rho)
++\frac12D_2(R_a\sigma\Vert Q_0\sigma).
+```
+
+The source term depends only on the null input even when protected memory has made $\rho$ different. This is the extra step that a source-only or pointwise contraction argument would miss. Arbitrary noncommuting side-memory blocks remain allowed. The support argument and complete derivation belong to [the entropy proof](../science/entropy_bound.md).
+
+### Complementary axes and the global entropy charge
+
+For site $i$ and local Pauli dephasing $\Delta_\alpha$, define
+
+```math
+g_i=1-H(S_i|A)_\sigma,\qquad
+d_{i,\alpha}=D_2\!\left(\Delta_\alpha\sigma_{S_iA}
+\middle\Vert \frac{I_i}{2}\otimes\sigma_A\right).
+```
+
+Two distinct Pauli pinchings compose to complete local depolarization. The conditional-expectation identity and data processing therefore imply $d_{i,\alpha}+d_{i,\beta}\le g_i$. Summing the three pairs gives $\sum_\alpha d_{i,\alpha}\le3g_i/2$. Strong subadditivity, Watrous's Theorem 5.36, then yields
+
+```math
+\sum_{i,\alpha}d_{i,\alpha}
+\le\frac32[n-H(S|A)_\sigma]
+=\frac32[H(Q_0\sigma)-H(\sigma)].
+```
+
+This is a complementary-basis uncertainty statement with quantum memory; [Berta et al.](https://arxiv.org/abs/0909.0950) is a primary antecedent, not an additional educational anchor. Here the required form is derived directly from the same data-processing foundation. Summing null-query entropy gains over time costs at most $C$, because known unital controls cannot reduce entropy. Combining with the query coefficient $1/2$ gives
+
+```math
+\sum_{|a|=1}D_2(\rho_T^0\Vert\rho_T^a)\le\frac34C,
+\qquad
+D_{\mathrm{tr}}\!\left(\rho_T^0,\frac1{3n}\sum_a\rho_T^a\right)
+\le\min\left\{1,\sqrt{\frac{C\ln2}{8n}}\right\}.
+```
+
+A common final rule with null error and every alternative error at most $\delta<1/2$ has binary relative entropy at least $(1-2\delta)\log_2[(1-\delta)/\delta]$ for each label. Hence $C\ge4n(1-2\delta)\log_2[(1-\delta)/\delta]$, and $C\ge4n/3$ at error $1/3$. Logarithmic initially clean qubits are insufficient for **every finite query count**, even with unlimited initially mixed protected memory. No matching linear-resource protocol or complete frontier is asserted.
+
+## The sister model interface
+
+[Pauli-Learning-Memory-Thresholds](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds) studies width-constrained learning with fresh probe preparation, resets, and an unrestricted classical history. Its [no-reset transfer account](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/no_reset_frontier.md) owns the consequence for that resource model; the proof and exact entropy statement are owned here in [entropy_bound.md](../science/entropy_bound.md). Each scientific account states the common attenuated task and its assumptions before linking to the other.
+
+At weight one the old width exponent by itself causes no polynomial-query barrier. Its fresh upper construction still consumes initialized probe and record resources. Our entropy result supplies a genuinely stronger fixed-initialization obstruction, rather than asserting that the old collision-purity lower bound is tight or that two existing upper protocols compose.
+
+The sister's original efficient rank detector retains a hidden mode exactly, including under its known identity-mixture parameter $\tau$. It is not the attenuated $\lambda=1/2$ promise. Setting $\tau=1/2$ cannot import its preserved-mode algorithm here.
+
+When **every** protected register and retained record fits in $`k`$ qubits, the complete processor has $`n+k`$ qubits and $`C\le n+k`$; the error $`1/3`$ theorem then also forces $`k\ge n/3`$. This width corollary is not justified by a coherent-only width convention that exempts an additional classical history. The initial-purity obstruction remains true with any initially mixed extra history, provided all initial purity is charged. Fresh clean pointers, pure measurement records, an accessible purification, nonunital cooling, and new independent runs change that contract.
+
 ## Pointer dynamics and boundary dephasing
 
 The exact gadget in the one-query example works for arbitrary pointer inputs. For a known nonidentity trial $b$, it implements $\mathcal Z_{\lambda}$ if $b=a$ and $\mathcal Z_0$ otherwise, while returning $S$ to $I/d$. Reusing that system is possible because of the gadget identity, not because a reset is supplied.
@@ -389,6 +481,6 @@ At $\lambda=0$ the value is zero; at $\lambda=1$ the supremum is one.
 
 At fixed nonzero strength below one, the best signal is of order $1/M$. More time and more maximally mixed protected memory cannot turn it into a constant signal. Near conservation, the lifetime scale $(1-\lambda)^{-1}$ becomes comparable to the number of hidden directions, and a finite scan attains nonvanishing bias. A chosen worst-case error requires the stronger, error-dependent condition supplied by the separate $\pi$ scan.
 
-The result concerns the best attainable bias, not optimal query complexity, hidden-label identification, or complete channel tomography. Its general-purity converse does not establish a matching tradeoff for every number of clean qubits or every initial spectrum. Reinitialization, nonunital cooling, and environment or inverse access change the model.
+The result concerns the best attainable bias, not optimal query complexity, hidden-label identification, or complete channel tomography. The collision-purity converse does not establish a matching tradeoff for every number of clean qubits or every initial spectrum. The separate weight-one entropy theorem strengthens the necessary initial resource at attenuation $1/2$ to $C\ge4n/3$ for error $1/3$. It rules out the proposed logarithmic-purity starting corner but does not determine the matching linear-resource protocol, optimal constants, or the full $(k,c,T)$ frontier. No theorem for attenuation above $1/2$ is claimed from that entropy argument. Reinitialization, nonunital cooling, and environment or inverse access change the model.
 
-The [related-work account](../references/RELATED_WORK.md) credits the Pauli task, serial tests, weak driving, Zeno discrimination, noisy-oracle purity arguments, and norm foundations. The additional connection is the finite total exposure of both the initial state and one final effect to the hidden sectors, together with a construction under the same preparation budget. [M10](MILESTONES.md#m10-the-complete-operational-question) integrates the model, and [M30](MILESTONES.md#m30-the-complete-scientific-story) integrates this full resource conclusion.
+The [related-work account](../references/RELATED_WORK.md) credits the Pauli task, serial tests, weak driving, Zeno discrimination, noisy-oracle purity arguments, and norm foundations. The collision-purity result combines finite exposure of the initial state and one final effect with a construction under the same preparation budget. The entropy result instead adds a reverse-relative-entropy query coupling and charges its weight-one sources to the finite null entropy budget; standard joint convexity, data processing, strong subadditivity, and complementary-basis uncertainty retain their attribution. [M10](MILESTONES.md#m10-the-complete-operational-question) integrates the model, and [M30](MILESTONES.md#m30-the-complete-scientific-story) integrates this full resource conclusion.

@@ -66,6 +66,24 @@ The feedback decomposition and geometric-series estimate used in the common-deci
 
 **Yu Luo and Yongming Li, [*Robustness of purity: an operational approach to resource theory of purity*](https://doi.org/10.1140/epjd/e2019-90693-y), European Physical Journal D 73, 89 (2019).** The publisher's abstract connects purity robustness to optimal advantage in mixed-unitary discrimination games. Operational discrimination value for purity is therefore prior work. Only the abstract and bibliographic material were accessible for this comparison; no theorem-level comparison with its full text is asserted. The concrete resource used here is dimension-normalized collision purity in a fixed sequential experiment.
 
+## Shared weight-one entropy obstruction
+
+[Pauli Learning Memory Thresholds](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds), [pinned model at revision a58e7e5](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/a58e7e563d8688e6e09c29a8ec78b8fbb3378d07/science/model.md), evaluates the support–memory frontier when experiments may prepare fresh probes and retain their outcomes. Its low-weight upper protocol is not a no-reset construction. Its weak identity-mixture parameter is also distinct from an attenuated spike eigenvalue: mixing the identity with an exactly preserving spike leaves the hidden mode exactly preserved.
+
+The [weight-one entropy theorem](../science/entropy_bound.md) is a shared contribution of the two projects, with its complete proof owned by this repository and its width/learning consequences in the sister's [no-reset frontier](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/no_reset_frontier.md). For $`\lambda=1/2`$, it proves
+
+```math
+\sum_{a:\,|a|=1}D_2(\rho_T^0\Vert\rho_T^a)\le\frac34C,
+```
+
+where $`D_2`$ is quantum relative entropy in bits and $`C`$ is the initial von Neumann entropy deficit. Error at most $`1/3`$ requires $`C\ge4n/3`$. If all side registers and retained records occupy $`k`$ qubits, then $`C\le n+k`$ and $`k\ge n/3`$ is necessary. A matching linear-resource protocol, sharp constants and the full joint frontier are not claimed.
+
+The [restricted-label collision-purity estimate](../science/decision_bound.md#7-restricted-labels-the-immediate-purity-corollary) is an immediate consequence of the pre-existing energy argument, also visible at [revision 690dbd3](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/690dbd3f98c466d535fa531785ac64217380603d/science/decision_bound.md). It gives $`c\ge\log_2(1+4n^2)`$ at the same error. That logarithmic necessity is credited as inherited; it is not the new entropy obstruction.
+
+The proof uses established joint convexity, data processing, pinching identities and strong subadditivity, as developed in [Watrous, Chapter 5](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf). **Mario Berta, Matthias Christandl, Roger Colbeck, Joseph M. Renes and Renato Renner, [*The uncertainty principle in the presence of quantum memory*](https://doi.org/10.1038/nphys1734), Nature Physics 6, 659–662 (2010), [arXiv:0909.0950](https://arxiv.org/abs/0909.0950)** is a primary antecedent for complementary-basis entropy bounds with quantum memory. The particular Pauli inequality needed here is derived directly by pinching and data processing. These entropy foundations are not new claims. The query-specific contribution is the reverse-relative-entropy increment, its charge to the shared null trajectory, and the resulting no-reset obstruction.
+
+This strengthens the present restricted promise rather than characterizing every initial spectrum. The comparison does not assert that this is a new general entropy-loss principle or an optimal theorem for all strengths and weights.
+
 ## Educational anchor: Watrous
 
 **John Watrous, *The Theory of Quantum Information*, Cambridge University Press (2018)** is the educational anchor for this project. The [author's book page](https://cs.uwaterloo.ca/~watrous/TQI/) provides the [complete manuscript](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf), individual chapters and [errata](https://cs.uwaterloo.ca/~watrous/TQI/TQI.errata.pdf). The locators below were checked against the author's **standard-layout chapter PDFs** and use their printed page numbers.
@@ -79,6 +97,7 @@ The feedback decomposition and geometric-series estimate used in the common-deci
 | Adjoint controls | Chapter 2, Proposition 2.18 and its following remark, p. 76; Theorem 2.26, p. 87 | A unital CPTP control has a unital CPTP adjoint, as required by the backward budget. |
 | Final binary decision | [Chapter 3](https://cs.uwaterloo.ca/~watrous/TQI/TQI.3.pdf), §3.1, Theorem 3.4, pp. 128–129 | The Holevo–Helstrom relation between a common final effect, trace distance and success probability. |
 | Channel perturbations | Chapter 3, §3.3.2, Definition 3.43, p. 170; Theorem 3.46, p. 173; Proposition 3.48(2), p. 174 | The diamond norm and the composition estimate underlying the [protocol's hybrid error bound](../science/protocols.md). |
+| Entropy and relative entropy | [Chapter 5](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf), especially the joint-convexity, data-processing and strong-subadditivity results | Foundations for the [shared entropy obstruction](../science/entropy_bound.md); its particular Pauli complementarity step is proved directly. |
 | Hilbert–Schmidt contraction | [Chapter 4](https://cs.uwaterloo.ca/~watrous/TQI/TQI.4.pdf), §4.2.2, Theorem 4.27, p. 231; natural representation in Chapter 2, Eqs. (2.60)–(2.63), p. 77 | The operator norm of $K(\Phi)$ is the induced Hilbert–Schmidt norm of $\Phi$. A positive trace-preserving endomorphism is unital exactly when this norm is one. |
 
 Watrous calls $\lVert X\rVert_2$ the **Frobenius norm**, which is the Hilbert–Schmidt norm used here. On p. 34 he uses the full $\lVert\rho-\sigma\rVert_1$ as trace distance; this repository uses $D_{\mathrm{tr}}=\tfrac12\lVert\rho-\sigma\rVert_1$. Thus equal-prior success is $(1+D_{\mathrm{tr}})/2$. The prior denoted $\lambda$ in his Theorem 3.4 is a different parameter from this project's spike strength.
@@ -87,6 +106,8 @@ The book supplies these prerequisites. The hidden-sector budgets, their combinat
 
 ## Scope of the contribution
 
-The task family, serial testing, weak driving, Zeno discrimination, and the use of purity loss in noisy-oracle bounds all have precedents above. The specific result established here is the uniform-query bound with arbitrary protected workspace, together with the matching one-clean-qubit decision-bias crossover under explicitly charged preparation and ordinary channel access. It characterizes one initialized experiment. Repeating experiments with freshly initialized pointers supplies additional purity and lies outside that fixed-budget experiment.
+The task family, serial testing, weak driving, Zeno discrimination, and the use of purity loss in noisy-oracle bounds all have precedents above. The full-family result established here is the uniform-query bound with arbitrary protected workspace, together with the matching one-clean-qubit decision-bias crossover under explicitly charged preparation and ordinary channel access. It characterizes one initialized experiment. Repeating experiments with freshly initialized pointers supplies additional purity and lies outside that fixed-budget experiment.
+
+The shared weight-one result additionally replaces the restricted-label collision resource by a von Neumann entropy budget at $`\lambda=1/2`$. Its necessary conditions and model transfer are stated separately above.
 
 Machine-readable citations for the sources discussed here are in [references.bib](references.bib).

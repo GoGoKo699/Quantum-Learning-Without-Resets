@@ -2,6 +2,8 @@
 
 **How much can a quantum processor learn from one supply of initial purity, even if it can query an unknown channel indefinitely?** For a hidden Pauli mode, one initially pure qubit has an exact attainable-signal scale, up to universal constants. Arbitrarily large protected mixed memory cannot remove this restriction.
 
+**Sister project: [Pauli Learning Memory Thresholds](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds).** It studies the coherent width needed for learning with fresh experiments. The shared [weight-one entropy obstruction](science/entropy_bound.md) proves that logarithmic initial purity cannot support the attenuated task at $`\lambda=1/2`$ without resets or free fresh records. This repository owns the complete proof; the sister's [no-reset frontier](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/no_reset_frontier.md) explains its width and learning consequences.
+
 The channel is either complete depolarization or retains one unknown nonidentity Pauli component with known strength $\lambda$. The hidden component is fixed throughout the experiment. Between ordinary channel calls, the processor may use any known global unital quantum channel. Every accessible register belongs to the initial resource budget, and there is one final measurement.
 
 ## Main result
@@ -33,9 +35,21 @@ Trace distance here means half the trace norm. Equal-prior success is $(1+\Delta
 
 The result identifies an information limit that persists as the query budget grows. A one-bit answer could fit in the pure pointer; the obstruction comes from finding an unknown direction among many Pauli sectors with a finite initial resource.
 
+## Weight one: a stronger entropy obstruction
+
+Restrict the hidden label to the $`3n`$ weight-one Paulis and set $`\lambda=1/2`$. Let $`C=\log_2\dim(SA)-H(\rho_{\mathrm{in}})`$ be the complete processor's initial entropy deficit in bits. It equals $`c`$ for $`c`$ clean qubits and otherwise maximally mixed registers. The [entropy theorem](science/entropy_bound.md) proves, for every finite number of queries,
+
+```math
+\sum_{a:\,|a|=1}D_2(\rho_T^0\Vert\rho_T^a)\le\frac34C.
+```
+
+Here $`D_2`$ is ordinary quantum relative entropy with base-two logarithms. Worst-case error at most $`1/3`$ requires **$`C\ge4n/3`$**. If every protected register and retained record fits in $`k`$ qubits, then $`C\le n+k`$, so **$`k\ge n/3`$** is necessary as well. In particular, $`O(\log n)`$ initially clean qubits and $`O(\log n)`$ fully charged side memory cannot solve this task, regardless of query count.
+
+The restricted-label collision-purity bound already implies a logarithmic clean-qubit requirement; that immediate corollary is credited separately. The entropy theorem is the stronger obstruction. It does not provide an attaining linear-resource protocol or the exact joint frontier. The width corollary charges all retained records and must not be transferred to a model with unlimited free classical history.
+
 ## Proof and algorithm
 
-The proof follows two Hilbert–Schmidt energy budgets along the depolarizing null: the state propagated forward and one common measurement effect propagated backward. Their total exposure to the queried Pauli sectors is finite. A finite feedback expansion combines these budgets and yields the bound for every query count.
+The full-family one-clean-qubit proof follows two Hilbert–Schmidt energy budgets along the depolarizing null: the state propagated forward and one common measurement effect propagated backward. Their total exposure to the queried Pauli sectors is finite. A finite feedback expansion combines these budgets and yields the bound for every query count.
 
 The algorithm surrounds each ordinary query with a controlled **known** Pauli gate and its inverse. This exactly converts the trial mode into a dephasing channel on a pointer, while returning the query register to its mixed state. A finite sequence of weak rotations and dephasings then reaches the predicted signal scale. The construction uses one query for $\lambda\le1/2$ and at most
 
@@ -54,6 +68,7 @@ Start with the [scientific reading route](science/README.md) and the [model](sci
 | What channel, purity budget, controls and error convention are assumed? | [Model and resources](science/model.md) |
 | How does null-trajectory purity loss bound label-wise output distances? | [Purity-potential theorem](science/purity_bound.md) |
 | Why does one final decision admit a complementary bound? | [Common-decision theorem](science/decision_bound.md) |
+| Why does the weight-one attenuated task need linear initial entropy? | [Shared entropy obstruction](science/entropy_bound.md) |
 | Which finite algorithms match the one-clean-qubit signal law? | [Protocols and resource accounting](science/protocols.md) |
 | Why do mixed memory and more query time fail to replace purity? | [Interpretation and limits](science/interpretation.md) |
 | What is inherited from prior channel-learning and noisy-oracle work? | [Related work](references/RELATED_WORK.md) and [bibliography](references/references.bib) |
@@ -74,11 +89,14 @@ Use Python 3.12 and the pinned NumPy dependency:
 ```bash
 python -m pip install -r verification/requirements.txt
 python verification/run_checks.py
+python verification/verify_entropy.py
 ```
 
-The deterministic suite reconstructs full channel circuits, checks the forward and backward feedback identities, compares scalar scan formulas with matrix powers, and exercises endpoint and resource conventions. It writes [results.json](verification/results.json). Finite numerical checks supplement the proofs; they cannot establish an asymptotic theorem.
+The original deterministic suite reconstructs full channel circuits, checks the forward and backward feedback identities, compares scalar scan formulas with matrix powers, and exercises endpoint and resource conventions. It writes [results.json](verification/results.json). The separate entropy verifier checks the reverse-relative-entropy coupling, Pauli complementarity and complete small no-reset trajectories; it writes [entropy_results.json](verification/entropy_results.json). Finite numerical checks supplement the proofs; they cannot establish an asymptotic theorem.
 
 ## Scope
+
+The shared entropy obstruction concerns the separate weight-one promise at $`\lambda=1/2`$. Its complete proof is here; the sister repository owns the fresh-experiment support–memory frontier. The full-family one-clean-qubit optimum uses all $`M=4^n-1`$ labels, as stated above.
 
 The [Pauli detection task and several algorithmic ingredients have established precedents](references/RELATED_WORK.md). The matched result concerns a single initialized experiment with a charged initial purity budget, ordinary memoryless channel access and unital controls. It does not grant an environment output, an inverse, a controlled unknown channel or fresh pure records.
 

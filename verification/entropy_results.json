@@ -1,0 +1,81 @@
+{
+  "numpy_version": "2.3.5",
+  "seed": 2026110202,
+  "absolute_tolerance": 5e-10,
+  "support_tolerance": 1e-12,
+  "logarithm_base": "natural; clean-qubit conversion divides by ln(2)",
+  "channel_implementation": {
+    "cases": 18,
+    "max_sector_vs_Pauli_error_residual": 5.551115123125783e-17
+  },
+  "coupling": {
+    "cases": 54,
+    "min_amortized_slack": 0.3497973438479764,
+    "max_flipped_identity_residual": 4.440892098500626e-16,
+    "max_protected_block_commutator_norm": 0.08008821858174045
+  },
+  "complementarity_and_tensorization": {
+    "site_cases": 18,
+    "min_pairwise_slack": 0.0006073297726942872,
+    "min_three_axis_slack": 0.0114513429970316,
+    "min_tensorization_slack": 0.0,
+    "max_local_full_source_residual": 4.440892098500626e-16,
+    "bell_axis_sum_over_global_deficit": 1.4999999999999993,
+    "max_bell_saturation_residual": 8.881784197001252e-16
+  },
+  "full_trajectories": {
+    "initial_regularization_mixed_weight": 1e-07,
+    "configuration_count": 22,
+    "queried_qubits": [
+      1,
+      2
+    ],
+    "side_qubits": [
+      0,
+      1
+    ],
+    "clean_qubits": "distinct values among 0, 1, n+k",
+    "control_kinds": [
+      "unitary",
+      "random_unitary_mixture"
+    ],
+    "checkpoints": 66,
+    "query_prefixes": [
+      1,
+      2,
+      4
+    ],
+    "min_slacks": {
+      "amortization": -4.218847493575595e-15,
+      "complementarity": -7.771561172376096e-16,
+      "initial_entropy_budget": -6.661338147750939e-16,
+      "overall": -2.220446049250313e-15
+    },
+    "max_trace_defect": 8.881784197001252e-16,
+    "max_unital_control_entropy_decrease": 2.6645352591003757e-15,
+    "max_zero_clean_state_change": 4.44618290273333e-16,
+    "max_mixture_bound_excess": 1.1102230246251564e-16,
+    "max_individual_squared_bound_excess": 1.467087166022104e-32,
+    "max_initial_c_clean_entropy_conversion_excess": 0.0,
+    "min_output_eigenvalue": 0.018391583457279544
+  },
+  "conventions_and_guards": {
+    "delta": 0.3333333333333333,
+    "delta_binary_relative_entropy_nats": 0.23104906018664853,
+    "required_clean_qubits_per_n_at_delta_one_third": 1.333333333333334,
+    "max_base2_constant_residual": 6.661338147750939e-16,
+    "max_channel_eigenvalue_residual": 0.0,
+    "attenuation_lambda_half_hidden_other_eigenvalues": [
+      0.5,
+      0
+    ],
+    "identity_mixture_tau_half_hidden_other_eigenvalues": [
+      1,
+      0.5
+    ],
+    "singular_support_cases": 2,
+    "invalid_input_guards_passed": 3,
+    "width_corollary_condition": "k >= n/3 uses c <= n+k and counts every protected record in the fixed processor"
+  },
+  "scope": "Finite floating-point diagnostics only; universal claims are analytical. No matching full purity-width frontier or unrestricted-lambda extension is certified."
+}

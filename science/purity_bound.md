@@ -4,7 +4,7 @@ The channel can repeatedly transfer a signal into protected memory. The proof mu
 
 We first bound the average distance between each alternative output and the null. This also applies when the final measurement is chosen after the hidden label is revealed. The complementary [decision theorem](decision_bound.md) uses the additional requirement that one common measurement handles the unknown label. It gives stronger scaling away from conservation; neither displayed estimate is numerically stronger throughout the entire parameter range.
 
-All notation and resources follow [the model](model.md).
+All notation and resources follow [the model](model.md). For the restricted weight-one promise at $`\lambda=1/2`$, the [shared entropy theorem](entropy_bound.md) additionally bounds the sum of reverse relative entropies by the initial von Neumann entropy deficit. That result is separate from the Hilbert–Schmidt collision-purity argument proved here.
 
 ## 1. Orthogonal Pauli sectors
 
@@ -171,5 +171,7 @@ If the processor starts with one pure qubit and all other qubits maximally mixed
 The denominator $1-\lambda^2$ is not controlled at $\lambda=1$. This is a physical boundary of this estimate: an exactly preserved mode admits an arbitrarily accurate single-pointer scan as query time increases. The finite-time decision bound remains meaningful at that endpoint.
 
 This theorem bounds the **average of the individual trace distances**. It allows a different optimal effect for each alternative. The [next theorem](decision_bound.md) improves the hidden-label decision scaling away from conservation by controlling a common effect in both forward and backward time.
+
+For a specified subset of Pauli labels, the source sum in (P10) becomes an inequality bounded by the same null-purity loss; replace $M$ by the subset size in (P5)–(P6). This immediate restriction does not supply the linear entropy requirement of [the weight-one theorem](entropy_bound.md).
 
 The broad idea of charging noisy-oracle information gain to purity loss has prior antecedents in [Regev–Schiff and Buchholz–Kübler–Schölkopf](../references/RELATED_WORK.md#noisy-oracles-and-purity-loss). Here the completely depolarizing null and orthogonal hidden Pauli sectors make the total source energy finite even with protected memory and unlimited query time.
