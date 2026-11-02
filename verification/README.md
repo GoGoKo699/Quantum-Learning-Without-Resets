@@ -108,6 +108,16 @@ The committed NumPy 2.3.5 run uses seed 2026110202. Its smallest overall traject
 
 All these are finite diagnostics. The universal no-reset obstruction, its query independence and its arbitrary-quantum-memory scope follow from the proof, not from the sampled processors or floating-point residuals.
 
+## Build the explanatory report
+
+The [editable report source](../learning/source/Quantum_Learning_Without_Resets_Report.tex) is self-contained LaTeX. With pdfLaTeX from TeX Live 2025, rebuild it from the repository root:
+
+```bash
+python verification/report/build_report.py --output-dir /tmp/qlwr-report-build
+```
+
+Use `--engine /absolute/path/to/pdflatex` to select an installed engine. The build produces a fresh PDF and its corresponding log in the requested output directory. The accepted PDF is stored separately under [learning/report/](../learning/report/Quantum_Learning_Without_Resets_Report.pdf); that stored file does not substitute for a fresh source build.
+
 ## Hosted mathematics
 
 The [read-only hosted collector](hosted/README.md) compares the pinned Markdown with actual GitHub MathML at wide and narrow viewports and saves screenshots for visual review. It runs on pull requests or manual dispatch; it is separate from the numerical scientific checks above.

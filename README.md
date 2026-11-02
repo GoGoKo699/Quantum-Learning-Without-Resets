@@ -40,10 +40,10 @@ The result identifies an information limit that persists as the query budget gro
 Restrict the hidden label to the $`3n`$ weight-one Paulis and set $`\lambda=1/2`$. Let $`C=\log_2\dim(SA)-H(\rho_{\mathrm{in}})`$ be the complete processor's initial entropy deficit in bits. It equals $`c`$ for $`c`$ clean qubits and otherwise maximally mixed registers. The [entropy theorem](science/entropy_bound.md) proves, for every finite number of queries,
 
 ```math
-\sum_{a:\,|a|=1}D_2(\rho_T^0\Vert\rho_T^a)\le\frac34C.
+\sum_{a:\,|a|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)\le\frac34C.
 ```
 
-Here $`D_2`$ is ordinary quantum relative entropy with base-two logarithms. Worst-case error at most $`1/3`$ requires **$`C\ge4n/3`$**. If every protected register and retained record fits in $`k`$ qubits, then $`C\le n+k`$, so **$`k\ge n/3`$** is necessary as well. In particular, $`O(\log n)`$ initially clean qubits and $`O(\log n)`$ fully charged side memory cannot solve this task, regardless of query count.
+Here $`D_{\mathrm{bits}}`$ is ordinary quantum relative entropy with base-two logarithms. Worst-case error at most $`1/3`$ requires **$`C\ge4n/3`$**. If every protected register and retained record fits in $`k`$ qubits, then $`C\le n+k`$, so **$`k\ge n/3`$** is necessary as well. In particular, $`O(\log n)`$ initially clean qubits and $`O(\log n)`$ fully charged side memory cannot solve this task, regardless of query count.
 
 The restricted-label collision-purity bound already implies a logarithmic clean-qubit requirement; that immediate corollary is credited separately. The entropy theorem is the stronger obstruction. It does not provide an attaining linear-resource protocol or the exact joint frontier. The width corollary charges all retained records and must not be transferred to a model with unlimited free classical history.
 
@@ -58,6 +58,10 @@ The algorithm surrounds each ordinary query with a controlled **known** Pauli ga
 ```
 
 queries for $\lambda>1/2$, with $O(n)$ known gates per query. These are sufficient costs, not optimal query bounds. A separate finite scan supplies an explicit worst-case error certificate near $\lambda=1$.
+
+## Explanatory report
+
+The [explanatory report](learning/report/Quantum_Learning_Without_Resets_Report.pdf) develops the resource model, converse proofs, finite protocols and shared weight-one obstruction, including their connection to the sister’s width frontier.
 
 ## Read the science
 
