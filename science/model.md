@@ -40,6 +40,8 @@ p_{a,\lambda}(v)=
 
 The probabilities are nonnegative and sum to one. Their Pauli eigenvalues are one at the identity, $\lambda$ at $P_a$ and zero elsewhere. Thus (M1) is an ordinary noisy channel, not a nonphysical linear oracle. The channel can also measure the two eigenspaces of $P_a$ and prepare $(I\pm\lambda P_a)/d$ according to the outcome. It is entanglement breaking, including at $\lambda=1$.
 
+A second promise used in the [shared entropy theorem](entropy_bound.md) restricts $`a`$ to the $`3n`$ weight-one labels and fixes $`\lambda=1/2`$. Its channel is exactly (M1), with fewer possible labels. Its uniform alternative mixture averages over those $`3n`$ labels, rather than over all $`M=4^n-1`$ labels. This restriction does not change the complete-processor or no-reset assumptions. The full-family definition of $`\Delta_1(n,\lambda)`$ below remains unchanged.
+
 An implementation of (M2) can use a classical hidden label and random local Pauli errors. The learner receives neither that description nor the sampled error. An environment output, dilation isometry, inverse, controlled call to the unknown map or reusable random seed is not part of the oracle interface. Controlled **known** Pauli gates are ordinary learner operations.
 
 ## 2. The complete processor
@@ -102,6 +104,15 @@ The subscript 2 denotes the Hilbert–Schmidt norm. A product of $c$ pure qubits
 
 The **one-clean-qubit class** starts from one pure qubit tensored with any number of maximally mixed qubits, and then uses the allowed controls. Its initial purity is two. The converse also covers the larger class of states with $\mathcal P\le2$; the matching algorithms need only the product initialization just described. We do not identify every state of collision purity at most two with a state preparable from that product by the allowed operations.
 
+For the weight-one promise, the [entropy theorem](entropy_bound.md) uses the additional resource
+
+```math
+C=\log_2D-H(\rho_{\mathrm{in}}),\qquad
+0\le C\le\log_2\mathcal P,
+```
+
+where $`H`$ is von Neumann entropy in bits. This is an entropy deficit, distinct from collision purity. A product of $`c`$ clean qubits and otherwise maximally mixed qubits has both $`C=c`$ and $`\mathcal P=2^c`$. If all protected memory has at most $`k`$ qubits, $`C\le n+k`$. Any retained classical records must be included for that dimension bound; a coherent-only width convention with free classical history supplies a different resource. Appending independent maximally mixed memory leaves $`C`$ unchanged.
+
 Collision purity is a resource parameter for this theorem. It is not a measured heat expenditure or the von Neumann entropy removed by an implementation. We make no universal thermodynamic conversion claim.
 
 ## 4. Decision statistics and error conventions
@@ -163,4 +174,4 @@ Every invocation of (M1) counts as one query. The constructions count their know
 
 The bounds concern one initialized run. Starting another run with a clean pointer is a new supply of purity. Repeating many such experiments and retaining their classical results is not an operation on the same fixed-purity initialized processor. The converse cannot be read as a ban on ordinary tomography with repeated fresh preparation.
 
-See [the energy bound](purity_bound.md) for label-wise output distances, [the decision bound](decision_bound.md) for a common final measurement, and [the explicit algorithms](protocols.md) for attainability.
+See [the energy bound](purity_bound.md) for label-wise output distances, [the decision bound](decision_bound.md) for a common final measurement, and [the explicit algorithms](protocols.md) for full-family one-clean-qubit attainability. The [shared entropy theorem](entropy_bound.md) gives the separate, stronger initial-entropy obstruction for weight one at $`\lambda=1/2`$.

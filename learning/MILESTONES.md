@@ -2,7 +2,7 @@
 
 This map organizes quantum learning without renewed initialization into exactly **30 milestones**. The targets follow the scientific problem and its proof dependencies. They form a common route through the work, independent of any particular reader's background.
 
-The allocation is **10 background/preliminaries milestones** and **20 narrative/innovation milestones**. The background builds a compact finite-dimensional quantum-information toolkit and ends with the complete operational model. The narrative receives more space because the two converse bounds answer different measurement questions, and the finite constructions provide two different guarantees: a matched bias law and a prescribed error near conservation. Their mechanisms, assumptions, and resource costs must be understood before the final synthesis.
+The allocation is **10 background/preliminaries milestones** and **20 narrative/innovation milestones**. The background builds a compact finite-dimensional quantum-information toolkit and ends with the complete operational model. The narrative receives more space because the collision-purity converses answer different measurement questions, the constructions give a matched bias law and a prescribed error near conservation, and the sister investigation adds a stronger entropy obstruction for weight-one attenuated spikes. Their mechanisms, assumptions, and resource costs must be understood before the final synthesis.
 
 The sole educational anchor is **John Watrous, *The Theory of Quantum Information* (2018)**. The [Watrous bridge](WATROUS_BRIDGE.md) identifies the free author manuscript, exact source locations, notation translations, and locally supplied steps. The [science pages](../science/README.md) own the exact statements and full proofs. Research citations support attribution; they do not add educational-anchor requirements.
 
@@ -16,9 +16,9 @@ Each milestone contains a central question, an understanding target, dependencie
 | Background/preliminaries | M05–M09 | Operator geometry, purity, readable decisions, and pointer dynamics |
 | Background/preliminaries | M10 | Synthesis of one fully specified experiment |
 | Narrative/innovation | M11–M15 | Hidden Pauli sectors and the individual-distance purity budget |
-| Narrative/innovation | M16–M21 | One common effect, finite feedback, and the decision converse |
-| Narrative/innovation | M22–M26 | Exact gadget, finite crossover construction, and prescribed error |
-| Narrative/innovation | M27–M29 | Resource accounting, the matched law, attribution, and evidence |
+| Narrative/innovation | M16–M21 | Common-effect feedback, two exposure budgets, entropy source geometry, and the collision decision converse |
+| Narrative/innovation | M22–M26 | Exact gadget, finite weak scan, reverse-entropy query coupling, and prescribed error |
+| Narrative/innovation | M27–M29 | Resource accounting, matched one-clean law, and the weight-one entropy obstruction |
 | Narrative/innovation | M30 | Synthesis of the complete contribution and its limits |
 
 ## Phase I: background/preliminaries
@@ -99,25 +99,25 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** How is one clean qubit distinguished from a large amount of mixed memory?
 
-**Understanding target.** Interpret the dimension-normalized collision purity $\mathcal P=D\mathrm{Tr}(\rho_{\mathrm{in}}^2)$ and its centered form $\mathcal P-1=D\lVert\rho_{\mathrm{in}}-I/D\rVert_2^2$. Derive $\mathcal P=2^c$ for $c$ pure qubits with otherwise maximally mixed registers. Explain why appending independent maximally mixed registers leaves $\mathcal P$ unchanged and why the theorem does not identify this number with heat or work.
+**Understanding target.** Interpret the dimension-normalized collision purity $\mathcal P=D\mathrm{Tr}(\rho_{\mathrm{in}}^2)$ and its centered form $\mathcal P-1=D\lVert\rho_{\mathrm{in}}-I/D\rVert_2^2$. Derive $\mathcal P=2^c$ for $c$ pure qubits with otherwise maximally mixed registers. Explain why appending independent maximally mixed registers leaves $\mathcal P$ unchanged and why the theorem does not identify this number with heat or work. Define the independent entropy resource $C=\log_2 D-H(\rho_{\mathrm{in}})$: it equals $c$ for the same product initialization and is at most $\log_2\mathcal P$ for a general state. Distinguish these two resource functions rather than substituting one into a proved inequality.
 
 **Dependencies and story role.** [M01](#m01-states-and-observable-probabilities), [M02](#m02-the-complete-processor-and-its-marginals), [M04](#m04-unital-processing-and-preparation), [M06](#m06-operator-geometry-and-channel-adjoints). Turns the control restriction into a quantitative input resource.
 
 **Conceptual connection.** Increasing memory width can preserve and process correlations without increasing the initial deviation from the maximally mixed state in the normalized resource measure.
 
-**Source pointers.** [Preparation and purity accounting](WATROUS_BRIDGE.md#preparation-and-purity-accounting); [collision purity](../science/model.md), (M5)–(M6); [resource interpretation](../science/interpretation.md), §§3 and 6.
+**Source pointers.** [Preparation and purity accounting](WATROUS_BRIDGE.md#preparation-and-purity-accounting); [collision purity](../science/model.md), (M5)–(M6); [initial entropy deficit](../science/entropy_bound.md); [Watrous entropy foundations and conventions](WATROUS_BRIDGE.md#entropy-conventions-and-a-second-initial-resource).
 
 ### M08 One final decision and two distance questions
 
 **Central question.** Which distinguishability quantity corresponds to a hidden-label decision?
 
-**Understanding target.** Use halved trace distance as the largest probability difference of one event. Convert it to equal-prior success without losing a factor of two. Distinguish the distance between an averaged alternative state and the null from the average of individually optimized distances; the latter can use a different effect for each label.
+**Understanding target.** Use halved trace distance as the largest probability difference of one event. Convert it to equal-prior success without losing a factor of two. Distinguish the distance between an averaged alternative state and the null from the average of individually optimized distances; the latter can use a different effect for each label. For the entropy route, preserve the order $D_2(\rho^0\Vert\rho^a)$, apply data processing to the final binary measurement, and identify the lower bound $d_2(\delta\Vert1-\delta)$ when both errors are at most $\delta$.
 
 **Dependencies and story role.** [M01](#m01-states-and-observable-probabilities), [M02](#m02-the-complete-processor-and-its-marginals), [M06](#m06-operator-geometry-and-channel-adjoints). Connects operator estimates to the actual output and fixes the two converse objectives.
 
 **Conceptual connection.** A large signal for each known alternative does not guarantee that one measurement can read all those signals when the label is unknown. Averaging states and optimizing measurements are different operations.
 
-**Source pointers.** [Watrous Theorem 3.4 and convention translation](WATROUS_BRIDGE.md#one-common-effect-and-two-distances); [decision statistics](../science/model.md), (M7)–(M10).
+**Source pointers.** [Watrous Theorem 3.4 and convention translation](WATROUS_BRIDGE.md#one-common-effect-and-two-distances); [decision statistics](../science/model.md), (M7)–(M10); [Watrous Chapter 5, Theorems 5.35 and 5.38](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf); [entropy error conversion](../science/entropy_bound.md).
 
 ### M09 A pointer under rotation and dephasing
 
@@ -135,7 +135,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** What does the full experiment receive, do, and return?
 
-**Understanding target.** Combine a fixed unknown channel label, a single initialized processor, known global unital controls, $T$ ordinary calls, and one terminal decision. State which resources may grow and which are fixed. Distinguish known signal strength in the constructions, arbitrary protected mixed workspace, and new purity supplied by restarting an experiment.
+**Understanding target.** Combine a fixed unknown channel label, a single initialized processor, known global unital controls, $T$ ordinary calls, and one terminal decision. State which resources may grow and which are fixed. Distinguish known signal strength in the constructions, arbitrary protected mixed workspace, and new purity supplied by restarting an experiment. In the sister task restrict the hidden family to $3n$ weight-one labels and fix attenuation $\lambda=1/2$; retain every record in the initialized processor and distinguish this from coherent-only width accounting with an excluded classical history.
 
 **Dependencies and story role.** [M01](#m01-states-and-observable-probabilities), [M02](#m02-the-complete-processor-and-its-marginals), [M03](#m03-channels-and-ordinary-oracle-access), [M04](#m04-unital-processing-and-preparation), [M05](#m05-pauli-coordinates-for-operators), [M06](#m06-operator-geometry-and-channel-adjoints), [M07](#m07-collision-purity-and-mixed-workspace), [M08](#m08-one-final-decision-and-two-distance-questions), [M09](#m09-a-pointer-under-rotation-and-dephasing). Synthesizes the background into the precise question addressed by the research phase.
 
@@ -241,29 +241,29 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Source pointers.** [Finite resolvent](../science/decision_bound.md), (D7)–(D8) and (D1)–(D2); [feedback bridge](WATROUS_BRIDGE.md#the-common-decision-feedback-bound).
 
-### M19 The forward exposure budget
+### M19 Two finite exposure budgets
 
-**Central question.** How much of the initial state can encounter all hidden sectors combined?
+**Central question.** How do the initial state and one final effect each have a finite exposure to all hidden directions?
 
-**Understanding target.** Interpret $F_ax_0$ as the history of one sector along the common null evolution. Sum its squared norms over labels and times, retaining the optional final-null remainder. Explain why protected information can survive while the total exposure to queried sectors is finite.
+**Understanding target.** Interpret $F_ax_0$ as one sector's history along the common forward null trajectory and telescope its squared norm over labels and time. Propagate a common terminal effect backward through adjoint null controls, identify $B_a^\dagger E$ including the last port, and telescope that exposure too. Explain why both budgets remain finite although protected memory can retain information indefinitely.
 
-**Dependencies and story role.** [M14](#m14-one-null-trajectory-pays-for-every-direction), [M17](#m17-opening-a-mathematical-signal-port), [M18](#m18-finite-feedback-and-the-geometric-query-factor). Provides the state-side half of the common-decision converse.
+**Dependencies and story role.** [M06](#m06-operator-geometry-and-channel-adjoints), [M14](#m14-one-null-trajectory-pays-for-every-direction), [M16](#m16-a-common-measurement-as-a-second-resource-constraint), [M17](#m17-opening-a-mathematical-signal-port), [M18](#m18-finite-feedback-and-the-geometric-query-factor). Joins the forward and backward halves before the collision-purity decision theorem.
 
-**Conceptual connection.** The budget measures total sector exposure, not pointwise decay of the entire state. This is how the proof accommodates arbitrarily large protected memory.
+**Conceptual connection.** The two trajectories differ, but their orthogonal-sector geometry is the same. A budget for one common effect is stronger than unrelated individually optimized measurements. The backward contraction needs controls that are both trace preserving and unital.
 
-**Source pointers.** [Forward budget](../science/decision_bound.md), (D9); [sector geometry](WATROUS_BRIDGE.md#pauli-sectors-and-protected-memory).
+**Source pointers.** [Forward and backward budgets](../science/decision_bound.md), (D9)–(D12); [Watrous Theorems 2.26 and 4.27](WATROUS_BRIDGE.md#targeted-reading-from-watrous); [feedback bridge](WATROUS_BRIDGE.md#the-common-decision-feedback-bound).
 
-### M20 The backward exposure budget
+### M20 Entropy sources and complementary local axes
 
-**Central question.** How does one final effect acquire a matching finite budget?
+**Central question.** How can one local query response be charged to a finite entropy budget instead of collision purity?
 
-**Understanding target.** Propagate the effect through adjoint null controls and identify the response at time $t$ to a sector injection. Include the last port explicitly. Use adjoint unital contractivity and orthogonality to telescope the sum over hidden sectors, obtaining a bound common to the same measurement.
+**Understanding target.** For a null prequery state $\sigma$, identify the entropy gain $H(Q_0\sigma)-H(\sigma)=n-H(S|A)_\sigma$. For site $i$, set $g_i=1-H(S_i|A)$ and $d_{i,\alpha}=D_2(\Delta_\alpha\sigma_{S_iA}\Vert I_i/2\otimes\sigma_A)$. Explain the conditional-expectation identity and why complementary Pauli pinchings give $d_{i,\alpha}+d_{i,\beta}\le g_i$. Sum the three pairs and use strong subadditivity to obtain $\sum_{i,\alpha}d_{i,\alpha}\le(3/2)[H(Q_0\sigma)-H(\sigma)]$ with arbitrary quantum side information.
 
-**Dependencies and story role.** [M06](#m06-operator-geometry-and-channel-adjoints), [M16](#m16-a-common-measurement-as-a-second-resource-constraint), [M17](#m17-opening-a-mathematical-signal-port), [M19](#m19-the-forward-exposure-budget). Supplies the effect-side half and makes the common-decision restriction quantitative.
+**Dependencies and story role.** [M02](#m02-the-complete-processor-and-its-marginals), [M04](#m04-unital-processing-and-preparation), [M05](#m05-pauli-coordinates-for-operators), [M07](#m07-collision-purity-and-mixed-workspace), [M08](#m08-one-final-decision-and-two-distance-questions), [M11](#m11-a-physical-channel-with-one-hidden-pauli-mode). Starts the second proof resource locally and joins complementary axes into a per-query global charge; the reverse-query coupling is developed in M25.
 
-**Conceptual connection.** Forward and backward arguments use different trajectories but the same operator geometry. The adjoint preserves the required channel assumptions because the controls are both unital and trace preserving.
+**Conceptual connection.** The local factor $3/2$ is a complementary-basis entropy inequality with quantum memory. It does not assume that the protected register or its operator blocks commute. Standard data processing and strong subadditivity supply the foundations; this application must still be connected to actual alternative trajectories.
 
-**Source pointers.** [Backward budget](../science/decision_bound.md), (D10)–(D12); [Watrous Theorems 2.26 and 4.27](WATROUS_BRIDGE.md#targeted-reading-from-watrous).
+**Source pointers.** [Weight-one source budget](../science/entropy_bound.md); [entropy bridge](WATROUS_BRIDGE.md#weight-one-entropy-coupling-and-null-budget); [Watrous Chapter 5, Theorems 5.35–5.36](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf); [uncertainty with quantum memory, primary antecedent](https://arxiv.org/abs/0909.0950).
 
 ### M21 The finite-query common-decision theorem
 
@@ -271,7 +271,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Understanding target.** Combine the finite resolvent with Cauchy–Schwarz across labels and the centered-effect variance bound. Recover the factor $\sqrt{\mathcal P-1}/(2M)$, both the inequalities for finite $T$ and those uniform in $T$, and the distinction from the individual-distance bound. Read the necessary clean-qubit condition as a converse rather than an optimal general-purity tradeoff.
 
-**Dependencies and story role.** [M07](#m07-collision-purity-and-mixed-workspace), [M08](#m08-one-final-decision-and-two-distance-questions), [M18](#m18-finite-feedback-and-the-geometric-query-factor), [M19](#m19-the-forward-exposure-budget), [M20](#m20-the-backward-exposure-budget). Synthesizes the second converse before turning to attainability.
+**Dependencies and story role.** [M07](#m07-collision-purity-and-mixed-workspace), [M08](#m08-one-final-decision-and-two-distance-questions), [M18](#m18-finite-feedback-and-the-geometric-query-factor), [M19](#m19-two-finite-exposure-budgets). Synthesizes the second converse before turning to attainability.
 
 **Conceptual connection.** The factor $1/M$ comes from jointly budgeting state access and one final effect across hidden directions. The endpoint bound for finite $T$ gives a necessary query count, not a matching algorithm. The two converse bounds are numerically tighter in different parameter regimes.
 
@@ -301,29 +301,37 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Source pointers.** [One-query construction](../science/protocols.md), (A5)–(A6); [complete one-qubit example](WATROUS_BRIDGE.md#a-complete-one-query-example).
 
-### M24 Weak rotations and block-boundary dephasing
+### M24 A finite weak scan across the crossover
 
-**Central question.** How can a serial scan accumulate a position-independent signal?
+**Central question.** How can weak rotations build a position-independent signal with a controlled finite error estimate?
 
-**Understanding target.** Build each candidate block from small pointer rotations and the exact dephasing gadget. Derive the active and inactive block multipliers. Explain how complete $Z$ dephasing at every block boundary removes residual transverse coherence while preserving the population signal, making the final output independent of the active label's position.
+**Understanding target.** Build candidate blocks from pointer rotations and the Pauli dephasing gadget. Explain how complete boundary $Z$ dephasing preserves populations while removing order-dependent residual coherence. Derive active and inactive block multipliers. Understand deliberate clipping of the active multiplier, the finite block length and angle, and the root estimates proving the lower bound at the scale $\min\{1,\lambda/[M(1-\lambda)]\}$. Keep the exact-conservation clipped construction finite and account for every call.
 
-**Dependencies and story role.** [M09](#m09-a-pointer-under-rotation-and-dephasing), [M22](#m22-a-trial-pauli-becomes-pointer-dephasing), [M23](#m23-a-common-one-query-signal-at-small-strength). Lifts the local gadget to a common serial decision for stronger signals.
+**Dependencies and story role.** [M09](#m09-a-pointer-under-rotation-and-dephasing), [M18](#m18-finite-feedback-and-the-geometric-query-factor), [M21](#m21-the-finite-query-common-decision-theorem), [M22](#m22-a-trial-pauli-becomes-pointer-dephasing), [M23](#m23-a-common-one-query-signal-at-small-strength). Joins the local scan dynamics and quantitative crossover argument into one constructive mechanism.
 
-**Conceptual connection.** The order of hidden labels can matter without boundary dephasing. The canonical construction deliberately removes that dependence without restoring the pointer to a pure state.
+**Conceptual connection.** Boundary dephasing is unital and never replaces the pointer by a pure state. Clipping prevents a singular parameter choice at conservation; finite spectral estimates control the errors that a small-angle heuristic would leave open. The result is a bias guarantee rather than an arbitrary prescribed worst-case error.
 
-**Source pointers.** [Weak scan dynamics](../science/protocols.md), (A7)–(A10); [pointer dynamics and boundaries](WATROUS_BRIDGE.md#pointer-dynamics-and-boundary-dephasing).
+**Source pointers.** [Weak scan and finite proof](../science/protocols.md), (A7)–(A19), and cost (A2); [pointer dynamics](WATROUS_BRIDGE.md#pointer-dynamics-and-boundary-dephasing); [finite crossover bridge](WATROUS_BRIDGE.md#finite-bias-and-prescribed-error).
 
-### M25 A finite construction across the crossover
+### M25 A reverse-relative-entropy query coupling
 
-**Central question.** Why does the weak scan need neither an infinite-time limit nor an uncontrolled expansion?
+**Central question.** How can the entropy proof handle signal that an alternative returns from protected memory?
 
-**Understanding target.** Understand the deliberate clipping of the active multiplier, the finite choice of block length and rotation angle, and the resulting root estimates. Relate the active-versus-inactive population difference to the finite lower bound and the scale $\min\lbrace1,\lambda/[M(1-\lambda)]\rbrace$. Include $\lambda=1$ through clipping while keeping the construction finite.
+**Understanding target.** At attenuation $1/2$, use arbitrary null and alternative inputs $\sigma,\rho$ and the physical conditional expectation $R_a=Q_0+Q_a$. Identify $R_a\sigma$, its positive Pauli-conjugate flipped state, and their average $Q_0\sigma$. Use joint convexity, the conditional-expectation entropy identity, and data processing to derive
 
-**Dependencies and story role.** [M18](#m18-finite-feedback-and-the-geometric-query-factor), [M21](#m21-the-finite-query-common-decision-theorem), [M24](#m24-weak-rotations-and-block-boundary-dephasing). Provides the quantitative attainability argument and its explicit query budget.
+```math
+D_2(Q_0\sigma\Vert\mathcal E_{a,1/2}\rho)
+\le D_2(\sigma\Vert\rho)
++\frac12D_2(R_a\sigma\Vert Q_0\sigma).
+```
 
-**Conceptual connection.** Clipping prevents a singular parameter choice at exact conservation. The spectral calculation controls the remainder terms that a heuristic small-angle limit would leave unresolved.
+Explain why neither the two inputs nor the protected blocks must coincide or commute, and why the proof's hidden-label-dependent flip supplies no learner oracle.
 
-**Source pointers.** [Finite weak-scan proof](../science/protocols.md), (A7), (A11)–(A19), (A2); [finite crossover bridge](WATROUS_BRIDGE.md#finite-bias-and-prescribed-error).
+**Dependencies and story role.** [M03](#m03-channels-and-ordinary-oracle-access), [M04](#m04-unital-processing-and-preparation), [M08](#m08-one-final-decision-and-two-distance-questions), [M11](#m11-a-physical-channel-with-one-hidden-pauli-mode), [M12](#m12-why-protected-memory-defeats-naive-contraction), [M20](#m20-entropy-sources-and-complementary-local-axes). Supplies the local new query inequality that lets the null entropy budget control actual memory-bearing alternatives.
+
+**Conceptual connection.** Reverse relative entropy has the null state in its first argument. The positive flipped-state decomposition is the step specific to the present attenuation. A forward source estimate alone would leave the feedback problem unresolved; this coupling closes it without opening physical signal ports.
+
+**Source pointers.** [Authoritative entropy query lemma](../science/entropy_bound.md); [entropy coupling bridge](WATROUS_BRIDGE.md#weight-one-entropy-coupling-and-null-budget); [Watrous Chapter 5, Corollary 5.33 and Theorem 5.35](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf).
 
 ### M26 Prescribed error near a conserved mode
 
@@ -331,7 +339,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Understanding target.** Analyze the separate $\pi$-rotation scan with no clipping and mandatory block-boundary dephasing. At exact conservation identify the active pointer flip; away from it charge the $L$ altered calls using a channel-distance hybrid argument. Choose finite $L$ for a prescribed error and interpret perfect discrimination at $\lambda=1$ only as an unlimited-time supremum.
 
-**Dependencies and story role.** [M03](#m03-channels-and-ordinary-oracle-access), [M08](#m08-one-final-decision-and-two-distance-questions), [M22](#m22-a-trial-pauli-becomes-pointer-dephasing), [M24](#m24-weak-rotations-and-block-boundary-dephasing), [M25](#m25-a-finite-construction-across-the-crossover). Separates a high-accuracy guarantee from the universal constant in the bias law.
+**Dependencies and story role.** [M03](#m03-channels-and-ordinary-oracle-access), [M08](#m08-one-final-decision-and-two-distance-questions), [M22](#m22-a-trial-pauli-becomes-pointer-dephasing), [M24](#m24-a-finite-weak-scan-across-the-crossover). Separates a high-accuracy guarantee from the universal constant in the bias law.
 
 **Conceptual connection.** A lower bound on a small probability gap does not establish success $2/3$. The robust scan supplies that stronger kind of guarantee only in its stated near-conserved regime.
 
@@ -343,9 +351,9 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Understanding target.** Count ordinary calls, known controlled Pauli gates, pointer rotations, mixed label registers, and optional mixed coins for unital dephasing. Translate per-gate error into output error without claiming a hardware runtime. Distinguish the analytical all-dimension result from the restricted floating-point scan-output domain and finite diagnostic tolerances.
 
-**Dependencies and story role.** [M04](#m04-unital-processing-and-preparation), [M07](#m07-collision-purity-and-mixed-workspace), [M23](#m23-a-common-one-query-signal-at-small-strength), [M24](#m24-weak-rotations-and-block-boundary-dephasing), [M25](#m25-a-finite-construction-across-the-crossover), [M26](#m26-prescribed-error-near-a-conserved-mode). Integrates the constructions with the resource and accuracy conventions of the model.
+**Dependencies and story role.** [M04](#m04-unital-processing-and-preparation), [M07](#m07-collision-purity-and-mixed-workspace), [M23](#m23-a-common-one-query-signal-at-small-strength), [M24](#m24-a-finite-weak-scan-across-the-crossover), [M26](#m26-prescribed-error-near-a-conserved-mode). Integrates the constructions with the resource and accuracy conventions of the model.
 
-**Conceptual connection.** Mixed-coin dilation can replace admitted dephasing maps with known unitaries while retaining $\mathcal P=2$; it increases mixed width. Numerical domain guards protect an implementation, not the domain of the theorem.
+**Conceptual connection.** Mixed-coin dilation can replace admitted dephasing maps with known unitaries while retaining $\mathcal P=2$; it increases mixed width and therefore gives no automatic logarithmic-width implementation. The entropy theorem permits arbitrarily large initially mixed protected memory, but a width corollary counts every physical record. Numerical domain guards protect an implementation, not the domain of the theorem.
 
 **Source pointers.** [Implementation accounting](../science/protocols.md), §6; [verification scope](../verification/README.md); [resource and numerical boundaries](WATROUS_BRIDGE.md#resources-and-numerical-boundaries).
 
@@ -355,32 +363,32 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Understanding target.** Join the common-decision converse with the two constructive branches to obtain the upper and lower constants for $\Delta_1(n,\lambda)$. Interpret fixed strength, the crossover near $1-\lambda$ of order $1/M$, and both endpoints. Keep attainable bias, prescribed worst-case error, query complexity, and the dependence on several clean qubits separate.
 
-**Dependencies and story role.** [M21](#m21-the-finite-query-common-decision-theorem), [M23](#m23-a-common-one-query-signal-at-small-strength), [M25](#m25-a-finite-construction-across-the-crossover), [M26](#m26-prescribed-error-near-a-conserved-mode), [M27](#m27-implementation-resources-and-numerical-scope). Assembles the principal theorem and its parameter-regime interpretation.
+**Dependencies and story role.** [M21](#m21-the-finite-query-common-decision-theorem), [M23](#m23-a-common-one-query-signal-at-small-strength), [M24](#m24-a-finite-weak-scan-across-the-crossover), [M26](#m26-prescribed-error-near-a-conserved-mode), [M27](#m27-implementation-resources-and-numerical-scope). Assembles the principal theorem and its parameter-regime interpretation.
 
 **Conceptual connection.** Time and mixed width cannot replace missing initial purity away from conservation. Near conservation they support a finite detection mechanism, but this does not establish an efficient general learning algorithm.
 
 **Source pointers.** [Matched law](../science/protocols.md), (A1)–(A2); [interpretation](../science/interpretation.md), §§1–2 and 5–6; [result synthesis](WATROUS_BRIDGE.md#the-result-and-its-limits).
 
-### M29 Attribution and the strength of the evidence
+### M29 The all-time entropy obstruction and sister boundary
 
-**Central question.** Which ingredients are imported, and what supports the contribution beyond them?
+**Central question.** What stronger resource obstruction appears when the hidden family is only weight one?
 
-**Understanding target.** Locate the existing Pauli task, serial tests, weak driving, Zeno discrimination, and noisy-oracle purity-progress precedent. Identify the added role of finite forward and backward null exposure budgets under charged initialization. Separate written proofs, finite code diagnostics, and open questions about query optimality or general purity.
+**Understanding target.** Telescope M25 through common controls and combine it with M20's local charge to derive $\sum_{|a|=1}D_2(\rho_T^0\Vert\rho_T^a)\le3C/4$, uniformly in every finite $T$ and protected dimension. Convert a common final error guarantee into $C\ge4n(1-2\delta)\log_2[(1-\delta)/\delta]$, hence $c\ge4n/3$ for error $1/3$. Credit the inherited restricted-label collision bound, which only forces $c\ge\log_2(1+4n^2)$, and explain the new gain. Separate the pure-initialization impossibility from the additional $k\ge n/3$ conclusion when all records fit in $n+k$ qubits.
 
-**Dependencies and story role.** [M15](#m15-from-quadratic-energy-to-individual-distances), [M21](#m21-the-finite-query-common-decision-theorem), [M25](#m25-a-finite-construction-across-the-crossover), [M27](#m27-implementation-resources-and-numerical-scope), [M28](#m28-the-matched-one-clean-qubit-law). Places the assembled result in its scientific context and identifies the limits of the evidence.
+**Dependencies and story role.** [M07](#m07-collision-purity-and-mixed-workspace), [M08](#m08-one-final-decision-and-two-distance-questions), [M10](#m10-the-complete-operational-question), [M20](#m20-entropy-sources-and-complementary-local-axes), [M21](#m21-the-finite-query-common-decision-theorem), [M25](#m25-a-reverse-relative-entropy-query-coupling), [M27](#m27-implementation-resources-and-numerical-scope), [M28](#m28-the-matched-one-clean-qubit-law). Assembles the new local mechanism into the global no-reset boundary and its transfer to the sister project.
 
-**Conceptual connection.** A new resource conclusion can use established mathematical and physical mechanisms. Accurate attribution clarifies which part of the claim requires the present argument.
+**Conceptual connection.** Logarithmic initial purity cannot be amplified into constant success by any finite number of ordinary calls, even with unrestricted mixed memory. The old width-only upper protocols permit fresh probes and records, and their identity-mixture parameter preserves a mode exactly. Keep this model distinction, inherited entropy/uncertainty foundations, the new query coupling, and finite-versus-analytic evidence explicit. No matching linear-resource upper bound or full frontier is established.
 
-**Source pointers.** [Related work](../references/RELATED_WORK.md); [verification account](../verification/README.md); [scientific scope](../science/interpretation.md), §§4–6.
+**Source pointers.** [Entropy theorem, error conversion, attribution, and limits](../science/entropy_bound.md); [sister width/preparation transfer](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/no_reset_frontier.md); [related work](../references/RELATED_WORK.md); [verification scope](../verification/README.md); [entropy and record accounting](WATROUS_BRIDGE.md#the-sister-model-interface).
 
 ### M30 The complete scientific story
 
-**Central question.** How do the model, both converses, and the finite algorithms form one result?
+**Central question.** How do initialized resources, the collision and entropy converses, and the finite algorithms fit into one scientific account?
 
-**Understanding target.** Explain the path from one initialized processor and an unknown Pauli direction to finite null exposure, a common-measurement bound, and a matching one-clean-qubit bias law. Reconcile surviving protected memory with bounded readable signal, and relate the specified-error scan to the same conservation scale. State the operational assumptions and the principal unresolved extensions together.
+**Understanding target.** Explain the path from one initialized processor and an unknown Pauli direction to finite null exposure, a common-measurement bound, and a matching one-clean-qubit bias law. Reconcile surviving protected memory with bounded readable signal, and relate the specified-error scan to the same conservation scale. Explain the stronger weight-one result at attenuation $1/2$: the reverse-entropy coupling and local complementary-axis budget force linear initial entropy deficit, ruling out the logarithmic-purity starting corner. State this alongside the one-clean-qubit bias law, its assumptions, and the unresolved matching linear-resource and general-attenuation questions.
 
-**Dependencies and story role.** [M10](#m10-the-complete-operational-question), [M15](#m15-from-quadratic-energy-to-individual-distances), [M21](#m21-the-finite-query-common-decision-theorem), [M26](#m26-prescribed-error-near-a-conserved-mode), [M27](#m27-implementation-resources-and-numerical-scope), [M28](#m28-the-matched-one-clean-qubit-law), [M29](#m29-attribution-and-the-strength-of-the-evidence). Synthesizes the narrative phase and the complete project.
+**Dependencies and story role.** [M10](#m10-the-complete-operational-question), [M15](#m15-from-quadratic-energy-to-individual-distances), [M21](#m21-the-finite-query-common-decision-theorem), [M26](#m26-prescribed-error-near-a-conserved-mode), [M27](#m27-implementation-resources-and-numerical-scope), [M28](#m28-the-matched-one-clean-qubit-law), [M25](#m25-a-reverse-relative-entropy-query-coupling), [M29](#m29-the-all-time-entropy-obstruction-and-sister-boundary). Synthesizes the narrative phase and the complete project.
 
-**Conceptual connection.** The result compares resources within a precise interface: a decision at fixed error can remain unattainable despite unlimited query time, while a sufficiently persistent hidden mode becomes readable without new initialization.
+**Conceptual connection.** The result compares resources within a precise interface: a decision at fixed error can remain unattainable despite unlimited query time, while a sufficiently persistent hidden mode becomes readable without new initialization. A fixed attenuation of $1/2$ belongs to the opposite regime, and its weight-one entropy obstruction is not an application of the exactly conserved-mode scan.
 
-**Source pointers.** [Scientific reading route](../science/README.md); [model](../science/model.md); [interpretation](../science/interpretation.md); [bridge synthesis](WATROUS_BRIDGE.md#the-result-and-its-limits).
+**Source pointers.** [Scientific reading route](../science/README.md); [model](../science/model.md); [interpretation](../science/interpretation.md); [bridge synthesis](WATROUS_BRIDGE.md#the-result-and-its-limits); [weight-one entropy proof](../science/entropy_bound.md); [sister transfer](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/no_reset_frontier.md).

@@ -236,8 +236,29 @@ For an initialization of $c$ pure qubits and otherwise mixed qubits, the same ne
 \tag{D17}
 ```
 
-When $\lambda$ and $\delta$ are fixed away from their trivial endpoints, this gives $c\ge4n-O(1)$. It is a converse for initial purity, not a matching clean-qubit complexity theorem.
+When $\lambda$ and $\delta$ are fixed away from their trivial endpoints, this gives $c\ge4n-O(1)$ for the full $M=4^n-1$ family. Restricted label sets are treated below. It is a converse for initial purity, not a matching clean-qubit complexity theorem.
 
 For $\lambda=1$, (D1) instead requires $T\sqrt{\mathcal P-1}\ge2M(1-2\delta)$. The [constructive scan](protocols.md) meets the one-clean-qubit **feasibility threshold** near this endpoint. Its query count is larger than this necessary lower bound.
 
 The full one-clean-qubit optimum over finite query budgets is determined up to universal constants in [the protocol theorem](protocols.md). Its matching quantity is the common-decision mixture distinguishability, not label identification or complete tomography.
+
+## 7. Restricted labels: the immediate purity corollary
+
+The same proof applies to any specified set $`\mathcal L`$ of $`m`$ nonidentity Pauli labels. In (D9) and (D12), the source sums over $`\mathcal L`$ are bounded by the corresponding full-sector sums. For $`\bar\rho_T^{\mathcal L}=m^{-1}\sum_{a\in\mathcal L}\rho_T^a`$,
+
+```math
+D_{\mathrm{tr}}(\bar\rho_T^{\mathcal L},\rho_T^0)
+\le\min\left\{1,
+\frac{\lambda h_T(\lambda)\sqrt{\mathcal P-1}}{2m}\right\}.
+\tag{D18}
+```
+
+For all $`3n`$ weight-one labels and $`\lambda=1/2`$, the query-independent version is
+
+```math
+D_{\mathrm{tr}}(\bar\rho_T^{\mathcal L},\rho_T^0)
+\le\min\left\{1,\frac{\sqrt{\mathcal P-1}}{6n}\right\}.
+\tag{D19}
+```
+
+Thus error at most $`1/3`$ requires $`c\ge\log_2(1+4n^2)`$ for clean/mixed product initialization. This is an immediate restriction of the existing theorem, not the stronger entropy result. The [shared entropy proof](entropy_bound.md) instead gives $`C\ge4n/3`$, where $`C`$ is the initial von Neumann entropy deficit in bits. It uses a reverse-relative-entropy query coupling and complementary local axes. Both bounds remain valid; neither is uniformly sharper at every purity. No matching arbitrary-purity upper protocol is asserted.

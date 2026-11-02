@@ -78,3 +78,36 @@ The numerical scan-output routines explicitly accept only $1\le n\le5$ and block
 Targeted negative controls require rejection of a non-finite scan output and of an out-of-range large-system numerical request. This prevents a small recorded residual from disguising an unevaluated or non-finite quantity.
 
 The suite establishes no priority claim, journal assessment, optimal query complexity, exact arbitrary-purity frontier or hardware feasibility. It also does not inspect the hosted rendering of this Markdown. Those are different questions from the finite scientific calculations.
+
+## Weight-one initial-negentropy check
+
+Run the separate [entropy verifier](verify_entropy.py) with the same installed dependency:
+
+```bash
+python verification/verify_entropy.py
+```
+
+It writes [entropy_results.json](entropy_results.json) and leaves the original `run_checks.py` and `results.json` unchanged. The analytical theorem and its exact assumptions are in [the weight-one entropy bound](../science/entropy_bound.md). This test does not extend the original all-label one-clean-qubit theorem to a matched arbitrary-purity frontier.
+
+| Check | Finite comparison | Cases |
+|---|---|---:|
+| Physical channel | Positive Pauli-error mixture versus the orthogonal-sector formula for the attenuated channel | 18 |
+| Reverse relative-entropy coupling | Binary flipped-state decomposition, joint convexity, conditional-expectation identity and input data processing, with noncommuting protected-memory blocks | 54 |
+| Complementarity and tensorization | Distinct Pauli pinchings, the three-axis entropy charge, local/full-register source identity and conditional subadditivity | 18 site instances |
+| Exact local saturation | One pure Bell pair attains the local three-axis charge factor $3/2$ | 1 |
+| Complete trajectories | All weight-one alternatives on one or two queried qubits, zero or one side qubit, and zero, partially or fully clean initializations; unitary and random-unitary global controls at query prefixes 1, 2 and 4 | 66 checkpoints in 22 trajectories |
+| Conventions and guards | Conversion from natural entropy to clean-qubit count, attenuation versus identity mixture, exact singular supports and invalid numerical inputs | 2 channel sizes, 2 support cases and 3 rejection controls |
+
+The full trajectories compare the sum of reverse output divergences with half the accumulated null Pauli source, three quarters of the null-query entropy increase, and three quarters of the initial negentropy. They also check the resulting mixture trace-distance bound and the average squared individual-distance bound. Every known control is unital, and all hypotheses use the same controls. The mixed-control branch is a convex mixture of two global unitaries; it supplies no recorded outcome or pure ancillary register.
+
+Density-matrix calculations use natural logarithms. Dividing the initial negentropy by $\ln 2$ converts it to the clean-qubit budget. The explicit worst-case-error check at $\delta=1/3$ gives $c\ge4n/3$. The additional width consequence $k\ge n/3$ uses $c\le n+k$ and therefore requires **every protected record and side register** to be included in the fixed processor dimension. The initial-purity obstruction remains valid with arbitrary protected dimension. These tests do not certify a matching protocol or an optimal constant.
+
+The trajectory initialization has an explicit $10^{-7}$ maximally mixed admixture. The verifier charges its **actual** initial negentropy, rather than the larger ideal clean-product value. Spectral logarithms use NumPy eigendecomposition, with no additional dependency. Exact singular support cases are evaluated on their support; invalid support is rejected. Reference eigenvalues at most $10^{-12}$ are treated as numerical zero, well below those in the regularized full-rank trajectory inputs. Comparisons reject NaN and infinity and use absolute tolerance $5\times10^{-10}$.
+
+The committed NumPy 2.3.5 run uses seed 2026110202. Its smallest overall trajectory slack is about $-2.3\times10^{-15}$, attributable to floating-point roundoff, and its maximum Pauli-error/sector discrepancy is below $6\times10^{-17}$. The Bell ratio is $1.5$ to floating-point precision. The verifier separately confirms that attenuation $\lambda=1/2$ has hidden/other Pauli eigenvalues $(1/2,0)$, whereas identity-mixture strength $\tau=1/2$ has $(1,1/2)$; those parameters describe different tasks.
+
+All these are finite diagnostics. The universal no-reset obstruction, its query independence and its arbitrary-quantum-memory scope follow from the proof, not from the sampled processors or floating-point residuals.
+
+## Hosted mathematics
+
+The [read-only hosted collector](hosted/README.md) compares the pinned Markdown with actual GitHub MathML at wide and narrow viewports and saves screenshots for visual review. It runs on pull requests or manual dispatch; it is separate from the numerical scientific checks above.

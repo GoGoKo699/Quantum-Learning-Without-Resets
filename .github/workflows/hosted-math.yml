@@ -1,0 +1,57 @@
+name: Hosted mathematical rendering
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hosted-math-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  github-mathematics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install isolated public rendering dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/hosted-deps" --no-audit --no-fund playwright@1.56.1 mathjax-full@3.2.1
+          "$RUNNER_TEMP/hosted-deps/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Inspect representative inline display and table mathematics
+        env:
+          CAPTURE_REPOSITORY: ${{ github.repository }}
+        run: |
+          export NODE_PATH="$RUNNER_TEMP/hosted-deps/node_modules"
+          node verification/hosted/capture_hosted_math.cjs --root "$GITHUB_WORKSPACE" --repository "$CAPTURE_REPOSITORY" --revision "$(git rev-parse HEAD)" --output hosted-sample --page README.md --page science/entropy_bound.md
+      - name: Inspect all pinned Markdown pages at both widths
+        env:
+          CAPTURE_REPOSITORY: ${{ github.repository }}
+        run: |
+          export NODE_PATH="$RUNNER_TEMP/hosted-deps/node_modules"
+          node verification/hosted/capture_hosted_math.cjs --root "$GITHUB_WORKSPACE" --repository "$CAPTURE_REPOSITORY" --revision "$(git rev-parse HEAD)" --output hosted-full
+      - name: Export bounded sample evidence to logs
+        if: always()
+        run: python3 verification/hosted/export_evidence.py --root hosted-sample --label sample --max-mib 4
+      - name: Export bounded complete evidence to logs
+        if: always()
+        run: python3 verification/hosted/export_evidence.py --root hosted-full --label full --max-mib 28
+      - name: Retain complete collector evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hosted-math-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            hosted-sample/
+            hosted-full/
+          if-no-files-found: warn
+          retention-days: 14
