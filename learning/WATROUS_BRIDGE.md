@@ -240,8 +240,7 @@ This is a drop along one common null trajectory. Summing over time cancels all i
 \frac1M\sum_aD_{\mathrm{tr}}(\rho_T^a,\rho_T^0)
 \le
 \min\left\{1,
-\frac{\lambda}{2\sqrt{1-\lambda^2}}
-\sqrt{\frac{\mathcal P-1}{M}}
+\frac{\lambda\sqrt{\mathcal P-1}}{2\sqrt{M(1-\lambda^2)}}
 \right\}.
 ```
 The initial purity and the minimal final purity $1/D$ absorb the full processor dimension. The complete argument is [science/purity_bound.md](../science/purity_bound.md). This is the individual-distance theorem, including its $\lambda\lt1$ restriction.
@@ -359,7 +358,7 @@ This is a complementary-basis uncertainty statement with quantum memory; [Berta 
 \sum_{|a|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)\le\frac34C,
 \qquad
 D_{\mathrm{tr}}\!\left(\rho_T^0,\frac1{3n}\sum_a\rho_T^a\right)
-\le\min\left\{1,\sqrt{\frac{C\ln2}{8n}}\right\}.
+\le\min\left\{1,\frac{\sqrt{C\ln2}}{\sqrt{8n}}\right\}.
 ```
 
 A common final rule with null error and every alternative error at most $\delta<1/2$ has binary relative entropy at least $(1-2\delta)\log_2[(1-\delta)/\delta]$ for each label. Hence $C\ge4n(1-2\delta)\log_2[(1-\delta)/\delta]$, and $C\ge4n/3$ at error $1/3$. Logarithmic initially clean qubits are insufficient for **every finite query count**, even with unlimited initially mixed protected memory. No matching linear-resource protocol or complete frontier is asserted.

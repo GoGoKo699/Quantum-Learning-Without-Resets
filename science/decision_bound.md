@@ -204,7 +204,7 @@ For an effect $0\le E\le I$, its eigenvalues lie in $[0,1]$. Their variance is a
 \begin{aligned}
 \|E_0\|_2\le\frac{\sqrt D}{2},
 \qquad
-\|x_0\|_2=\sqrt{\frac{\mathcal P-1}{D}}.
+\|x_0\|_2=\frac{\sqrt{\mathcal P-1}}{\sqrt D}.
 \end{aligned}
 \tag{D15}
 ```

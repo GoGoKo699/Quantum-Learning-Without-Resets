@@ -266,7 +266,7 @@ For the uniform final alternative mixture $`\bar\rho_T=(3n)^{-1}\sum_a\rho_T^a`$
 \begin{aligned}
 D_{\mathrm{bits}}(\rho_T^0\Vert\bar\rho_T)&\le\frac{C}{4n},\\
 D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
-&\le\min\left\{1,\sqrt{\frac{C\ln2}{8n}}\right\}.
+&\le\min\left\{1,\frac{\sqrt{C\ln2}}{\sqrt{8n}}\right\}.
 \end{aligned}
 \tag{E20}
 ```
