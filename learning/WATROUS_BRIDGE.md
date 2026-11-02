@@ -101,7 +101,7 @@ C=\log_2 D-H(\rho_{\mathrm{in}}).
 
 This entropy deficit equals $c$ for $c$ initially pure qubits and otherwise maximally mixed registers. Appending independent mixed memory leaves it unchanged. For a general state $C\le\log_2\mathcal P$, since von Neumann entropy is at least collision entropy; this does not make $C$ and $\mathcal P$ identical resource functions. Unital controls cannot raise $C$, by data processing relative to $I/D$.
 
-Watrous's Theorem 5.38 is $D_2(\rho\Vert\sigma)\ge\|\rho-\sigma\|_1^2/(2\ln2)$. In natural-logarithm units it becomes $D_{\mathrm{nat}}\ge2D_{\mathrm{tr}}^2$, because this project halves the trace norm. The exact worst-case error constant below uses binary relative entropy directly and is stronger than merely applying Pinsker. Entropy deficit is an information resource here, with no asserted heat or work conversion.
+Watrous's Theorem 5.38 is $`D_2(\rho\Vert\sigma)\ge\|\rho-\sigma\|_1^2/(2\ln2)`$. In natural-logarithm units it becomes $`D_{\mathrm{nat}}\ge2D_{\mathrm{tr}}^2`$, because this project halves the trace norm. The exact worst-case error constant below uses binary relative entropy directly and is stronger than merely applying Pinsker. Entropy deficit is an information resource here, with no asserted heat or work conversion.
 
 ## One common effect and two distances
 
@@ -372,7 +372,7 @@ At weight one the old width exponent by itself causes no polynomial-query barrie
 
 The sister's original efficient rank detector retains a hidden mode exactly, including under its known identity-mixture parameter $\tau$. It is not the attenuated $\lambda=1/2$ promise. Setting $\tau=1/2$ cannot import its preserved-mode algorithm here.
 
-When **every** protected register and retained record fits in $k$ qubits, the complete processor has $n+k$ qubits and $C\le n+k$; the error-$1/3$ theorem then also forces $k\ge n/3$. This width corollary is not justified by a coherent-only width convention that exempts an additional classical history. The initial-purity obstruction remains true with any initially mixed extra history, provided all initial purity is charged. Fresh clean pointers, pure measurement records, an accessible purification, nonunital cooling, and new independent runs change that contract.
+When **every** protected register and retained record fits in $`k`$ qubits, the complete processor has $`n+k`$ qubits and $`C\le n+k`$; the error $`1/3`$ theorem then also forces $`k\ge n/3`$. This width corollary is not justified by a coherent-only width convention that exempts an additional classical history. The initial-purity obstruction remains true with any initially mixed extra history, provided all initial purity is charged. Fresh clean pointers, pure measurement records, an accessible purification, nonunital cooling, and new independent runs change that contract.
 
 ## Pointer dynamics and boundary dephasing
 

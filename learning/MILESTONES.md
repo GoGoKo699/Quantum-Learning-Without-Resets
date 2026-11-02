@@ -257,7 +257,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** How can one local query response be charged to a finite entropy budget instead of collision purity?
 
-**Understanding target.** For a null prequery state $\sigma$, identify the entropy gain $H(Q_0\sigma)-H(\sigma)=n-H(S|A)_\sigma$. For site $i$, set $g_i=1-H(S_i|A)$ and $d_{i,\alpha}=D_2(\Delta_\alpha\sigma_{S_iA}\Vert I_i/2\otimes\sigma_A)$. Explain the conditional-expectation identity and why complementary Pauli pinchings give $d_{i,\alpha}+d_{i,\beta}\le g_i$. Sum the three pairs and use strong subadditivity to obtain $\sum_{i,\alpha}d_{i,\alpha}\le(3/2)[H(Q_0\sigma)-H(\sigma)]$ with arbitrary quantum side information.
+**Understanding target.** For a null prequery state $`\sigma`$, identify the entropy gain $`H(Q_0\sigma)-H(\sigma)=n-H(S|A)_\sigma`$. For site $`i`$, set $`g_i=1-H(S_i|A)`$ and $`d_{i,\alpha}=D_2(\Delta_\alpha\sigma_{S_iA}\Vert I_i/2\otimes\sigma_A)`$. Explain the conditional-expectation identity and why complementary Pauli pinchings give $`d_{i,\alpha}+d_{i,\beta}\le g_i`$. Sum the three pairs and use strong subadditivity to obtain $`\sum_{i,\alpha}d_{i,\alpha}\le(3/2)[H(Q_0\sigma)-H(\sigma)]`$ with arbitrary quantum side information.
 
 **Dependencies and story role.** [M02](#m02-the-complete-processor-and-its-marginals), [M04](#m04-unital-processing-and-preparation), [M05](#m05-pauli-coordinates-for-operators), [M07](#m07-collision-purity-and-mixed-workspace), [M08](#m08-one-final-decision-and-two-distance-questions), [M11](#m11-a-physical-channel-with-one-hidden-pauli-mode). Starts the second proof resource locally and joins complementary axes into a per-query global charge; the reverse-query coupling is developed in M25.
 
@@ -305,7 +305,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** How can weak rotations build a position-independent signal with a controlled finite error estimate?
 
-**Understanding target.** Build candidate blocks from pointer rotations and the Pauli dephasing gadget. Explain how complete boundary $Z$ dephasing preserves populations while removing order-dependent residual coherence. Derive active and inactive block multipliers. Understand deliberate clipping of the active multiplier, the finite block length and angle, and the root estimates proving the lower bound at the scale $\min\{1,\lambda/[M(1-\lambda)]\}$. Keep the exact-conservation clipped construction finite and account for every call.
+**Understanding target.** Build candidate blocks from pointer rotations and the Pauli dephasing gadget. Explain how complete boundary $`Z`$ dephasing preserves populations while removing order-dependent residual coherence. Derive active and inactive block multipliers. Understand deliberate clipping of the active multiplier, the finite block length and angle, and the root estimates proving the lower bound at the scale $`\min\{1,\lambda/[M(1-\lambda)]\}`$. Keep the exact-conservation clipped construction finite and account for every call.
 
 **Dependencies and story role.** [M09](#m09-a-pointer-under-rotation-and-dephasing), [M18](#m18-finite-feedback-and-the-geometric-query-factor), [M21](#m21-the-finite-query-common-decision-theorem), [M22](#m22-a-trial-pauli-becomes-pointer-dephasing), [M23](#m23-a-common-one-query-signal-at-small-strength). Joins the local scan dynamics and quantitative crossover argument into one constructive mechanism.
 

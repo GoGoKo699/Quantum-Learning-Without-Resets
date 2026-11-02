@@ -51,9 +51,9 @@ jobs:
         run: |
           export PYTHONPATH="$RUNNER_TEMP/hosted-python"
           if test -f hosted-full/hosted-report.json; then
-            python3 verification/hosted/export_evidence.py --root hosted-full --label review --mode review --max-mib 4
+            python3 verification/hosted/export_evidence.py --root hosted-full --label review --mode review --max-mib 6
           else
-            python3 verification/hosted/export_evidence.py --root hosted-sample --label review --mode review --max-mib 4
+            python3 verification/hosted/export_evidence.py --root hosted-sample --label review --mode review --max-mib 6
           fi
       - name: Retain complete collector evidence
         if: always()
