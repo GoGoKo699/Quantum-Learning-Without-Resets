@@ -81,8 +81,7 @@ Consequently,
 D_{\mathrm{tr}}(\rho_T^a,\rho_T^0)
 \le
 \min\!\left\{1,
-\frac{\lambda}{2\sqrt{1-\lambda^2}}
-\sqrt{\frac{\mathcal P-1}{M}}
+\frac{\lambda\sqrt{\mathcal P-1}}{2\sqrt{M(1-\lambda^2)}}
 \right\}.
 }
 \end{aligned}
@@ -152,11 +151,11 @@ Finally, $\lVert X\rVert_1\le\sqrt D\lVert X\rVert_2$, Cauchy–Schwarz over lab
 ```math
 \begin{aligned}
 \frac1M\sum_a D_{\mathrm{tr}}(\rho_T^a,\rho_T^0)
-&\le\frac{\sqrt D}{2}
-\sqrt{\frac1M\sum_a\|\rho_T^a-\rho_T^0\|_2^2}\\
+&\le\frac{\sqrt D}{2\sqrt M}
+\sqrt{\sum_a\|\rho_T^a-\rho_T^0\|_2^2}\\
 &\le
-\frac{\lambda}{2\sqrt{1-\lambda^2}}
-\sqrt{\frac{D\mathrm{Tr}(\rho_{\mathrm{in}}^2)-1}{M}}.
+\frac{\lambda\sqrt{D\mathrm{Tr}(\rho_{\mathrm{in}}^2)-1}}
+{2\sqrt{M(1-\lambda^2)}}.
 \end{aligned}
 ```
 

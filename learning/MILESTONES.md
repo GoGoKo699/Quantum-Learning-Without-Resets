@@ -111,7 +111,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** Which distinguishability quantity corresponds to a hidden-label decision?
 
-**Understanding target.** Use halved trace distance as the largest probability difference of one event. Convert it to equal-prior success without losing a factor of two. Distinguish the distance between an averaged alternative state and the null from the average of individually optimized distances; the latter can use a different effect for each label. For the entropy route, preserve the order $D_2(\rho^0\Vert\rho^a)$, apply data processing to the final binary measurement, and identify the lower bound $d_2(\delta\Vert1-\delta)$ when both errors are at most $\delta$.
+**Understanding target.** Use halved trace distance as the largest probability difference of one event. Convert it to equal-prior success without losing a factor of two. Distinguish the distance between an averaged alternative state and the null from the average of individually optimized distances; the latter can use a different effect for each label. For the entropy route, preserve the order $D_{\mathrm{bits}}(\rho^0\Vert\rho^a)$, apply data processing to the final binary measurement, and identify the lower bound $d_{\mathrm{bits}}(\delta\Vert1-\delta)$ when both errors are at most $\delta$.
 
 **Dependencies and story role.** [M01](#m01-states-and-observable-probabilities), [M02](#m02-the-complete-processor-and-its-marginals), [M06](#m06-operator-geometry-and-channel-adjoints). Connects operator estimates to the actual output and fixes the two converse objectives.
 
@@ -221,7 +221,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** How can channel feedback be represented without granting a new physical interface?
 
-**Understanding target.** Replace the hidden-sector return temporarily by arbitrary operator inputs $v_t$ in $\mathrm{ran}(Q_a)$ and collect outgoing sector components $u_t$ in the same range. Derive the one-step direct-sum norm inequality and its telescoping block contraction. Identify $A$, $B_a$, $F_a$, and $G_a$ as linear response maps, not accessible environment registers or extra oracle calls.
+**Understanding target.** Replace the hidden-sector return temporarily by arbitrary operator inputs $v_t$ in $\mathrm{ran}(Q_a)$ and collect outgoing sector components $u_t$ in the same range. Derive the one-step direct-sum norm inequality and its telescoping block contraction. Identify $\mathcal N$, $B_a$, $F_a$, and $G_a$ as linear response maps, not accessible environment registers or extra oracle calls.
 
 **Dependencies and story role.** [M06](#m06-operator-geometry-and-channel-adjoints), [M11](#m11-a-physical-channel-with-one-hidden-pauli-mode), [M12](#m12-why-protected-memory-defeats-naive-contraction), [M16](#m16-a-common-measurement-as-a-second-resource-constraint). Builds a local-to-global linear system for one hidden sector.
 
@@ -257,7 +257,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** How can one local query response be charged to a finite entropy budget instead of collision purity?
 
-**Understanding target.** For a null prequery state $`\sigma`$, identify the entropy gain $`H(Q_0\sigma)-H(\sigma)=n-H(S|A)_\sigma`$. For site $`i`$, set $`g_i=1-H(S_i|A)`$ and $`d_{i,\alpha}=D_2(\Delta_\alpha\sigma_{S_iA}\Vert I_i/2\otimes\sigma_A)`$. Explain the conditional-expectation identity and why complementary Pauli pinchings give $`d_{i,\alpha}+d_{i,\beta}\le g_i`$. Sum the three pairs and use strong subadditivity to obtain $`\sum_{i,\alpha}d_{i,\alpha}\le(3/2)[H(Q_0\sigma)-H(\sigma)]`$ with arbitrary quantum side information.
+**Understanding target.** For a null prequery state $`\sigma`$, identify the entropy gain $`H(Q_0\sigma)-H(\sigma)=n-H(S|A)_\sigma`$. For site $`i`$, set $`g_i=1-H(S_i|A)`$ and $`d_{i,\alpha}=D_{\mathrm{bits}}(\Delta_\alpha\sigma_{S_iA}\Vert I_i/2\otimes\sigma_A)`$. Explain the conditional-expectation identity and why complementary Pauli pinchings give $`d_{i,\alpha}+d_{i,\beta}\le g_i`$. Sum the three pairs and use strong subadditivity to obtain $`\sum_{i,\alpha}d_{i,\alpha}\le(3/2)[H(Q_0\sigma)-H(\sigma)]`$ with arbitrary quantum side information.
 
 **Dependencies and story role.** [M02](#m02-the-complete-processor-and-its-marginals), [M04](#m04-unital-processing-and-preparation), [M05](#m05-pauli-coordinates-for-operators), [M07](#m07-collision-purity-and-mixed-workspace), [M08](#m08-one-final-decision-and-two-distance-questions), [M11](#m11-a-physical-channel-with-one-hidden-pauli-mode). Starts the second proof resource locally and joins complementary axes into a per-query global charge; the reverse-query coupling is developed in M25.
 
@@ -320,9 +320,9 @@ Each milestone contains a central question, an understanding target, dependencie
 **Understanding target.** At attenuation $1/2$, use arbitrary null and alternative inputs $\sigma,\rho$ and the physical conditional expectation $R_a=Q_0+Q_a$. Identify $R_a\sigma$, its positive Pauli-conjugate flipped state, and their average $Q_0\sigma$. Use joint convexity, the conditional-expectation entropy identity, and data processing to derive
 
 ```math
-D_2(Q_0\sigma\Vert\mathcal E_{a,1/2}\rho)
-\le D_2(\sigma\Vert\rho)
-+\frac12D_2(R_a\sigma\Vert Q_0\sigma).
+D_{\mathrm{bits}}(Q_0\sigma\Vert\mathcal E_{a,1/2}\rho)
+\le D_{\mathrm{bits}}(\sigma\Vert\rho)
++\frac12D_{\mathrm{bits}}(R_a\sigma\Vert Q_0\sigma).
 ```
 
 Explain why neither the two inputs nor the protected blocks must coincide or commute, and why the proof's hidden-label-dependent flip supplies no learner oracle.
@@ -373,7 +373,7 @@ Explain why neither the two inputs nor the protected blocks must coincide or com
 
 **Central question.** What stronger resource obstruction appears when the hidden family is only weight one?
 
-**Understanding target.** Telescope M25 through common controls and combine it with M20's local charge to derive $\sum_{|a|=1}D_2(\rho_T^0\Vert\rho_T^a)\le3C/4$, uniformly in every finite $T$ and protected dimension. Convert a common final error guarantee into $C\ge4n(1-2\delta)\log_2[(1-\delta)/\delta]$, hence $c\ge4n/3$ for error $1/3$. Credit the inherited restricted-label collision bound, which only forces $c\ge\log_2(1+4n^2)$, and explain the new gain. Separate the pure-initialization impossibility from the additional $k\ge n/3$ conclusion when all records fit in $n+k$ qubits.
+**Understanding target.** Telescope M25 through common controls and combine it with M20's local charge to derive $\sum_{|a|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)\le3C/4$, uniformly in every finite $T$ and protected dimension. Convert a common final error guarantee into $C\ge4n(1-2\delta)\log_2[(1-\delta)/\delta]$, hence $c\ge4n/3$ for error $1/3$. Credit the inherited restricted-label collision bound, which only forces $c\ge\log_2(1+4n^2)$, and explain the new gain. Separate the pure-initialization impossibility from the additional $k\ge n/3$ conclusion when all records fit in $n+k$ qubits.
 
 **Dependencies and story role.** [M07](#m07-collision-purity-and-mixed-workspace), [M08](#m08-one-final-decision-and-two-distance-questions), [M10](#m10-the-complete-operational-question), [M20](#m20-entropy-sources-and-complementary-local-axes), [M21](#m21-the-finite-query-common-decision-theorem), [M25](#m25-a-reverse-relative-entropy-query-coupling), [M27](#m27-implementation-resources-and-numerical-scope), [M28](#m28-the-matched-one-clean-qubit-law). Assembles the new local mechanism into the global no-reset boundary and its transfer to the sister project.
 

@@ -81,13 +81,13 @@ is a contraction between Hilbert-space direct sums. Write its blocks as
 
 ```math
 \begin{aligned}
-x_T=A x_0+B_a v,\qquad
+x_T=\mathcal N x_0+B_a v,\qquad
 u=F_a x_0+G_a v.
 \end{aligned}
 \tag{D6}
 ```
 
-Here $A=Q_0\mathcal C_T\cdots Q_0\mathcal C_1$ is the null evolution and does not depend on $a$. The matrix $G_a$ is strictly lower triangular in the time index, because $u_t$ depends only on $v_1,\ldots,v_{t-1}$. Therefore $G_a^T=0$, where the superscript $T$ here denotes the integer power equal to the number of calls. Every block of a contraction has operator norm at most one, so $\lVert G_a\rVert_{2\to2}\le1$.
+Here $\mathcal N=Q_0\mathcal C_T\cdots Q_0\mathcal C_1$ is the null evolution and does not depend on $a$. The matrix $G_a$ is strictly lower triangular in the time index, because $u_t$ depends only on $v_1,\ldots,v_{t-1}$. Therefore $G_a^T=0$, where the superscript $T$ here denotes the integer power equal to the number of calls. Every block of a contraction has operator norm at most one, so $\lVert G_a\rVert_{2\to2}\le1$.
 
 Close the ports with $v=\lambda u$. Equations (D3) then reproduce the alternative evolution exactly. Nilpotence gives
 
@@ -122,7 +122,7 @@ With all ports zero, set $x_t^0=Q_0\mathcal C_t(x_{t-1}^0)$. Then the component 
 \left[
 \|\mathcal C_t(x_{t-1}^0)\|_2^2-\|x_t^0\|_2^2
 \right]\\
-&\le\|x_0\|_2^2-\|A x_0\|_2^2
+&\le\|x_0\|_2^2-\|\mathcal N x_0\|_2^2
 \le\|x_0\|_2^2.
 \end{aligned}
 \tag{D9}
@@ -204,7 +204,7 @@ For an effect $0\le E\le I$, its eigenvalues lie in $[0,1]$. Their variance is a
 \begin{aligned}
 \|E_0\|_2\le\frac{\sqrt D}{2},
 \qquad
-\|x_0\|_2=\sqrt{\frac{\mathcal P-1}{D}}.
+\|x_0\|_2=\frac{\sqrt{\mathcal P-1}}{\sqrt D}.
 \end{aligned}
 \tag{D15}
 ```

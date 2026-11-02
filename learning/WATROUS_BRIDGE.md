@@ -83,15 +83,15 @@ The one-clean-qubit constructions use a particular product initialization. The c
 The entropy proof uses bits. Watrous writes base-two logarithms as $\log$ and natural logarithms as $\ln$. We make the base explicit by writing
 
 ```math
-D_2(\rho\Vert\sigma)
+D_{\mathrm{bits}}(\rho\Vert\sigma)
 =\mathrm{Tr}\rho(\log_2\rho-\log_2\sigma),
 \qquad
-D_{\mathrm{nat}}=(\ln2)D_2,
+D_{\mathrm{nat}}=(\ln2)D_{\mathrm{bits}},
 \qquad
 H_{\mathrm{nat}}=(\ln2)H.
 ```
 
-Relative entropy is not a metric and its order matters. The new converse follows $D_2(\rho_T^0\Vert\rho_T^a)$, with the null in the first argument. Corollary 5.33 supplies joint convexity and Theorem 5.35 supplies data processing; neither permits exchanging those arguments.
+Relative entropy is not a metric and its order matters. The new converse follows $D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)$, with the null in the first argument. Corollary 5.33 supplies joint convexity and Theorem 5.35 supplies data processing; neither permits exchanging those arguments.
 
 For the full initialized processor, define
 
@@ -101,7 +101,7 @@ C=\log_2 D-H(\rho_{\mathrm{in}}).
 
 This entropy deficit equals $c$ for $c$ initially pure qubits and otherwise maximally mixed registers. Appending independent mixed memory leaves it unchanged. For a general state $C\le\log_2\mathcal P$, since von Neumann entropy is at least collision entropy; this does not make $C$ and $\mathcal P$ identical resource functions. Unital controls cannot raise $C$, by data processing relative to $I/D$.
 
-Watrous's Theorem 5.38 is $`D_2(\rho\Vert\sigma)\ge\|\rho-\sigma\|_1^2/(2\ln2)`$. In natural-logarithm units it becomes $`D_{\mathrm{nat}}\ge2D_{\mathrm{tr}}^2`$, because this project halves the trace norm. The exact worst-case error constant below uses binary relative entropy directly and is stronger than merely applying Pinsker. Entropy deficit is an information resource here, with no asserted heat or work conversion.
+Watrous's Theorem 5.38 is $`D_{\mathrm{bits}}(\rho\Vert\sigma)\ge\|\rho-\sigma\|_1^2/(2\ln2)`$. In natural-logarithm units it becomes $`D_{\mathrm{nat}}\ge2D_{\mathrm{tr}}^2`$, because this project halves the trace norm. The exact worst-case error constant below uses binary relative entropy directly and is stronger than merely applying Pinsker. Entropy deficit is an information resource here, with no asserted heat or work conversion.
 
 ## One common effect and two distances
 
@@ -240,8 +240,7 @@ This is a drop along one common null trajectory. Summing over time cancels all i
 \frac1M\sum_aD_{\mathrm{tr}}(\rho_T^a,\rho_T^0)
 \le
 \min\left\{1,
-\frac{\lambda}{2\sqrt{1-\lambda^2}}
-\sqrt{\frac{\mathcal P-1}{M}}
+\frac{\lambda\sqrt{\mathcal P-1}}{2\sqrt{M(1-\lambda^2)}}
 \right\}.
 ```
 The initial purity and the minimal final purity $1/D$ absorb the full processor dimension. The complete argument is [science/purity_bound.md](../science/purity_bound.md). This is the individual-distance theorem, including its $\lambda\lt1$ restriction.
@@ -261,7 +260,7 @@ Because the retained and injected sectors are orthogonal,
 \|x_t\|_2^2+\|u_t\|_2^2
 \le\|x_{t-1}\|_2^2+\|v_t\|_2^2.
 ```
-Summing makes the entire input-output map a contraction. Write its blocks as $x_T=A x_0+B_av$ and $u=F_ax_0+G_av$. Closing $v=\lambda u$ reproduces the actual alternative.
+Summing makes the entire input-output map a contraction. Write its blocks as $x_T=\mathcal N x_0+B_av$ and $u=F_ax_0+G_av$. Closing $v=\lambda u$ reproduces the actual alternative.
 
 Time ordering is essential: a port output depends only on earlier injections. Therefore $G_a^T=0$, where the superscript is the integer power equal to the number of calls. For $T\ge1$ the feedback inverse is a finite sum:
 ```math
@@ -328,9 +327,9 @@ Let $R_a=Q_0+Q_a$, which is a physical conditional expectation although $Q_a$ al
 At attenuation $1/2$, the null output is the average of $\sigma'$ and its flip, while the alternative output is $(\rho'+\zeta)/2$. Joint convexity, the conditional-expectation entropy identity, and data processing give the query inequality
 
 ```math
-D_2(Q_0\sigma\Vert\mathcal E_{a,1/2}\rho)
-\le D_2(\sigma\Vert\rho)
-+\frac12D_2(R_a\sigma\Vert Q_0\sigma).
+D_{\mathrm{bits}}(Q_0\sigma\Vert\mathcal E_{a,1/2}\rho)
+\le D_{\mathrm{bits}}(\sigma\Vert\rho)
++\frac12D_{\mathrm{bits}}(R_a\sigma\Vert Q_0\sigma).
 ```
 
 The source term depends only on the null input even when protected memory has made $\rho$ different. This is the extra step that a source-only or pointwise contraction argument would miss. Arbitrary noncommuting side-memory blocks remain allowed. The support argument and complete derivation belong to [the entropy proof](../science/entropy_bound.md).
@@ -341,7 +340,7 @@ For site $i$ and local Pauli dephasing $\Delta_\alpha$, define
 
 ```math
 g_i=1-H(S_i|A)_\sigma,\qquad
-d_{i,\alpha}=D_2\!\left(\Delta_\alpha\sigma_{S_iA}
+d_{i,\alpha}=D_{\mathrm{bits}}\!\left(\Delta_\alpha\sigma_{S_iA}
 \middle\Vert \frac{I_i}{2}\otimes\sigma_A\right).
 ```
 
@@ -356,10 +355,10 @@ Two distinct Pauli pinchings compose to complete local depolarization. The condi
 This is a complementary-basis uncertainty statement with quantum memory; [Berta et al.](https://arxiv.org/abs/0909.0950) is a primary antecedent, not an additional educational anchor. Here the required form is derived directly from the same data-processing foundation. Summing null-query entropy gains over time costs at most $C$, because known unital controls cannot reduce entropy. Combining with the query coefficient $1/2$ gives
 
 ```math
-\sum_{|a|=1}D_2(\rho_T^0\Vert\rho_T^a)\le\frac34C,
+\sum_{|a|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)\le\frac34C,
 \qquad
 D_{\mathrm{tr}}\!\left(\rho_T^0,\frac1{3n}\sum_a\rho_T^a\right)
-\le\min\left\{1,\sqrt{\frac{C\ln2}{8n}}\right\}.
+\le\min\left\{1,\frac{\sqrt{C\ln2}}{\sqrt{8n}}\right\}.
 ```
 
 A common final rule with null error and every alternative error at most $\delta<1/2$ has binary relative entropy at least $(1-2\delta)\log_2[(1-\delta)/\delta]$ for each label. Hence $C\ge4n(1-2\delta)\log_2[(1-\delta)/\delta]$, and $C\ge4n/3$ at error $1/3$. Logarithmic initially clean qubits are insufficient for **every finite query count**, even with unlimited initially mixed protected memory. No matching linear-resource protocol or complete frontier is asserted.

@@ -120,13 +120,15 @@ u&=\frac{2t}{L},\qquad
 \tag{A7}
 ```
 
+Here $g$ is the clipped decay scale and $\ell$ the retained active coefficient. The parameter $h$ controls the finite response estimate, $L$ is the number of steps per candidate, and $t$ keeps the accumulated disturbance from inactive blocks small. The quantity $u=\sin^2\theta$ fixes each step’s rotation strength.
+
 After each gadget, apply the known pointer dephasing $\mathcal Z_{\ell/\lambda}$. It changes the active parameter from $\lambda$ to $\ell$ and leaves the inactive parameter zero. This deliberate clipping produces simple uniform finite constants.
 
 Start the pointer in $|0\rangle$. Enumerate all $M$ nonidentity Pauli candidates. For each candidate, repeat $L$ times: rotate the pointer by $R_y(\theta)$, run its gadget, and apply the clipping dephasing. Completely dephase the pointer in the $Z$ basis at the end of each block. Measure $Z$ once after the final block.
 
 Boundary dephasing preserves the populations carrying the accumulated signal; it does not reset the pointer. Under the admitted unital-control model, only the $n$ mixed query qubits and one pointer need persist.
 
-For $c=\cos\theta$ and $v=\sin\theta$, the real Bloch vector transforms in one step as
+Write the physical pointer state as $\sigma=(I+xX+zZ)/2$, with real $x,z$ satisfying $x^2+z^2\le1$. The coordinates are observable expectations: $x=\mathrm{Tr}(X\sigma)$ and $z=\mathrm{Tr}(Z\sigma)$. For $c=\cos\theta$ and $v=\sin\theta$, one step transforms them as
 
 ```math
 \begin{aligned}

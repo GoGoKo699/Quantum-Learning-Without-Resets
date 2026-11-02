@@ -2,7 +2,7 @@
 
 The collector compares every recognized mathematical expression in a pinned source tree with the accessible MathML on its real GitHub page. It inspects anonymous Chromium contexts at widths 1440 and 760, saves the original hosted HTML and full-page screenshots, and checks symbols and structure against local MathJax compilation. Local TeX compilation alone does not establish hosted rendering.
 
-The workflow first inspects the README as an early inline/display/table sample, then scans every tracked Markdown page. It runs on pull requests, pushes to main and manual dispatch, using only read access to repository contents. It has no secret inputs or write token, and it never modifies a repository or its visibility.
+The workflow first inspects the README and the shared-obstruction account as an early inline/display/table sample, then scans every tracked Markdown page. It runs on pull requests and manual dispatch, using only read access to repository contents. It has no secret inputs or write token, and it never modifies a repository or its visibility.
 
 ## Run locally
 
