@@ -12,9 +12,9 @@ Write $`d=2^n`$ and let $`a=(i,\alpha)`$ range over all $`3n`$ weight-one Pauli 
 
 ```math
 \begin{aligned}
-Q_0(X)&=\frac{I_S}{d}\otimes\operatorname{Tr}_S X,\\
+Q_0(X)&=\frac{I_S}{d}\otimes\mathrm{Tr}_S X,\\
 Q_a(X)&=\frac{P_a}{d}\otimes
-\operatorname{Tr}_S[(P_a\otimes I_A)X],\\
+\mathrm{Tr}_S[(P_a\otimes I_A)X],\\
 R_a&=Q_0+Q_a,\qquad
 E_a=Q_0+\frac12Q_a.
 \end{aligned}
@@ -28,7 +28,7 @@ Use base-two von Neumann entropy $`H`$ and base-two quantum relative entropy,
 ```math
 \begin{aligned}
 D_2(\rho\Vert\sigma)
-&=\operatorname{Tr}\rho(\log_2\rho-\log_2\sigma),\\
+&=\mathrm{Tr}\rho(\log_2\rho-\log_2\sigma),\\
 C&=\log_2\dim(SA)-H(\rho_{\mathrm{in}}).
 \end{aligned}
 \tag{E2}
@@ -39,7 +39,9 @@ The subscript in $`D_2`$ specifies the logarithm base; it does **not** denote a 
 The entropy deficit $`C`$ is measured in bits. For $`c`$ initially clean qubits and all other qubits maximally mixed, $`C=c`$. With the collision purity $`\mathcal P`$ from (M5),
 
 ```math
+\begin{aligned}
 0\le C\le\log_2\mathcal P.
+\end{aligned}
 \tag{E3}
 ```
 
@@ -50,10 +52,12 @@ Appending independent maximally mixed memory leaves both $`C`$ and $`\mathcal P`
 Let $`\rho_T^0`$ and $`\rho_T^a`$ be the complete states after any finite $`T`$ queries, with the same initial state and known controls under every hypothesis. Then
 
 ```math
+\begin{aligned}
 \boxed{
 \sum_{a:\,|a|=1}D_2(\rho_T^0\Vert\rho_T^a)
 \le\frac34 C.
 }
+\end{aligned}
 \tag{E4}
 ```
 
@@ -68,21 +72,27 @@ j_2(\delta)=(1-2\delta)\log_2\frac{1-\delta}{\delta}.
 The theorem implies
 
 ```math
+\begin{aligned}
 \boxed{C\ge4n\,j_2(\delta).}
+\end{aligned}
 \tag{E5}
 ```
 
 In particular, error at most $`1/3`$ requires
 
 ```math
+\begin{aligned}
 \boxed{C\ge\frac43n.}
+\end{aligned}
 \tag{E6}
 ```
 
 Therefore $`c=O(\log n)`$ clean qubits cannot attain this error, even with unrestricted additional mixed memory and an arbitrarily large finite query budget. If the entire protected register has at most $`k`$ qubits, (E6) and $`C\le n+k`$ also require
 
 ```math
+\begin{aligned}
 \boxed{k\ge\frac13n.}
+\end{aligned}
 \tag{E7}
 ```
 
@@ -102,37 +112,45 @@ Choose a Pauli unitary on $`S`$ that anticommutes with $`P_a`$. Conjugating $`\s
 The two output states have decompositions
 
 ```math
-\omega=\frac{\sigma'+\sigma_{\mathrm{flip}}}{2},
-\qquad
-E_a\rho=\frac{\rho'+\zeta}{2}.
+\begin{aligned}
+\omega&=\frac{\sigma'+\sigma_{\mathrm{flip}}}{2},\\
+E_a\rho&=\frac{\rho'+\zeta}{2}.
+\end{aligned}
 \tag{E8}
 ```
 
 Joint convexity of quantum relative entropy gives
 
 ```math
+\begin{aligned}
 D_2(\omega\Vert E_a\rho)
-\le\frac12D_2(\sigma'\Vert\rho')
-+\frac12D_2(\sigma_{\mathrm{flip}}\Vert\zeta).
+&\le\frac12D_2(\sigma'\Vert\rho')\\
+&\quad+\frac12D_2(\sigma_{\mathrm{flip}}\Vert\zeta).
+\end{aligned}
 \tag{E9}
 ```
 
 Because $`\omega=I_S/d\otimes\sigma_A`$ and $`\zeta=I_S/d\otimes\rho_A`$, the conditional-expectation identity is
 
 ```math
+\begin{aligned}
 D_2(\sigma_{\mathrm{flip}}\Vert\zeta)
-=D_2(\sigma'\Vert\omega)+D_2(\omega\Vert\zeta).
+&=D_2(\sigma'\Vert\omega)\\
+&\quad+D_2(\omega\Vert\zeta).
+\end{aligned}
 \tag{E10}
 ```
 
 One can check (E10) directly by expanding the logarithms: the first term is the entropy deficit of $`\sigma'`$ relative to $`I_S/d\otimes\sigma_A`$; the second is $`D_2(\sigma_A\Vert\rho_A)`$. The sign flip preserves the first entropy and the memory marginal. Data processing bounds both $`D_2(\sigma'\Vert\rho')`$ and $`D_2(\omega\Vert\zeta)`$ by $`D_2(\sigma\Vert\rho)`$. Thus
 
 ```math
-\boxed{
+\begin{aligned}
+\boxed{\begin{aligned}
 D_2(Q_0\sigma\Vert E_a\rho)
-\le D_2(\sigma\Vert\rho)
-+\frac12D_2(R_a\sigma\Vert Q_0\sigma).
-}
+&\le D_2(\sigma\Vert\rho)\\
+&\quad+\frac12D_2(R_a\sigma\Vert Q_0\sigma).
+\end{aligned}}
+\end{aligned}
 \tag{E11}
 ```
 
@@ -169,7 +187,9 @@ g_i-d_{i,\alpha}
 Sum the three pairwise inequalities. Each $`d_{i,\alpha}`$ appears twice, so
 
 ```math
+\begin{aligned}
 \sum_{\alpha\in\{X,Y,Z\}}d_{i,\alpha}\le\frac32g_i.
+\end{aligned}
 \tag{E14}
 ```
 
@@ -192,18 +212,22 @@ Thus all $`3n`$ local directions are charged to the entropy created by one null 
 Let $`\sigma_t=\mathcal C_t(\rho_{t-1}^0)`$. Apply (E11) with null input $`\sigma_t`$ and alternative input $`\mathcal C_t(\rho_{t-1}^a)`$. Data processing through the known control and identical initial states give
 
 ```math
+\begin{aligned}
 D_2(\rho_T^0\Vert\rho_T^a)
-\le\frac12\sum_{t=1}^T
+&\le\frac12\sum_{t=1}^T
 D_2(R_a\sigma_t\Vert Q_0\sigma_t).
+\end{aligned}
 \tag{E16}
 ```
 
 Sum over all weight-one labels and use (E15):
 
 ```math
+\begin{aligned}
 \sum_{a:\,|a|=1}D_2(\rho_T^0\Vert\rho_T^a)
-\le\frac34\sum_{t=1}^T
-[H(\rho_t^0)-H(\sigma_t)].
+&\le\frac34\sum_{t=1}^T\\
+&\quad[H(\rho_t^0)-H(\sigma_t)].
+\end{aligned}
 \tag{E17}
 ```
 
@@ -254,8 +278,10 @@ Here $`D_{\mathrm{tr}}`$ is half the trace norm, as throughout this repository. 
 The [common-decision proof](decision_bound.md) restricts immediately to any set of $`m`$ nonidentity Pauli labels: the forward and backward sums become inequalities rather than equalities. For the present $`m=3n`$ and $`\lambda=1/2`$, its inherited corollary is
 
 ```math
+\begin{aligned}
 D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 \le\min\left\{1,\frac{\sqrt{\mathcal P-1}}{6n}\right\}.
+\end{aligned}
 \tag{E21}
 ```
 

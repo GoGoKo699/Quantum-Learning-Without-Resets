@@ -247,17 +247,21 @@ The full one-clean-qubit optimum over finite query budgets is determined up to u
 The same proof applies to any specified set $`\mathcal L`$ of $`m`$ nonidentity Pauli labels. In (D9) and (D12), the source sums over $`\mathcal L`$ are bounded by the corresponding full-sector sums. For $`\bar\rho_T^{\mathcal L}=m^{-1}\sum_{a\in\mathcal L}\rho_T^a`$,
 
 ```math
+\begin{aligned}
 D_{\mathrm{tr}}(\bar\rho_T^{\mathcal L},\rho_T^0)
 \le\min\left\{1,
 \frac{\lambda h_T(\lambda)\sqrt{\mathcal P-1}}{2m}\right\}.
+\end{aligned}
 \tag{D18}
 ```
 
 For all $`3n`$ weight-one labels and $`\lambda=1/2`$, the query-independent version is
 
 ```math
+\begin{aligned}
 D_{\mathrm{tr}}(\bar\rho_T^{\mathcal L},\rho_T^0)
 \le\min\left\{1,\frac{\sqrt{\mathcal P-1}}{6n}\right\}.
+\end{aligned}
 \tag{D19}
 ```
 
