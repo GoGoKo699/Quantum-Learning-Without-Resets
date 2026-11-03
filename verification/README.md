@@ -32,6 +32,10 @@ The open-port identity residual is below $2\times10^{-16}$ in the archived run. 
 
 These numbers describe the finite tested instances. They do not extrapolate numerical accuracy to arbitrarily large systems or replace the universal inequalities in the proof.
 
+## Analytical signal figure
+
+The [signal-figure guide](Graph/README.md) gives the generator, pinned plotting dependencies, canonical formulas and regeneration command for [the vector plot](Graph/signal_bounds.pdf). The code evaluates the two analytical envelopes directly.
+
 ## Reusable API
 
 [protocols.py](protocols.py) evaluates the exact finite-model formulas in floating-point arithmetic:
@@ -47,6 +51,8 @@ These numbers describe the finite tested instances. They do not extrapolate nume
 | `near_unit_scan_output(n, strength, block_length)` | Canonical pi-rotation scan with complete dephasing at every block boundary |
 | `near_unit_scan_error_bound(n, strength, block_length)` | Uniform analytical worst-case error certificate |
 | `scan_costs`, `small_strength_costs`, `near_unit_scan_costs` | Counts in the explicitly documented known-gate primitives |
+
+The API names `strength` and `queries` denote the retained coefficient $\lambda$ and total channel-call count $T$. `purity` denotes $\mathcal P=D\operatorname{Tr}(\rho_{\mathrm{in}}^2)$. Internal enumerated Pauli indices represent the binary labels $e$ used in the scientific account. The pointer output fields report $m_0^X,m_e^X$ or $m_0^Z,m_e^Z$ according to the measurement axis; local in-block Bloch coordinates remain $x,z$.
 
 An output reports its measurement axis, both pointer expectations, the declared-alternative outcome, null and alternative errors, probability gap and equal-prior success. The probability gap is twice the success advantage above one half. It need not imply balanced errors.
 
@@ -79,7 +85,7 @@ Targeted negative controls require rejection of a non-finite scan output and of 
 
 The suite establishes no priority claim, journal assessment, optimal query complexity, exact arbitrary-purity frontier or hardware feasibility. It also does not inspect the hosted rendering of this Markdown. Those are different questions from the finite scientific calculations.
 
-## Weight-one initial-negentropy check
+## Weight-one initial-entropy-deficit check
 
 Run the separate [entropy verifier](verify_entropy.py) with the same installed dependency:
 
@@ -98,11 +104,11 @@ It writes [entropy_results.json](entropy_results.json) and leaves the original `
 | Complete trajectories | All weight-one alternatives on one or two queried qubits, zero or one side qubit, and zero, partially or fully clean initializations; unitary and random-unitary global controls at query prefixes 1, 2 and 4 | 66 checkpoints in 22 trajectories |
 | Conventions and guards | Conversion from natural entropy to clean-qubit count, attenuation versus identity mixture, exact singular supports and invalid numerical inputs | 2 channel sizes, 2 support cases and 3 rejection controls |
 
-The full trajectories compare the sum of reverse output divergences with half the accumulated null Pauli source, three quarters of the null-query entropy increase, and three quarters of the initial negentropy. They also check the resulting mixture trace-distance bound and the average squared individual-distance bound. Every known control is unital, and all hypotheses use the same controls. The mixed-control branch is a convex mixture of two global unitaries; it supplies no recorded outcome or pure ancillary register.
+The full trajectories compare the sum of reverse output divergences with half the accumulated null Pauli source, three quarters of the null-query entropy increase, and three quarters of the initial entropy deficit. They also check the resulting mixture trace-distance bound and the average squared individual-distance bound. Every known control is unital, and all hypotheses use the same controls. The mixed-control branch is a convex mixture of two global unitaries; it supplies no recorded outcome or pure ancillary register.
 
-Density-matrix calculations use natural logarithms. Dividing the initial negentropy by $\ln 2$ converts it to the clean-qubit budget. The explicit worst-case-error check at $\delta=1/3$ gives $c\ge4n/3$. The additional width consequence $k\ge n/3$ uses $c\le n+k$ and therefore requires **every protected record and side register** to be included in the fixed processor dimension. The initial-purity obstruction remains valid with arbitrary protected dimension. These tests do not certify a matching protocol or an optimal constant.
+Density-matrix calculations use natural logarithms. Dividing their initial entropy deficit by $\ln 2$ gives $C$ in bits. At worst-case error $\delta=1/3$, the theorem requires $C\ge4n/3$, hence $c\ge4n/3$ for clean/mixed product initialization. The physical-width consequence $k_{\mathrm{phys}}\ge n/3$ follows from $C\le n+k_{\mathrm{phys}}$ and therefore requires **every protected record and side register** to be included in the fixed processor dimension. The initial-purity obstruction remains valid with arbitrary protected dimension. These tests do not certify a matching protocol or an optimal constant.
 
-The trajectory initialization has an explicit $10^{-7}$ maximally mixed admixture. The verifier charges its **actual** initial negentropy, rather than the larger ideal clean-product value. Spectral logarithms use NumPy eigendecomposition, with no additional dependency. Exact singular support cases are evaluated on their support; invalid support is rejected. Reference eigenvalues at most $10^{-12}$ are treated as numerical zero, well below those in the regularized full-rank trajectory inputs. Comparisons reject NaN and infinity and use absolute tolerance $5\times10^{-10}$.
+The trajectory initialization has an explicit $10^{-7}$ maximally mixed admixture. The verifier charges its **actual** initial entropy deficit, rather than the larger ideal clean-product value. Spectral logarithms use NumPy eigendecomposition, with no additional dependency. Exact singular support cases are evaluated on their support; invalid support is rejected. Reference eigenvalues at most $10^{-12}$ are treated as numerical zero, well below those in the regularized full-rank trajectory inputs. Comparisons reject NaN and infinity and use absolute tolerance $5\times10^{-10}$.
 
 The committed NumPy 2.3.5 run uses seed 2026110202. Its smallest overall trajectory slack is about $-2.3\times10^{-15}$, attributable to floating-point roundoff, and its maximum Pauli-error/sector discrepancy is below $6\times10^{-17}$. The Bell ratio is $1.5$ to floating-point precision. The verifier separately confirms that attenuation $\lambda=1/2$ has hidden/other Pauli eigenvalues $(1/2,0)$, whereas identity-mixture strength $\tau=1/2$ has $(1,1/2)$; those parameters describe different tasks.
 

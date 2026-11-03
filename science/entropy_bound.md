@@ -2,26 +2,26 @@
 
 Low Pauli weight makes learning possible with few reference qubits when each experiment can prepare a fresh probe. It does not make the same experiment possible from a logarithmic initial purity supply. For a hidden weight-one Pauli coefficient attenuated by $`\lambda=1/2`$, we prove a linear entropy requirement that holds for every finite number of queries.
 
-This is a **shared result with [Pauli Learning Memory Thresholds](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds)**. This page owns its complete theorem and proof; the sister's [no-reset frontier](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/no_reset_frontier.md) gives the implications for the width convention and learning task. The [pinned sister model](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/a58e7e563d8688e6e09c29a8ec78b8fbb3378d07/science/model.md) and [pinned no-reset model](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/690dbd3f98c466d535fa531785ac64217380603d/science/model.md) specify the two original resource contracts. The theorem below uses the complete-processor contract stated here.
+This is a **shared result with [Pauli Learning Memory Thresholds](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds)**. This page owns its complete theorem and proof; the companion's [no-reset frontier](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/no_reset_frontier.md) gives the implications for the width convention and learning task. The [companion model](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/model.md) and [no-reset model](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/main/science/model.md) specify the two original resource contracts. The theorem below uses the complete-processor contract stated here.
 
 ## 1. Model and entropy resource
 
 The queried register $`S`$ contains $`n\ge1`$ qubits. Every accessible protected register and every retained record belongs to a finite-dimensional register $`A`$. The initial state $`\rho_{\mathrm{in}}`$ on $`SA`$ is known and independent of the hypothesis. Between ordinary channel calls, the complete processor undergoes arbitrary known unital CPTP maps $`\mathcal C_t`$. There are no resets or free fresh records. An inaccessible purification, environment output, inverse or controlled use of the unknown channel is not supplied. These are the assumptions of [the complete-processor model](model.md#2-the-complete-processor).
 
-Write $`d=2^n`$ and let $`a=(i,\alpha)`$ range over all $`3n`$ weight-one Pauli labels, where $`\alpha\in\{X,Y,Z\}`$. The corresponding Pauli is $`P_a=I\otimes\cdots\otimes\alpha_i\otimes\cdots\otimes I`$. On operators of the complete processor, define
+Write $`d=2^n`$ and let $`e=(i,\alpha)`$ range over all $`3n`$ weight-one Pauli labels, where $`\alpha\in\{X,Y,Z\}`$. The corresponding Pauli is $`P_e=I\otimes\cdots\otimes\alpha_i\otimes\cdots\otimes I`$. On operators of the complete processor, define
 
 ```math
 \begin{aligned}
 Q_0(X)&=\frac{I_S}{d}\otimes\mathrm{Tr}_S X,\\
-Q_a(X)&=\frac{P_a}{d}\otimes
-\mathrm{Tr}_S[(P_a\otimes I_A)X],\\
-R_a&=Q_0+Q_a,\qquad
-E_a=Q_0+\frac12Q_a.
+Q_e(X)&=\frac{P_e}{d}\otimes
+\mathrm{Tr}_S[(P_e\otimes I_A)X],\\
+R_e&=Q_0+Q_e,\qquad
+E_e=Q_0+\frac12Q_e.
 \end{aligned}
 \tag{E1}
 ```
 
-The null query is $`Q_0`$; the alternative is $`E_a`$ for one unknown label fixed throughout the run. Both are ordinary memoryless channels on $`S`$ tensored with the identity on $`A`$. The map $`R_a`$ is also a channel: it retains the binary Pauli eigenspace information and the protected memory. None of these definitions grants the learner the hidden label.
+The null query is $`Q_0`$; the alternative is $`E_e`$ for one unknown label fixed throughout the run. Both are ordinary memoryless channels on $`S`$ tensored with the identity on $`A`$. The map $`R_e`$ is also a channel: it retains the binary Pauli eigenspace information and the protected memory. None of these definitions grants the learner the hidden label.
 
 Use base-two von Neumann entropy $`H`$ and base-two quantum relative entropy,
 
@@ -45,16 +45,16 @@ The entropy deficit $`C`$ is measured in bits. For $`c`$ initially clean qubits 
 \tag{E3}
 ```
 
-Appending independent maximally mixed memory leaves both $`C`$ and $`\mathcal P`$ unchanged. If all protected registers fit in $`k`$ qubits, then $`C\le n+k`$. This last dimension bound charges classical records as well as coherent workspace; it does not apply to a convention that leaves an unlimited classical history outside the processor.
+Appending independent maximally mixed memory leaves both $`C`$ and $`\mathcal P`$ unchanged. If all protected registers fit in $`k_{\mathrm{phys}}`$ qubits, then $`C\le n+k_{\mathrm{phys}}`$. This last dimension bound charges classical records as well as coherent workspace; it does not apply to a convention that leaves an unlimited classical history outside the processor.
 
 ## 2. The all-time entropy theorem
 
-Let $`\rho_T^0`$ and $`\rho_T^a`$ be the complete states after any finite $`T`$ queries, with the same initial state and known controls under every hypothesis. Then
+Let $`\rho_T^0`$ and $`\rho_T^e`$ be the complete states after any finite $`T`$ queries, with the same initial state and known controls under every hypothesis. Then
 
 ```math
 \begin{aligned}
 \boxed{
-\sum_{a:\,|a|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)
+\sum_{e:\,|e|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^e)
 \le\frac34 C.
 }
 \end{aligned}
@@ -63,7 +63,7 @@ Let $`\rho_T^0`$ and $`\rho_T^a`$ be the complete states after any finite $`T`$ 
 
 The direction of relative entropy is part of the statement: the null state is its first argument. The bound allows arbitrary protected memory and arbitrary return of previously acquired signal from that memory. It has no factor depending on $`T`$.
 
-Suppose one final decision accepts the alternative with probabilities $`p_0\le\delta`$ under the null and $`p_a\ge1-\delta`$ under every alternative, where $`0<\delta<1/2`$. Define
+Suppose one final decision accepts the alternative with probabilities $`p_0\le\delta`$ under the null and $`p_e\ge1-\delta`$ under every alternative, where $`0<\delta<1/2`$. Define
 
 ```math
 j(\delta)=(1-2\delta)\log_2\frac{1-\delta}{\delta}.
@@ -87,34 +87,34 @@ In particular, error at most $`1/3`$ requires
 \tag{E6}
 ```
 
-Therefore $`c=O(\log n)`$ clean qubits cannot attain this error, even with unrestricted additional mixed memory and an arbitrarily large finite query budget. If the entire protected register has at most $`k`$ qubits, (E6) and $`C\le n+k`$ also require
+Therefore $`c=O(\log n)`$ clean qubits cannot attain this error, even with unrestricted additional mixed memory and an arbitrarily large finite query budget. If the entire protected register has at most $`k_{\mathrm{phys}}`$ qubits, (E6) and $`C\le n+k_{\mathrm{phys}}`$ also require
 
 ```math
 \begin{aligned}
-\boxed{k\ge\frac13n.}
+\boxed{k_{\mathrm{phys}}\ge\frac13n.}
 \end{aligned}
 \tag{E7}
 ```
 
-These are necessary conditions. They do not assert an attaining protocol at linear resources, sharp constants, or a complete frontier in $`(k,c,T)`$.
+These are necessary conditions. They do not assert an attaining protocol at linear resources, sharp constants, or a complete frontier in $`(k_{\mathrm{phys}},c,T)`$.
 
 ## 3. One query charges reverse relative entropy to a null source
 
 For arbitrary prequery states $`\sigma,\rho`$, set
 
 ```math
-\sigma'=R_a\sigma,\quad \rho'=R_a\rho,\quad
+\sigma'=R_e\sigma,\quad \rho'=R_e\rho,\quad
 \omega=Q_0\sigma,\quad\zeta=Q_0\rho.
 ```
 
-Choose a Pauli unitary on $`S`$ that anticommutes with $`P_a`$. Conjugating $`\sigma'`$ by this unitary gives a state $`\sigma_{\mathrm{flip}}=2\omega-\sigma'`$. It swaps the two positive, possibly noncommuting, $`A`$-valued blocks. The flipped state is positive, has the same $`A`$ marginal, and has the same entropy as $`\sigma'`$. This unitary is a mathematical proof device; it is not an unknown-label operation available to the protocol.
+Choose a Pauli unitary on $`S`$ that anticommutes with $`P_e`$. Conjugating $`\sigma'`$ by this unitary gives a state $`\sigma_{\mathrm{flip}}=2\omega-\sigma'`$. It swaps the two positive, possibly noncommuting, $`A`$-valued blocks. The flipped state is positive, has the same $`A`$ marginal, and has the same entropy as $`\sigma'`$. This unitary is a mathematical proof device; it is not an unknown-label operation available to the protocol.
 
 The two output states have decompositions
 
 ```math
 \begin{aligned}
 \omega&=\frac{\sigma'+\sigma_{\mathrm{flip}}}{2},\\
-E_a\rho&=\frac{\rho'+\zeta}{2}.
+E_e\rho&=\frac{\rho'+\zeta}{2}.
 \end{aligned}
 \tag{E8}
 ```
@@ -123,7 +123,7 @@ Joint convexity of quantum relative entropy gives
 
 ```math
 \begin{aligned}
-D_{\mathrm{bits}}(\omega\Vert E_a\rho)
+D_{\mathrm{bits}}(\omega\Vert E_e\rho)
 &\le\frac12D_{\mathrm{bits}}(\sigma'\Vert\rho')\\
 &\quad+\frac12D_{\mathrm{bits}}(\sigma_{\mathrm{flip}}\Vert\zeta).
 \end{aligned}
@@ -146,9 +146,9 @@ One can check (E10) directly by expanding the logarithms: the first term is the 
 ```math
 \begin{aligned}
 \boxed{\begin{aligned}
-D_{\mathrm{bits}}(Q_0\sigma\Vert E_a\rho)
+D_{\mathrm{bits}}(Q_0\sigma\Vert E_e\rho)
 &\le D_{\mathrm{bits}}(\sigma\Vert\rho)\\
-&\quad+\frac12D_{\mathrm{bits}}(R_a\sigma\Vert Q_0\sigma).
+&\quad+\frac12D_{\mathrm{bits}}(R_e\sigma\Vert Q_0\sigma).
 \end{aligned}}
 \end{aligned}
 \tag{E11}
@@ -170,7 +170,7 @@ d_{i,\alpha}&=D_{\mathrm{bits}}(\Delta_\alpha\tau_i\Vert\omega_i).
 \tag{E12}
 ```
 
-Here $`\Delta_\alpha`$ is dephasing of qubit $`i`$ in Pauli basis $`\alpha`$, with $`A`$ untouched. Depolarizing all other query qubits shows that the source term in (E11) for $`a=(i,\alpha)`$ is exactly $`d_{i,\alpha}`$.
+Here $`\Delta_\alpha`$ is dephasing of qubit $`i`$ in Pauli basis $`\alpha`$, with $`A`$ untouched. Depolarizing all other query qubits shows that the source term in (E11) for $`e=(i,\alpha)`$ is exactly $`d_{i,\alpha}`$.
 
 For different axes $`\alpha,\beta`$, the composition $`\Delta_\beta\Delta_\alpha`$ depolarizes qubit $`i`$. The pinching identity and data processing give
 
@@ -197,7 +197,7 @@ This is the complementary-basis entropy inequality with quantum side information
 
 ```math
 \begin{aligned}
-\sum_{a:\,|a|=1}D_{\mathrm{bits}}(R_a\sigma\Vert Q_0\sigma)
+\sum_{e:\,|e|=1}D_{\mathrm{bits}}(R_e\sigma\Vert Q_0\sigma)
 &\le\frac32\sum_i g_i\\
 &\le\frac32[n-H(S|A)_\sigma]\\
 &=\frac32[H(Q_0\sigma)-H(\sigma)].
@@ -209,13 +209,13 @@ Thus all $`3n`$ local directions are charged to the entropy created by one null 
 
 ## 5. Telescope along the common null trajectory
 
-Let $`\sigma_t=\mathcal C_t(\rho_{t-1}^0)`$. Apply (E11) with null input $`\sigma_t`$ and alternative input $`\mathcal C_t(\rho_{t-1}^a)`$. Data processing through the known control and identical initial states give
+Let $`\sigma_t=\mathcal C_t(\rho_{t-1}^0)`$. Apply (E11) with null input $`\sigma_t`$ and alternative input $`\mathcal C_t(\rho_{t-1}^e)`$. Data processing through the known control and identical initial states give
 
 ```math
 \begin{aligned}
-D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)
+D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^e)
 &\le\frac12\sum_{t=1}^T
-D_{\mathrm{bits}}(R_a\sigma_t\Vert Q_0\sigma_t).
+D_{\mathrm{bits}}(R_e\sigma_t\Vert Q_0\sigma_t).
 \end{aligned}
 \tag{E16}
 ```
@@ -224,7 +224,7 @@ Sum over all weight-one labels and use (E15):
 
 ```math
 \begin{aligned}
-\sum_{a:\,|a|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)
+\sum_{e:\,|e|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^e)
 &\le\frac34\sum_{t=1}^T\\
 &\quad[H(\rho_t^0)-H(\sigma_t)].
 \end{aligned}
@@ -246,12 +246,12 @@ Equations (E17)–(E18) prove (E4). Protected memory may preserve state componen
 
 ## 6. Decision error and trace-distance consequences
 
-Measurement data processing and $`p_0\le\delta<1-\delta\le p_a`$ imply
+Measurement data processing and $`p_0\le\delta<1-\delta\le p_e`$ imply
 
 ```math
 \begin{aligned}
-D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)
-&\ge d_{\mathrm{bits}}(p_0\Vert p_a)\\
+D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^e)
+&\ge d_{\mathrm{bits}}(p_0\Vert p_e)\\
 &\ge d_{\mathrm{bits}}(\delta\Vert1-\delta)
 =j(\delta),
 \end{aligned}
@@ -260,7 +260,7 @@ D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)
 
 where $`d_{\mathrm{bits}}`$ is binary relative entropy in bits. Sum (E19) over the $`3n`$ alternatives and combine with (E4) to obtain (E5). At $`\delta=1/3`$, $`j(1/3)=1/3`$, giving (E6)–(E7).
 
-For the uniform final alternative mixture $`\bar\rho_T=(3n)^{-1}\sum_a\rho_T^a`$, convexity in the second relative-entropy argument and Pinsker's inequality yield
+For the uniform final alternative mixture $`\bar\rho_T=(3n)^{-1}\sum_{|e|=1}\rho_T^e`$, convexity in the second relative-entropy argument and Pinsker's inequality yield
 
 ```math
 \begin{aligned}
@@ -271,7 +271,7 @@ D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 \tag{E20}
 ```
 
-Here $`D_{\mathrm{tr}}`$ is half the trace norm, as throughout this repository. Averaging the individual Pinsker inequalities and applying Cauchy–Schwarz gives the same upper bound on $`(3n)^{-1}\sum_a D_{\mathrm{tr}}(\rho_T^a,\rho_T^0)`$. Equation (E4) therefore also applies when the terminal measurement may depend on a later-revealed label. For the stated worst-case error, the exact binary-relative-entropy inequality (E19) gives the sharper constant in (E6).
+Here $`D_{\mathrm{tr}}`$ is half the trace norm, as throughout this repository. Averaging the individual Pinsker inequalities and applying Cauchy–Schwarz gives the same upper bound on $`(3n)^{-1}\sum_{|e|=1} D_{\mathrm{tr}}(\rho_T^e,\rho_T^0)`$. Equation (E4) therefore also applies when the terminal measurement may depend on a later-revealed label. For the stated worst-case error, the exact binary-relative-entropy inequality (E19) gives the sharper constant in (E6).
 
 ## 7. What the existing collision bound already implies
 
@@ -287,12 +287,12 @@ D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 
 For a clean/mixed product initialization, error at most $`1/3`$ therefore already requires $`c\ge\log_2(1+4n^2)`$. This logarithmic necessity is not the entropy theorem. Equations (E4)–(E6) replace it by a linear requirement in the regime where collision purity alone allows a polynomial value of $`\mathcal P`$. For small fixed purity, the collision bound can remain numerically stronger; both bounds may be used. No tight arbitrary-purity characterization follows from either converse.
 
-The learning consequences follow by reduction. Suppose an acquisition procedure, independent of the requested label, later estimates any requested weight-one coefficient with additive error strictly below $`1/4`$ and success at least $`2/3`$ under both the null and every promised alternative. When the request is $`a`$, thresholding its estimate at $`1/4`$ distinguishes the null from alternative $`a`$. Equation (E19) applies separately to these possibly different final effects, so the same $`C\ge4n/3`$ requirement holds even for per-target confidence. If the estimates are simultaneously accurate, their maximum additionally yields one common detector for the unknown-label promise. This is a transfer of the entropy converse, not a new tomography theorem. The sister account states its exact learning and width conventions.
+The learning consequences follow by reduction. Suppose an acquisition procedure, independent of the requested label, later estimates any requested weight-one coefficient with additive error strictly below $`1/4`$ and success at least $`2/3`$ under both the null and every promised alternative. When the request is $`e`$, thresholding its estimate at $`1/4`$ distinguishes the null from alternative $`e`$. Equation (E19) applies separately to these possibly different final effects, so the same $`C\ge4n/3`$ requirement holds even for per-target confidence. If the estimates are simultaneously accurate, their maximum additionally yields one common detector for the unknown-label promise. This is a transfer of the entropy converse, not a new tomography theorem. The companion account states its exact learning and width conventions.
 
 ## 8. Attribution and limits
 
 Joint convexity, data processing, pinching identities and strong subadditivity are standard quantum-information tools; see [Watrous, Chapter 5](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf). Entropic uncertainty with quantum memory has established antecedents, including [Berta et al.](https://arxiv.org/abs/0909.0950). Equation (E13) supplies the special Pauli version needed here without importing a stronger general uncertainty theorem. The shared contribution is the query coupling (E11), its combination with the finite null entropy budget, and the resulting attenuated-spike obstruction. Broader purity-loss and noisy-oracle antecedents retain their [separate attribution](../references/RELATED_WORK.md).
 
-The result is specifically proved for weight one and $`\lambda=1/2`$. It establishes necessary initial-entropy and fully charged width conditions, not a matching linear-resource protocol, sharp constants, a full $`(k,c,T)`$ frontier, or a theorem for $`\lambda>1/2`$. Independent finite checks in [verification](../verification/README.md) test the coupling, complementarity charge and complete small trajectories; the all-time statement is analytical.
+The result is specifically proved for weight one and $`\lambda=1/2`$. It establishes necessary initial-entropy and fully charged width conditions, not a matching linear-resource protocol, sharp constants, a full joint width--purity--query frontier, or a theorem for $`\lambda>1/2`$. Independent finite checks in [verification](../verification/README.md) test the coupling, complementarity charge and complete small trajectories; the all-time statement is analytical.
 
-Fresh preparation, nonunital reset and free external records change the resource contract. The [partial-Bell protocol in the pinned sister account](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/a58e7e563d8688e6e09c29a8ec78b8fbb3378d07/science/partial_bell.md) uses independently prepared experiments and stored outcomes. Its [identity-mixture parameter](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/a58e7e563d8688e6e09c29a8ec78b8fbb3378d07/science/weak_noise.md) is also different from this attenuation parameter: an identity mixture with an exactly preserved spike still preserves that spike. Setting its mixture strength to $`1/2`$ does not create the present $`\lambda=1/2`$ channel. The theorem therefore does not contradict those protocols or the [exact-conservation scan](protocols.md#5-specified-worst-case-error-near-conservation).
+Fresh preparation, nonunital reset and free external records change the resource contract. The [partial-Bell protocol in the companion account](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/partial_bell.md) uses independently prepared experiments and stored outcomes. Its [identity-mixture parameter](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/weak_noise.md) is also different from this attenuation parameter: an identity mixture with an exactly preserved spike still preserves that spike. Setting its mixture strength to $`1/2`$ does not create the present $`\lambda=1/2`$ channel. The theorem therefore does not contradict those protocols or the [exact-conservation scan](protocols.md#5-specified-worst-case-error-near-conservation).

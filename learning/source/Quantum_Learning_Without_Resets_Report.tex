@@ -163,10 +163,12 @@ The symbol $I$ denotes the identity operator on the register indicated by its
 context.
 
 The queried register $S$ contains $n\geq1$ qubits, so $d=2^n$. The Hermitian
-Pauli strings $P_0=I,P_1,\ldots,P_M$, where $M=d^2-1$, form an orthogonal basis
-for its operators:
+Pauli strings $P_e$, indexed by $e\in\mathbb F_2^{2n}$ and with $P_0=I$,
+form an orthogonal basis for its operators. Here $\mathbb F_2=\{0,1\}$
+denotes bits with arithmetic modulo two, and two bits label one of $I,X,Y,Z$
+at each site. There are $M=d^2-1$ nonidentity labels. Orthogonality means
 \begin{equation}
- \Tr(P_aP_b)=d\,\mathbf 1_{\{a=b\}}.
+ \Tr(P_eP_f)=d\,\mathbf 1_{\{e=f\}}.
  \label{q:pauli-orthogonal}
 \end{equation}
 Each string is a tensor product of the one-qubit observables $I,X,Y,Z$.
@@ -178,31 +180,32 @@ $|0\rangle,|1\rangle$. In that basis the three matrices are
  Z=\begin{pmatrix}1&0\\0&-1\end{pmatrix},
 \]
 where $i^2=-1$. Each is Hermitian and squares to the identity. A nonidentity
-Pauli string likewise satisfies $P_a^2=I$ and has observable outcomes
+Pauli string likewise satisfies $P_e^2=I$ and has observable outcomes
 $+1$ and $-1$. Its support is the set of sites with a nonidentity factor;
 its weight is the number of those sites. For instance,
 $X\otimes I\otimes Z$ has support $\{1,3\}$ and weight two.
 The number of nonidentity strings is $4^n-1$, rather than $2^n-1$, because
-operators form a $d^2$-dimensional vector space. The coefficient of $P_a$ in a
+operators form a $d^2$-dimensional vector space. The coefficient of $P_e$ in a
 state describes an observable correlation, not a state eigenvalue.
 
 The device is promised to be either
 \begin{align}
  \mathcal D(B)&=\frac{I}{d}\Tr B, \label{q:null-channel}\\
- \mathcal E_{a,\lambda}(B)
-   &=\frac{I\Tr B+\lambda P_a\Tr(P_aB)}{d},
-   \quad a\in\{1,\ldots,M\},\quad 0\leq\lambda\leq1 .
+ \mathcal E_{e,\lambda}(B)
+   &=\frac{I\Tr B+\lambda P_e\Tr(P_eB)}{d},
+   \quad e\in\mathbb F_2^{2n}\setminus\{0\},\quad 0\leq\lambda\leq1 .
  \label{q:spike-channel}
 \end{align}
-Here $B$ is an arbitrary input operator. The label $a$ is unknown and remains
+Here $B$ is an arbitrary input operator. Sums over hidden labels mean $e\ne0$
+unless another set is specified. The label $e$ is unknown and remains
 fixed throughout the run. The parameter $\lambda$ is dimensionless. It
-multiplies the expectation of $P_a$ and all other nonidentity Pauli expectations
+multiplies the expectation of $P_e$ and all other nonidentity Pauli expectations
 are erased. The constructive procedures below know $\lambda$; the upper bounds
 on information remain valid even when it is known.
 
 These formulas define ordinary quantum channels. One way to see positivity is
-to measure the two eigenspaces of $P_a$ and, for outcome $s\in\{-1,+1\}$,
-prepare $(I+s\lambda P_a)/d$. This state is positive because its eigenvalues
+to measure the two eigenspaces of $P_e$ and, for outcome $s\in\{-1,+1\}$,
+prepare $(I+s\lambda P_e)/d$. This state is positive because its eigenvalues
 are $(1\pm\lambda)/d$. Averaging the two measurement outcomes gives
 \eqref{q:spike-channel}. This also shows that the channel is entanglement
 breaking: its action can be described by a measurement followed by a
@@ -210,9 +213,9 @@ preparation. The lower bounds therefore do not rely on the device preserving
 arbitrary entanglement.
 
 Equivalently, a Pauli-error representation assigns probability
-$d^{-2}[1+\lambda(-1)^{[a,v]}]$ to error $P_v$. The binary pairing $[a,v]$
-is zero when $P_a$ and $P_v$ commute and one when they anticommute.
-For nonidentity $a$, equally many labels have the two signs; the probabilities
+$d^{-2}[1+\lambda(-1)^{[e,v]}]$ to error $P_v$. The binary pairing $[e,v]$
+is zero when $P_e$ and $P_v$ commute and one when they anticommute.
+For nonidentity $e$, equally many labels have the two signs; the probabilities
 are nonnegative and sum to one.
 
 One invocation supplies only the input-output channel. Access to an environment
@@ -224,7 +227,7 @@ Known controlled Pauli gates remain legitimate controls.
 
 Let $A$ denote all protected workspace, including every retained classical
 record, and let $K=\dim A$. The total processor dimension is
-$D_{\rm tot}=dK$. The joint state on $SA$ may be entangled; a marginal such as
+$D=dK$. The joint state on $SA$ may be entangled; a marginal such as
 $\rho_A=\Tr_S\rho$ is obtained by the partial trace and need not determine the
 joint state.
 
@@ -246,9 +249,9 @@ The complete states after query $t$ obey
 \begin{align}
  \rho_t^0&=(\mathcal D\otimes{\rm id}_A)
                   \mathcal C_t(\rho_{t-1}^0),\nonumber\\
- \rho_t^a&=(\mathcal E_{a,\lambda}\otimes{\rm id}_A)
-                  \mathcal C_t(\rho_{t-1}^a),\qquad
- \rho_0^0=\rho_0^a=\rho_{\rm in}.
+ \rho_t^e&=(\mathcal E_{e,\lambda}\otimes{\rm id}_A)
+                  \mathcal C_t(\rho_{t-1}^e),\qquad
+ \rho_0^0=\rho_0^e=\rho_{\rm in}.
  \label{q:trajectories}
 \end{align}
 The same known controls are used under every hypothesis. They may process all
@@ -266,19 +269,19 @@ run of \eqref{q:trajectories}.
 
 The dimension-normalized collision purity is
 \begin{equation}
- \mathcal P=D_{\rm tot}\Tr(\rho_{\rm in}^2),\qquad
- \mathcal P-1=D_{\rm tot}
-       \left\|\rho_{\rm in}-\frac{I}{D_{\rm tot}}\right\|_2^2.
+ \mathcal P=D\Tr(\rho_{\rm in}^2),\qquad
+ \mathcal P-1=D
+       \left\|\rho_{\rm in}-\frac{I}{D}\right\|_2^2.
  \label{q:collision-resource}
 \end{equation}
 Write $B^\dagger$ for the conjugate transpose of a matrix $B$. The Hilbert--Schmidt norm is
 $\|B\|_2=(\Tr B^\dagger B)^{1/2}$. Thus $\mathcal P-1$ measures squared
 deviation from the maximally mixed state in operator space.
-It ranges from $0$ to $D_{\rm tot}-1$.
+It ranges from $0$ to $D-1$.
 
 The second resource is the initial entropy deficit
 \begin{equation}
- C=\log_2D_{\rm tot}-H(\rho_{\rm in}),\qquad
+ C=\log_2D-H(\rho_{\rm in}),\qquad
  H(\rho)=-\Tr(\rho\log_2\rho).
  \label{q:entropy-resource}
 \end{equation}
@@ -294,17 +297,17 @@ $H(\rho)\geq-\log_2\Tr\rho^2$, obtained by applying convexity of $-\log_2 x$
 to the eigenvalues with their own probabilities.
 
 The inequality has only the displayed direction. To see how different the
-resources can be, take a processor of dimension $D_{\rm tot}=2^q$, with
+resources can be, take a processor of dimension $D=2^q$, with
 $q\geq1$ an integer, and one pure basis state $|\mathbf0\rangle$. For
 $0\leq\epsilon\leq1$ consider
 \[
- \rho=(1-\epsilon)\frac{I}{D_{\rm tot}}
+ \rho=(1-\epsilon)\frac{I}{D}
                   +\epsilon|\mathbf0\rangle\langle\mathbf0|.
 \]
 Direct expansion gives
-$\mathcal P=1+\epsilon^2(D_{\rm tot}-1)$, while entropy concavity gives
-$H(\rho)\geq(1-\epsilon)\log_2D_{\rm tot}$, hence
-$C\leq\epsilon\log_2D_{\rm tot}$. With $\epsilon=1/q$,
+$\mathcal P=1+\epsilon^2(D-1)$, while entropy concavity gives
+$H(\rho)\geq(1-\epsilon)\log_2D$, hence
+$C\leq\epsilon\log_2D$. With $\epsilon=1/q$,
 $C\leq1$ but $\mathcal P=1+(2^q-1)/q^2$ grows exponentially up to the
 polynomial denominator. A lower bound on $\mathcal P$ cannot therefore be
 turned into a lower bound on $C$ by reversing their resource inequality.
@@ -322,11 +325,11 @@ cooling expenditure.
 
 A binary measurement is specified by an effect $F$, a Hermitian operator with
 $0\leq F\leq I$. The probability of declaring the alternative is
-$p_a=\Tr(F\rho_T^a)$, and the corresponding null probability is
+$p_e=\Tr(F\rho_T^e)$, and the corresponding null probability is
 $p_0=\Tr(F\rho_T^0)$. Worst-case error at most $\delta<1/2$ means
 \begin{equation}
- p_0\leq\delta,\qquad p_a\geq1-\delta
- \quad\hbox{for every hidden label }a.
+ p_0\leq\delta,\qquad p_e\geq1-\delta
+ \quad\hbox{for every hidden label }e.
  \label{q:worst-error}
 \end{equation}
 
@@ -335,9 +338,9 @@ $D_{\rm tr}(\rho,\sigma)=\tfrac12\|\rho-\sigma\|_1$, where
 $\|B\|_1=\Tr\sqrt{B^\dagger B}$. For states of equal trace it is the largest
 possible absolute difference in the probability of one measurement event.
 Define the uniform final alternative mixture
-$\bar\rho_T=M^{-1}\sum_a\rho_T^a$. A common decision therefore obeys
+$\bar\rho_T=M^{-1}\sum_{e\ne0}\rho_T^e$. A common decision therefore obeys
 \[
- \left|\frac1M\sum_a p_a-p_0\right|
+ \left|\frac1M\sum_{e\ne0} p_e-p_0\right|
  \leq D_{\rm tr}(\bar\rho_T,\rho_T^0).
  \]
 With equal prior probabilities of the null and this mixture, optimal success is
@@ -352,8 +355,8 @@ labels; the constructions below separately establish identical pointer
 statistics for every label.
 
 There is also a different quantity,
-$M^{-1}\sum_aD_{\rm tr}(\rho_T^a,\rho_T^0)$. It permits a different optimizing
-measurement for each $a$, as could occur if the label were revealed only after
+$M^{-1}\sum_{e\ne0}D_{\rm tr}(\rho_T^e,\rho_T^0)$. It permits a different optimizing
+measurement for each $e$, as could occur if the label were revealed only after
 acquisition. Averaging before and after measurement optimization gives
 different questions. The first converse controls these individual distances;
 the second exploits the extra constraint of one common effect.
@@ -365,15 +368,15 @@ the second exploits the extra constraint of one common effect.
 On operators of the complete processor define
 \begin{align}
  Q_0(B)&=\frac{I_S}{d}\otimes\Tr_S B,\nonumber\\
- Q_a(B)&=\frac{P_a}{d}\otimes
-            \Tr_S[(P_a\otimes I_A)B],\quad 1\leq a\leq M .
+ Q_e(B)&=\frac{P_e}{d}\otimes
+            \Tr_S[(P_e\otimes I_A)B],\quad e\in\mathbb F_2^{2n}\setminus\{0\} .
  \label{q:sectors}
 \end{align}
 They are mutually orthogonal projections for the Hilbert--Schmidt inner
 product $\langle B,C\rangle=\Tr B^\dagger C$:
-$Q_a^\dagger=Q_a$, $Q_aQ_b=\mathbf1_{\{a=b\}}Q_a$, and
-$\sum_{a=0}^M Q_a={\rm id}$. The physical lifted query maps are
-$Q_0$ and $Q_0+\lambda Q_a$. The individual projection $Q_a$ need not be
+$Q_e^\dagger=Q_e$, $Q_eQ_b=\mathbf1_{\{e=b\}}Q_e$, and
+$\sum_{e\in\mathbb F_2^{2n}} Q_e={\rm id}$. The physical lifted query maps are
+$Q_0$ and $Q_0+\lambda Q_e$. The individual projection $Q_e$ need not be
 positive and is only a mathematical coordinate.
 
 The null query leaves every state $I_S/d\otimes\rho_A$ unchanged. Therefore
@@ -397,18 +400,18 @@ operator length without assuming that stored components decay.
 \subsection{Returning memory is included in the one-step estimate}
 
 At one query cut write $\sigma=\rho_{t-1}^0$ and
-$\delta_a=\rho_{t-1}^a-\rho_{t-1}^0$. With $\mathcal C=\mathcal C_t$,
+$\delta_e=\rho_{t-1}^e-\rho_{t-1}^0$. With $\mathcal C=\mathcal C_t$,
 the new difference is
 \[
- \delta'_a=Q_0\mathcal C(\delta_a)
-             +\lambda Q_a\mathcal C(\delta_a+\sigma).
+ \delta'_e=Q_0\mathcal C(\delta_e)
+             +\lambda Q_e\mathcal C(\delta_e+\sigma).
 \]
-Set $x=Q_a\mathcal C(\delta_a)$ and $y=Q_a\mathcal C(\sigma)$.
+Set $x=Q_e\mathcal C(\delta_e)$ and $y=Q_e\mathcal C(\sigma)$.
 The first term may contain information returning from memory; it is retained.
 Orthogonality and \eqref{q:hs-contraction} give
 \[
- \|\delta'_a\|_2^2
- \leq\|\delta_a\|_2^2-\|x\|_2^2+\lambda^2\|x+y\|_2^2 .
+ \|\delta'_e\|_2^2
+ \leq\|\delta_e\|_2^2-\|x\|_2^2+\lambda^2\|x+y\|_2^2 .
 \]
 For $0\leq\lambda<1$, completing the square yields
 \begin{align}
@@ -425,7 +428,7 @@ signal by only a fixed multiple of the new null-source term $\|y\|_2^2$.
 The null state after this step is $\sigma'=Q_0\mathcal C(\sigma)$.
 Summing source terms over all labels gives
 \begin{align}
- \sum_{a=1}^M\|Q_a\mathcal C(\sigma)\|_2^2
+ \sum_{e\ne0}\|Q_e\mathcal C(\sigma)\|_2^2
  &=\|\mathcal C(\sigma)\|_2^2-\|\sigma'\|_2^2\nonumber\\
  &\leq\|\sigma\|_2^2-\|\sigma'\|_2^2 .
  \label{q:null-purity-loss}
@@ -434,17 +437,17 @@ This uses a single common null trajectory for every alternative. Summing over
 time cancels the intermediate null purities. Since the initial differences
 vanish, the result is
 \begin{equation}
- \frac1M\sum_a\|\rho_T^a-\rho_T^0\|_2^2
+ \frac1M\sum_{e\ne0}\|\rho_T^e-\rho_T^0\|_2^2
  \leq\frac{\lambda^2}{M(1-\lambda^2)}
  \left[\Tr\rho_{\rm in}^2-\Tr(\rho_T^0)^2\right].
  \label{q:individual-hs}
 \end{equation}
 
-Finally $\|B\|_1\leq\sqrt{D_{\rm tot}}\|B\|_2$,
+Finally $\|B\|_1\leq\sqrt{D}\|B\|_2$,
 Cauchy--Schwarz across labels, and
-$\Tr(\rho_T^0)^2\geq1/D_{\rm tot}$ imply
+$\Tr(\rho_T^0)^2\geq1/D$ imply
 \begin{equation}
- \frac1M\sum_a D_{\rm tr}(\rho_T^a,\rho_T^0)
+ \frac1M\sum_{e\ne0} D_{\rm tr}(\rho_T^e,\rho_T^0)
  \leq
  \min\left\{1,\frac{\lambda}{2\sqrt{1-\lambda^2}}
                       \sqrt{\frac{\mathcal P-1}{M}}\right\}.
@@ -469,11 +472,11 @@ To make those two budgets visible, the proof introduces auxiliary operator
 inputs. These are a linear-algebra construction, not extra physical ports
 that the learner can access.
 
-Fix $a$, choose any starting operator $x_0$, and introduce
-$v_t\in{\rm ran}\,Q_a$. The range ${\rm ran}\,Q_a$ is the set of operators
-$Q_a(B)$ as $B$ varies. Define
+Fix $e$, choose any starting operator $x_0$, and introduce
+$v_t\in{\rm ran}\,Q_e$. The range ${\rm ran}\,Q_e$ is the set of operators
+$Q_e(B)$ as $B$ varies. Define
 \[
- u_t=Q_a\mathcal C_t(x_{t-1}),\qquad
+ u_t=Q_e\mathcal C_t(x_{t-1}),\qquad
  x_t=Q_0\mathcal C_t(x_{t-1})+v_t.
 \]
 Orthogonality gives the energy inequality
@@ -490,27 +493,27 @@ between such spaces, the induced norm is
 $\|L\|_{2\to2}=\sup_{\|x\|_2=1}\|Lx\|_2$.
 Write its relevant blocks as
 \[
- x_T=\mathcal N x_0+B_a v,\qquad u=F_a x_0+G_a v .
+ x_T=\mathcal N x_0+B_e v,\qquad u=F_e x_0+G_e v .
 \]
 The map $\mathcal N=Q_0\mathcal C_T\cdots Q_0\mathcal C_1$ is the common null evolution.
-The time-indexed block matrix $G_a$ is strictly lower triangular, since a port
-input can influence only later outputs. Thus $G_a^{\,T}=0$, where the
-superscript is an integer power, and $\|G_a\|_{2\to2}\leq1$.
+The time-indexed block matrix $G_e$ is strictly lower triangular, since a port
+input can influence only later outputs. Thus $G_e^{\,T}=0$, where the
+superscript is an integer power, and $\|G_e\|_{2\to2}\leq1$.
 
 Closing the mathematical ports with $v=\lambda u$ exactly recovers the
 alternative channel. The inverse is a finite polynomial:
 \begin{equation}
- R_a(\lambda)=(I-\lambda G_a)^{-1}
-   =\sum_{j=0}^{T-1}\lambda^jG_a^j,\qquad
- \|R_a(\lambda)\|_{2\to2}\leq h_T(\lambda),
+ \mathcal R_e(\lambda)=(I-\lambda G_e)^{-1}
+   =\sum_{j=0}^{T-1}\lambda^jG_e^j,\qquad
+ \|\mathcal R_e(\lambda)\|_{2\to2}\leq h_T(\lambda),
  \label{q:resolvent}
 \end{equation}
 where $h_T(\lambda)=\sum_{j=0}^{T-1}\lambda^j$ and $h_0=0$.
 In particular the inverse is valid at $\lambda=1$; it does not use convergence
 of an infinite geometric series. The alternative-minus-null output is
 \begin{equation}
- \rho_T^a-\rho_T^0
-   =\lambda B_aR_a(\lambda)F_a(\rho_{\rm in}).
+ \rho_T^e-\rho_T^0
+   =\lambda B_e\mathcal R_e(\lambda)F_e(\rho_{\rm in}).
  \label{q:feedback-identity}
 \end{equation}
 
@@ -519,26 +522,26 @@ of an infinite geometric series. The alternative-minus-null output is
 With all ports zero, let $x_t^0=Q_0\mathcal C_t(x_{t-1}^0)$. Summing
 orthogonal sectors and then telescoping gives, for any initial operator $x$,
 \[
- \sum_a\|F_ax\|_2^2
+ \sum_{e\ne0}\|F_ex\|_2^2
  =\sum_t\left[\|\mathcal C_t(x_{t-1}^0)\|_2^2-\|x_t^0\|_2^2\right]
  \leq\|x\|_2^2.
 \]
 This is one total budget for exposing the state to every possible direction.
 
-To read those directions, propagate the same final effect $E$ backward:
-$y_T=E$ and $y_{t-1}=\mathcal C_t^\dagger Q_0(y_t)$.
+To read those directions, propagate the same final effect $F$ backward:
+$y_T=F$ and $y_{t-1}=\mathcal C_t^\dagger Q_0(y_t)$.
 The adjoint is defined by
-$\Tr[E\mathcal C(B)]=\Tr[\mathcal C^\dagger(E)B]$.
+$\Tr[F\mathcal C(B)]=\Tr[\mathcal C^\dagger(F)B]$.
 Because $\mathcal C_t$ is both unital and trace preserving, its adjoint has
 both properties too and obeys \eqref{q:hs-contraction}.
 The response of the final effect to a port insertion at time $t$ is
-$(B_a^\dagger E)_t=Q_a(y_t)$. This includes $Q_aE$ for the last port.
+$(B_e^\dagger F)_t=Q_e(y_t)$. This includes $Q_eF$ for the last port.
 Consequently
 \begin{align}
- \sum_a\|B_a^\dagger E\|_2^2
+ \sum_{e\ne0}\|B_e^\dagger F\|_2^2
  &=\sum_t\|(I-Q_0)y_t\|_2^2 \nonumber\\
  &\leq\sum_t\left[\|y_t\|_2^2-\|y_{t-1}\|_2^2\right]
- \leq\|E\|_2^2 .
+ \leq\|F\|_2^2 .
  \label{q:backward-budget}
 \end{align}
 Protected memory can retain state components and effect components. These
@@ -548,18 +551,18 @@ inequalities instead bound their total exposure to the queried sectors.
 
 Uniform identity components create no signal. We can therefore center both
 operators:
-$x=\rho_{\rm in}-I/D_{\rm tot}$ and
-$E_0=E-(\Tr E/D_{\rm tot})I$. Combining
+$x_0=\rho_{\rm in}-I/D$ and
+$F_0=F-(\Tr F/D)I$. Combining
 \eqref{q:feedback-identity}, \eqref{q:resolvent}, the two budgets, and
 Cauchy--Schwarz across labels gives
 \[
- \left|\Tr E(\bar\rho_T-\rho_T^0)\right|
- \leq\frac{\lambda h_T(\lambda)}{M}\|E_0\|_2\|x\|_2 .
+ \left|\Tr F(\bar\rho_T-\rho_T^0)\right|
+ \leq\frac{\lambda h_T(\lambda)}{M}\|F_0\|_2\|x_0\|_2 .
 \]
 The eigenvalues of an effect lie in $[0,1]$, so their variance is at most
 $1/4$. Hence
-$\|E_0\|_2\leq\sqrt{D_{\rm tot}}/2$, while
-$\|x\|_2=\sqrt{(\mathcal P-1)/D_{\rm tot}}$. Optimizing the effect proves
+$\|F_0\|_2\leq\sqrt{D}/2$, while
+$\|x_0\|_2=\sqrt{(\mathcal P-1)/D}$. Optimizing the effect proves
 \begin{equation}
  D_{\rm tr}(\bar\rho_T,\rho_T^0)
  \leq\min\left\{1,
@@ -603,14 +606,14 @@ it does not establish a tight arbitrary-purity tradeoff.
 Let the query register start in $I/d$ and let a pointer qubit have state
 $\sigma$. For a known trial Pauli $P_b$, apply the known gate
 \[
- V_b=I_S\otimes|0\rangle\langle0|
+ W_b=I_S\otimes|0\rangle\langle0|
           +P_b\otimes|1\rangle\langle1|
 \]
 before and after one ordinary call on $S$. In pointer-block form, the diagonal
 query blocks stay maximally mixed. The off-diagonal blocks acquire $P_b/d$
 before the query and become $\eta_bP_b/d$ after it, where
-$\eta_b=\lambda$ if $b=a$ and zero for other nonidentity trials.
-The second $V_b$ removes $P_b$ again. Thus
+$\eta_b=\lambda$ if $b=e$ and zero for other nonidentity trials.
+The inverse $W_b^\dagger=W_b$ removes $P_b$ again. Thus
 \begin{equation}
  \frac{I}{d}\otimes\sigma
  \longmapsto\frac{I}{d}\otimes\mathcal Z_{\eta_b}(\sigma).
@@ -635,7 +638,7 @@ identity, and controls the known trial gates. Make one intervening channel
 call and finally measure pointer $X$, ignoring the label.
 The $X$ expectations are
 \[
- x_0=\frac1{M+1},\qquad x_a=\frac{1+\lambda}{M+1}.
+ m_0^X=\frac1{M+1},\qquad m_e^X=\frac{1+\lambda}{M+1}.
 \]
 The identity trial contributes in both cases and exactly one additional
 nonidentity trial contributes under each alternative. The common event
@@ -702,7 +705,7 @@ Let $c_\theta=\cos\theta$, $k_0=c_\theta^L$, and
 $k_\ell=(A_\ell^L)_{22}$. Each block begins at $x=0$, so it multiplies the
 surviving population coordinate by one scalar. Exactly one block is active:
 \[
- z_0=k_0^M,\qquad z_a=k_0^{M-1}k_\ell .
+ m_0^Z=k_0^M,\qquad m_e^Z=k_0^{M-1}k_\ell .
 \]
 These outputs are identical for every hidden position. Declaring the
 alternative on the outcome $Z=-1$ gives gap
@@ -722,22 +725,22 @@ $D_{\rm tr}(\bar\rho_T,\rho_T^0)$ over one pure qubit tensored initially with
 arbitrarily many maximally mixed qubits, all admitted controls, and every finite
 query count $T$. This is an optimization over finite budgets, not an efficient
 algorithm class. For $0\leq\lambda<1$, put
-$s=\lambda/[M(1-\lambda)]$. The converse and the two constructions prove
+$z=\lambda/[M(1-\lambda)]$. The converse and the two constructions prove
 \begin{equation}
- \boxed{\frac1{128}\min\{1,s\}\leq\Delta_1(n,\lambda)
-               \leq\min\{1,s/2\}.}
+ \boxed{\frac1{128}\min\{1,z\}\leq\Delta_1(n,\lambda)
+               \leq\min\{1,z/2\}.}
  \label{q:matched-law}
 \end{equation}
 At $\lambda=0$ the value is zero. At $\lambda=1$ the supremum is one, as the
 next section shows. The constants in \eqref{q:matched-law} are universal.
 
-For small strength, \eqref{q:small-gap} is at least $3s/16$, using
+For small strength, \eqref{q:small-gap} is at least $3z/16$, using
 $M\geq3$ and $1-\lambda\geq1/2$. For large strength without clipping,
-\eqref{q:scan-gap} is at least $\min\{1,s\}/128$; with clipping,
+\eqref{q:scan-gap} is at least $\min\{1,z\}/128$; with clipping,
 $Mg=1$ and $\ell\geq2/3$, giving the same constant lower bound.
 The sufficient query counts are one for the small-strength branch and
 \begin{equation}
- Q=ML\leq33M\min\{(1-\lambda)^{-1},M\}
+ T=ML\leq33M\min\{(1-\lambda)^{-1},M\}
  \label{q:weak-query-cost}
 \end{equation}
 for the weak scan, with the minimum interpreted as $M$ at $\lambda=1$.
@@ -762,7 +765,7 @@ block performs the full rotation $R_y(\pi)$ and flips the pointer, while an
 inactive block only shrinks its population coordinate. For
 $c_\pi=\cos(\pi/L)$,
 \[
- z_0=c_\pi^{ML},\qquad z_a=-c_\pi^{(M-1)L}.
+ m_0^Z=c_\pi^{ML},\qquad m_e^Z=-c_\pi^{(M-1)L}.
 \]
 For the choices below $L\geq2$, so $c_\pi\geq0$. Declaring the alternative on
 $Z=-1$ gives both errors at most $M\pi^2/(4L)$, because
@@ -795,11 +798,11 @@ block length drives both errors toward zero. This establishes
 $\Delta_1(n,1)=1$ as a supremum; it does not assert perfect discrimination
 after a finite number of calls.
 
-The known gate count is $O(nQ)$ when parameterized rotations are primitives.
+The known gate count is $O(nT)$ when parameterized rotations are primitives.
 A known dephasing can alternatively be implemented using an initially
 maximally mixed coin that controls opposite $z$ rotations. Preallocating one
 coin per use, retaining the used coins and never reusing them reproduces the
-reduced pointer evolution with only known unitaries. It costs $O(Q)$ additional
+reduced pointer evolution with only known unitaries. It costs $O(T)$ additional
 mixed qubits and still one pure qubit. Thus a unitary implementation can have
 large mixed width without replenishing purity.
 
@@ -818,12 +821,12 @@ The common-decision proof applies to any specified set $\mathcal L$ of $m$
 nonidentity labels. The sector sums become inequalities bounded by the
 full sums; no new argument is needed. For $0\leq\lambda<1$ it gives
 \[
- D_{\rm tr}\left(\frac1m\sum_{a\in\mathcal L}\rho_T^a,\rho_T^0\right)
+ D_{\rm tr}\left(\frac1m\sum_{e\in\mathcal L}\rho_T^e,\rho_T^0\right)
  \leq\min\left\{1,
        \frac{\lambda\sqrt{\mathcal P-1}}{2m(1-\lambda)}\right\}.
 \]
 For the weight-one family
-$\mathcal L_1=\{(i,\alpha):1\leq i\leq n,\,
+$\mathcal W_1=\{(i,\alpha):1\leq i\leq n,\,
 \alpha\in\{X,Y,Z\}\}$, we have $m=3n$.
 The Pauli $P_{i,\alpha}$ acts as $\alpha$ at site $i$ and as identity elsewhere.
 At $\lambda=1/2$ the inherited restriction is
@@ -857,8 +860,8 @@ relative entropy.
 
 For the weight-one family, at attenuation $1/2$, the theorem is
 \begin{equation}
- \boxed{\sum_{a\in\mathcal L_1}
- D_{\rm bits}(\rho_T^0\Vert\rho_T^a)\leq\frac34 C.}
+ \boxed{\sum_{e\in\mathcal W_1}
+ D_{\rm bits}(\rho_T^0\Vert\rho_T^e)\leq\frac34 C.}
  \label{q:entropy-theorem}
 \end{equation}
 It holds for every finite $T$ and every finite protected dimension. The null
@@ -868,16 +871,16 @@ in protected memory.
 
 \subsection{A positive two-block decomposition handles feedback}
 
-For a fixed label $a$ define the channel $R_a=Q_0+Q_a$ and the actual
-alternative $E_a=Q_0+\tfrac12Q_a$. The map $R_a$ dephases the relevant
+For a fixed label $e$ define the channel $R_e=Q_0+Q_e$ and the actual
+alternative $E_e=Q_0+\tfrac12Q_e$. The map $R_e$ dephases the relevant
 query qubit in its Pauli basis and depolarizes the other queried qubits,
 while retaining $A$. Take arbitrary null and alternative prequery states
 $\sigma,\rho$, and set
 \[
- \sigma'=R_a\sigma,\quad \rho'=R_a\rho,\quad
+ \sigma'=R_e\sigma,\quad \rho'=R_e\rho,\quad
  \omega=Q_0\sigma,\quad \zeta=Q_0\rho.
 \]
-Conjugating $\sigma'$ by a query-register Pauli that anticommutes with $P_a$
+Conjugating $\sigma'$ by a query-register Pauli that anticommutes with $P_e$
 swaps its two Pauli eigenspace blocks. The result is the positive state
 $\sigma_{\rm flip}=2\omega-\sigma'$. The two blocks may be noncommuting
 operators on $A$; positivity follows because they are swapped by a unitary,
@@ -886,9 +889,9 @@ the same entropy and $A$ marginal as $\sigma'$.
 
 The decompositions
 $\omega=(\sigma'+\sigma_{\rm flip})/2$ and
-$E_a\rho=(\rho'+\zeta)/2$ allow joint convexity:
+$E_e\rho=(\rho'+\zeta)/2$ allow joint convexity:
 \[
- D_{\rm bits}(\omega\Vert E_a\rho)
+ D_{\rm bits}(\omega\Vert E_e\rho)
  \leq\tfrac12D_{\rm bits}(\sigma'\Vert\rho')
        +\tfrac12D_{\rm bits}(\sigma_{\rm flip}\Vert\zeta).
 \]
@@ -906,9 +909,9 @@ $D_{\rm bits}(\sigma'\Vert\rho')$ and
 $D_{\rm bits}(\omega\Vert\zeta)$ by
 $D_{\rm bits}(\sigma\Vert\rho)$. We obtain the query coupling
 \begin{equation}
- D_{\rm bits}(Q_0\sigma\Vert E_a\rho)
+ D_{\rm bits}(Q_0\sigma\Vert E_e\rho)
  \leq D_{\rm bits}(\sigma\Vert\rho)
-       +\frac12D_{\rm bits}(R_a\sigma\Vert Q_0\sigma).
+       +\frac12D_{\rm bits}(R_e\sigma\Vert Q_0\sigma).
  \label{q:entropy-query-coupling}
 \end{equation}
 The extra source term depends only on the null input. The first term retains
@@ -959,8 +962,8 @@ Strong subadditivity of quantum entropy implies
 $\sum_iH(S_i|A)_\sigma\geq H(S|A)_\sigma$.
 Combining it with the three-axis inequality yields
 \begin{align}
- \sum_{a\in\mathcal L_1}
- D_{\rm bits}(R_a\sigma\Vert Q_0\sigma)
+ \sum_{e\in\mathcal W_1}
+ D_{\rm bits}(R_e\sigma\Vert Q_0\sigma)
  &\leq\tfrac32[n-H(S|A)_\sigma]\nonumber\\
  &=\tfrac32[H(Q_0\sigma)-H(\sigma)].
  \label{q:entropy-source-budget}
@@ -974,9 +977,9 @@ Let $\sigma_t=\mathcal C_t(\rho_{t-1}^0)$. Applying
 \eqref{q:entropy-query-coupling} to the actual null and alternative inputs,
 and data processing through their common known control, gives
 \[
- D_{\rm bits}(\rho_T^0\Vert\rho_T^a)
+ D_{\rm bits}(\rho_T^0\Vert\rho_T^e)
  \leq\frac12\sum_{t=1}^T
- D_{\rm bits}(R_a\sigma_t\Vert Q_0\sigma_t).
+ D_{\rm bits}(R_e\sigma_t\Vert Q_0\sigma_t).
 \]
 After summing labels, \eqref{q:entropy-source-budget} bounds this by
 $\tfrac34\sum_t[H(\rho_t^0)-H(\sigma_t)]$.
@@ -987,7 +990,7 @@ mixed state. Hence $H(\sigma_t)\geq H(\rho_{t-1}^0)$, and
 \[
  \sum_t[H(\rho_t^0)-H(\sigma_t)]
  \leq H(\rho_T^0)-H(\rho_{\rm in})
- \leq\log_2D_{\rm tot}-H(\rho_{\rm in})=C .
+ \leq\log_2D-H(\rho_{\rm in})=C .
 \]
 This proves \eqref{q:entropy-theorem}. The factor $3/4$ combines the
 $1/2$ query coupling and the $3/2$ local source budget. More calls can expose
@@ -998,7 +1001,7 @@ one initial entropy deficit to spend.
 
 Take $0<\delta<1/2$ and apply the final binary measurement to each pair in
 \eqref{q:entropy-theorem}. Data processing gives
-$D_{\rm bits}(\rho_T^0\Vert\rho_T^a)\geq d_{\rm bits}(p_0\Vert p_a)$,
+$D_{\rm bits}(\rho_T^0\Vert\rho_T^e)\geq d_{\rm bits}(p_0\Vert p_e)$,
 where
 \[
  d_{\rm bits}(p\Vert q)=
@@ -1027,16 +1030,16 @@ The theorem also controls label-specific final measurements. Suppose an
 acquisition process independent of a later request estimates the coefficient
 for any requested weight-one label to additive error strictly below $1/4$,
 with success at least $2/3$ under both the null and each alternative.
-For request $a$, threshold the estimate at $1/4$. It separates coefficient
-zero under the null from coefficient $1/2$ under alternative $a$.
-Each $a$ may use a different final effect, but
+For request $e$, threshold the estimate at $1/4$. It separates coefficient
+zero under the null from coefficient $1/2$ under alternative $e$.
+Each $e$ may use a different final effect, but
 \eqref{q:entropy-theorem} bounds their divergences individually. The same
 $C\geq4n/3$ requirement follows without requiring all estimates to be correct
 simultaneously. A simultaneous guarantee would additionally give one common
 detector by thresholding the maximum.
 
 If every protected register and record fits in $k_{\rm phys}$ side qubits,
-then $D_{\rm tot}\leq2^{n+k_{\rm phys}}$ and
+then $D\leq2^{n+k_{\rm phys}}$ and
 $C\leq n+k_{\rm phys}$. Error $1/3$ consequently requires
 $k_{\rm phys}\geq n/3$. This physical-width conclusion counts every
 protected record. It does not apply to a coherent-only convention that
@@ -1069,21 +1072,21 @@ collision estimate can still give the smaller numerical trace-distance bound.
 The companion's learning task begins with a general Pauli channel and asks
 for estimates of all coefficients of weight at most $w$, with a requested
 label allowed to arrive after acquisition. Its coherent-width parameter
-$k_{\rm coh}$ counts coherent qubits beside the $n$-qubit query register.
-The integer ranges are $1\leq w\leq n$ and $0\leq k_{\rm coh}\leq n$.
+$k$ counts coherent qubits beside the $n$-qubit query register.
+The integer ranges are $1\leq w\leq n$ and $0\leq k\leq n$.
 New probes, reset operations, and an unrestricted classical history are
 permitted. At fixed nontrivial accuracy and confidence, the full support-and-axis
 family has polynomial query complexity precisely when
 \[
- \frac{w(n-k_{\rm coh})}{n}=O(\log n).
+ \frac{w(n-k)}{n}=O(\log n).
 \]
 That claim concerns query complexity under its specified access contract.
 Printing an exponentially long list of coefficients still costs at least its
 output length.
 
 For $w=1$, the displayed ratio is at most one even with no coherent
-reference. Fresh local-axis experiments can therefore have polynomial query
-cost. Every new polarized probe and every fresh record is permitted in that
+reference. Fresh local-axis experiments therefore learn this family with $T=O(\log n)$
+queries at fixed accuracy and confidence. Every new polarized probe and every fresh record is permitted in that
 contract. The present entropy theorem asks whether the same starting corner
 survives after those resources are charged to one initialization. It shows that
 $C=O(\log n)$ cannot achieve error $1/3$ at attenuation $1/2$.
@@ -1095,7 +1098,7 @@ It is also essential to distinguish two noise parameters. In an
 identity-mixture detector the null and alternative are
 \[
  (1-\tau){\rm id}+\tau\mathcal D,\qquad
- (1-\tau){\rm id}+\tau\mathcal E_{a,1}.
+ (1-\tau){\rm id}+\tau\mathcal E_{e,1}.
 \]
 The hidden Pauli has eigenvalue exactly one under the alternative for every
 $0<\tau\leq1$, while other nonidentity eigenvalues are $1-\tau$.

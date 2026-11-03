@@ -2,7 +2,7 @@
 
 **How much can a quantum processor learn from one supply of initial purity, even if it can query an unknown channel indefinitely?** For a hidden Pauli mode, one initially pure qubit has an exact attainable-signal scale, up to universal constants. Arbitrarily large protected mixed memory cannot remove this restriction.
 
-**Sister project: [Pauli Learning Memory Thresholds](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds).** It studies the coherent width needed for learning with fresh experiments. The shared [weight-one entropy obstruction](science/entropy_bound.md) proves that logarithmic initial purity cannot support the attenuated task at $`\lambda=1/2`$ without resets or free fresh records. This repository owns the complete proof; the sister's [no-reset frontier](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/no_reset_frontier.md) explains its width and learning consequences.
+**Companion repository: [Pauli Learning Memory Thresholds](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds).** It studies the coherent width needed for learning with fresh experiments. The shared [weight-one entropy obstruction](science/entropy_bound.md) proves that logarithmic initial purity cannot support the attenuated task at $`\lambda=1/2`$ without resets or free fresh records. This repository owns the complete proof; the companion's [no-reset frontier](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/no_reset_frontier.md) explains its width and learning consequences.
 
 The channel is either complete depolarization or retains one unknown nonidentity Pauli component with known strength $\lambda$. The hidden component is fixed throughout the experiment. Between ordinary channel calls, the processor may use any known global unital quantum channel. Every accessible register belongs to the initial resource budget, and there is one final measurement.
 
@@ -40,10 +40,10 @@ The result identifies an information limit that persists as the query budget gro
 Restrict the hidden label to the $`3n`$ weight-one Paulis and set $`\lambda=1/2`$. Let $`C=\log_2\dim(SA)-H(\rho_{\mathrm{in}})`$ be the complete processor's initial entropy deficit in bits. It equals $`c`$ for $`c`$ clean qubits and otherwise maximally mixed registers. The [entropy theorem](science/entropy_bound.md) proves, for every finite number of queries,
 
 ```math
-\sum_{a:\,|a|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)\le\frac34C.
+\sum_{e:\,|e|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^e)\le\frac34C.
 ```
 
-Here $`D_{\mathrm{bits}}`$ is ordinary quantum relative entropy with base-two logarithms. Worst-case error at most $`1/3`$ requires **$`C\ge4n/3`$**. If every protected register and retained record fits in $`k`$ qubits, then $`C\le n+k`$, so **$`k\ge n/3`$** is necessary as well. In particular, $`O(\log n)`$ initially clean qubits and $`O(\log n)`$ fully charged side memory cannot solve this task, regardless of query count.
+Here $`D_{\mathrm{bits}}`$ is ordinary quantum relative entropy with base-two logarithms. Worst-case error at most $`1/3`$ requires **$`C\ge4n/3`$**. If every protected register and retained record fits in $`k_{\mathrm{phys}}`$ qubits, then $`C\le n+k_{\mathrm{phys}}`$, so **$`k_{\mathrm{phys}}\ge n/3`$** is necessary as well. In particular, $`O(\log n)`$ initially clean qubits and $`O(\log n)`$ fully charged side memory cannot solve this task, regardless of query count.
 
 The restricted-label collision-purity bound already implies a logarithmic clean-qubit requirement; that immediate corollary is credited separately. The entropy theorem is the stronger obstruction. It does not provide an attaining linear-resource protocol or the exact joint frontier. The width corollary charges all retained records and must not be transferred to a model with unlimited free classical history.
 
@@ -61,7 +61,7 @@ queries for $\lambda>1/2$, with $O(n)$ known gates per query. These are sufficie
 
 ## Explanatory report
 
-The [explanatory report](learning/report/Quantum_Learning_Without_Resets_Report.pdf) develops the resource model, converse proofs, finite protocols and shared weight-one obstruction, including their connection to the sister’s width frontier.
+The [explanatory report](learning/report/Quantum_Learning_Without_Resets_Report.pdf) develops the resource model, converse proofs, finite protocols and shared weight-one obstruction, including their connection to the companion’s width frontier.
 
 ## Read the science
 
@@ -96,11 +96,13 @@ python verification/run_checks.py
 python verification/verify_entropy.py
 ```
 
+The [analytical signal envelopes](verification/Graph/signal_bounds.pdf) are generated directly by [Python](verification/Graph/generate_signal_bounds.py), using [pinned plotting dependencies](verification/Graph/requirements.txt). The curves evaluate the proved lower and upper envelopes, with no fitted or simulated optimum. Technical reproduction commands are in [verification](verification/README.md).
+
 The original deterministic suite reconstructs full channel circuits, checks the forward and backward feedback identities, compares scalar scan formulas with matrix powers, and exercises endpoint and resource conventions. It writes [results.json](verification/results.json). The separate entropy verifier checks the reverse-relative-entropy coupling, Pauli complementarity and complete small no-reset trajectories; it writes [entropy_results.json](verification/entropy_results.json). Finite numerical checks supplement the proofs; they cannot establish an asymptotic theorem.
 
 ## Scope
 
-The shared entropy obstruction concerns the separate weight-one promise at $`\lambda=1/2`$. Its complete proof is here; the sister repository owns the fresh-experiment support–memory frontier. The full-family one-clean-qubit optimum uses all $`M=4^n-1`$ labels, as stated above.
+The shared entropy obstruction concerns the separate weight-one promise at $`\lambda=1/2`$. Its complete proof is here; the companion repository owns the fresh-experiment support–memory frontier. The full-family one-clean-qubit optimum uses all $`M=4^n-1`$ labels, as stated above.
 
 The [Pauli detection task and several algorithmic ingredients have established precedents](references/RELATED_WORK.md). The matched result concerns a single initialized experiment with a charged initial purity budget, ordinary memoryless channel access and unital controls. It does not grant an environment output, an inverse, a controlled unknown channel or fresh pure records.
 
@@ -108,4 +110,4 @@ Repeated experiments with newly prepared probes supply more purity. Existing sma
 
 ## Purpose and contact
 
-This repository serves as a record of the work and a guide for the author’s self-directed learning. For discussion or potential collaboration, please contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).
+The project is currently under collaboration, and the manuscript is being written. For questions, please contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).

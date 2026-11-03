@@ -5,14 +5,14 @@ The contribution studied here is a limit on the information obtainable from a fi
 For $M=4^n-1$ hidden nonidentity Pauli modes and initial collision purity $\mathcal P=D\mathrm{Tr}(\rho_{\mathrm{in}}^2)$, the [common-decision theorem](../science/decision_bound.md) proves, for every query count $T$ and $0\le\lambda<1$,
 
 ```math
-D_{\mathrm{tr}}\!\left(\frac1M\sum_a\rho_T^a,\rho_T^0\right)
+D_{\mathrm{tr}}\!\left(\frac1M\sum_{e\ne0}\rho_T^e,\rho_T^0\right)
 \le
 \min\!\left\{1,
 \frac{\lambda\sqrt{\mathcal P-1}}{2M(1-\lambda)}
 \right\}.
 ```
 
-Here $D_{\mathrm{tr}}=\tfrac12\lVert\cdot\rVert_1$. This bounds the distance of the **uniform mixture of final states** from the null. It concerns one measurement common to every hidden label. The average of the individually optimized distances, $M^{-1}\sum_aD_{\mathrm{tr}}(\rho_T^a,\rho_T^0)$, satisfies a [separate bound](../science/purity_bound.md) and is not interchangeable with this quantity.
+Here $D_{\mathrm{tr}}=\tfrac12\lVert\cdot\rVert_1$. This bounds the distance of the **uniform mixture of final states** from the null. It concerns one measurement common to every hidden label. The average of the individually optimized distances, $M^{-1}\sum_{e\ne0}D_{\mathrm{tr}}(\rho_T^e,\rho_T^0)$, satisfies a [separate bound](../science/purity_bound.md) and is not interchangeable with this quantity.
 
 The [finite protocols](../science/protocols.md), with known $\lambda$ and one initially pure qubit, establish the matching scaling
 
@@ -68,15 +68,15 @@ The feedback decomposition and geometric-series estimate used in the common-deci
 
 ## Shared weight-one entropy obstruction
 
-[Pauli Learning Memory Thresholds](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds), [pinned model at revision a58e7e5](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/a58e7e563d8688e6e09c29a8ec78b8fbb3378d07/science/model.md), evaluates the support–memory frontier when experiments may prepare fresh probes and retain their outcomes. Its low-weight upper protocol is not a no-reset construction. Its weak identity-mixture parameter is also distinct from an attenuated spike eigenvalue: mixing the identity with an exactly preserving spike leaves the hidden mode exactly preserved.
+[Pauli Learning Memory Thresholds](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds), [current model](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/model.md), evaluates the support–memory frontier when experiments may prepare fresh probes and retain their outcomes. Its low-weight upper protocol is not a no-reset construction. Its weak identity-mixture parameter is also distinct from an attenuated spike eigenvalue: mixing the identity with an exactly preserving spike leaves the hidden mode exactly preserved.
 
-The [weight-one entropy theorem](../science/entropy_bound.md) is a shared contribution of the two projects, with its complete proof owned by this repository and its width/learning consequences in the sister's [no-reset frontier](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/no_reset_frontier.md). For $`\lambda=1/2`$, it proves
+The [weight-one entropy theorem](../science/entropy_bound.md) is a shared contribution of the paired accounts, with its complete proof owned by this repository and its width/learning consequences in the companion's [no-reset frontier](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/no_reset_frontier.md). For $`\lambda=1/2`$, it proves
 
 ```math
-\sum_{a:\,|a|=1}D_2(\rho_T^0\Vert\rho_T^a)\le\frac34C,
+\sum_{e:\,|e|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^e)\le\frac34C,
 ```
 
-where $`D_2`$ is quantum relative entropy in bits and $`C`$ is the initial von Neumann entropy deficit. Error at most $`1/3`$ requires $`C\ge4n/3`$. If all side registers and retained records occupy $`k`$ qubits, then $`C\le n+k`$ and $`k\ge n/3`$ is necessary. A matching linear-resource protocol, sharp constants and the full joint frontier are not claimed.
+where $`D_{\mathrm{bits}}`$ is quantum relative entropy in bits and $`C`$ is the initial von Neumann entropy deficit. Error at most $`1/3`$ requires $`C\ge4n/3`$. If all side registers and retained records occupy $`k_{\mathrm{phys}}`$ qubits, then $`C\le n+k_{\mathrm{phys}}`$ and $`k_{\mathrm{phys}}\ge n/3`$ is necessary. A matching linear-resource protocol, sharp constants and the full joint frontier are not claimed.
 
 The [restricted-label collision-purity estimate](../science/decision_bound.md#7-restricted-labels-the-immediate-purity-corollary) is an immediate consequence of the pre-existing energy argument, also visible at [revision 690dbd3](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/690dbd3f98c466d535fa531785ac64217380603d/science/decision_bound.md). It gives $`c\ge\log_2(1+4n^2)`$ at the same error. That logarithmic necessity is credited as inherited; it is not the new entropy obstruction.
 

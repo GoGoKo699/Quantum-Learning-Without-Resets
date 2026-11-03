@@ -6,10 +6,10 @@ The unknown channel is fixed throughout a run. The learner has ordinary channel 
 
 ## 1. The channel promise
 
-Let $n\ge1$, $d=2^n$, and $M=d^2-1$. Choose the Hermitian Pauli basis $P_0=I,P_1,\ldots,P_M$, with
+Let $n\ge1$, $d=2^n$, and $M=d^2-1$. Use Hermitian Pauli representatives $P_e$ indexed by $e\in\mathbb F_2^{2n}$, with $P_0=I$ and
 
 ```math
-\mathrm{Tr}(P_aP_b)=d\,\delta_{ab}.
+\mathrm{Tr}(P_eP_f)=d\,\mathbf1_{e=f}.
 ```
 
 The null is complete depolarization. An alternative retains one nonidentity Pauli coefficient:
@@ -17,36 +17,36 @@ The null is complete depolarization. An alternative retains one nonidentity Paul
 ```math
 \begin{aligned}
 \mathcal D(X)&=\frac{I}{d}\mathrm{Tr}X,\\
-\mathcal E_{a,\lambda}(X)
+\mathcal E_{e,\lambda}(X)
 &=\frac{I\mathrm{Tr}X+
-\lambda P_a\mathrm{Tr}(P_aX)}{d},
-\qquad a\in\{1,\ldots,M\},\quad 0\le\lambda\le1.
+\lambda P_e\mathrm{Tr}(P_eX)}{d},
+\qquad e\in\mathbb F_2^{2n}\setminus\{0\},\quad 0\le\lambda\le1.
 \end{aligned}
 \tag{M1}
 ```
 
-The label $a$ is unknown and is never supplied during the computation. It is fixed across all calls, rather than independently redrawn at each call. The strength $\lambda$ is known to the explicit constructive algorithms. The converses hold for each $\lambda$ even if it is known.
+Sums over hidden labels range over $e\ne0$ unless another set is specified. The label $e$ is unknown and is never supplied during the computation. It is fixed across all calls, rather than independently redrawn at each call. The strength $\lambda$ is known to the explicit constructive algorithms. The converses hold for each $\lambda$ even if it is known.
 
-These maps are completely positive, trace preserving and unital. One direct check is their Pauli-error representation. For symplectic Pauli labels $a,v$,
+These maps are completely positive, trace preserving and unital. One direct check is their Pauli-error representation. For symplectic Pauli labels $e,v$,
 
 ```math
 \begin{aligned}
 p_0(v)=\frac1{d^2},\qquad
-p_{a,\lambda}(v)=
-\frac{1+\lambda(-1)^{[a,v]}}{d^2}.
+p_{e,\lambda}(v)=
+\frac{1+\lambda(-1)^{[e,v]}}{d^2}.
 \end{aligned}
 \tag{M2}
 ```
 
-The probabilities are nonnegative and sum to one. Their Pauli eigenvalues are one at the identity, $\lambda$ at $P_a$ and zero elsewhere. Thus (M1) is an ordinary noisy channel, not a nonphysical linear oracle. The channel can also measure the two eigenspaces of $P_a$ and prepare $(I\pm\lambda P_a)/d$ according to the outcome. It is entanglement breaking, including at $\lambda=1$.
+The probabilities are nonnegative and sum to one. Their Pauli eigenvalues are one at the identity, $\lambda$ at $P_e$ and zero elsewhere. Thus (M1) is an ordinary noisy channel, not a nonphysical linear oracle. The channel can also measure the two eigenspaces of $P_e$ and prepare $(I\pm\lambda P_e)/d$ according to the outcome. It is entanglement breaking, including at $\lambda=1$.
 
-A second promise used in the [shared entropy theorem](entropy_bound.md) restricts $`a`$ to the $`3n`$ weight-one labels and fixes $`\lambda=1/2`$. Its channel is exactly (M1), with fewer possible labels. Its uniform alternative mixture averages over those $`3n`$ labels, rather than over all $`M=4^n-1`$ labels. This restriction does not change the complete-processor or no-reset assumptions. The full-family definition of $`\Delta_1(n,\lambda)`$ below remains unchanged.
+A second promise used in the [shared entropy theorem](entropy_bound.md) restricts $`e`$ to the $`3n`$ weight-one labels and fixes $`\lambda=1/2`$. Its channel is exactly (M1), with fewer possible labels. Its uniform alternative mixture averages over those $`3n`$ labels, rather than over all $`M=4^n-1`$ labels. This restriction does not change the complete-processor or no-reset assumptions. The full-family definition of $`\Delta_1(n,\lambda)`$ below remains unchanged.
 
 An implementation of (M2) can use a classical hidden label and random local Pauli errors. The learner receives neither that description nor the sampled error. An environment output, dilation isometry, inverse, controlled call to the unknown map or reusable random seed is not part of the oracle interface. Controlled **known** Pauli gates are ordinary learner operations.
 
 ## 2. The complete processor
 
-Write the queried register as $S$ and the protected workspace as $A$, of dimensions $d$ and $K$. The total dimension is $D=dK$. The initial state $\rho_{\mathrm{in}}$ on $SA$ is known and independent of the hidden label.
+Write the queried register as $S$ and the protected workspace as $A$, of dimensions $d$ and $K$. The total dimension is $D=dK$. The initial state $\rho_{\mathrm{in}}$ on $SA$ is known and independent of the hypothesis.
 
 There are $T$ ordinary calls. A known channel $\mathcal C_t$ acts on all of $SA$ before call $t$:
 
@@ -54,9 +54,9 @@ There are $T$ ordinary calls. A known channel $\mathcal C_t$ acts on all of $SA$
 \begin{aligned}
 \rho_t^0&=(\mathcal D\otimes\mathrm{id}_A)
               \mathcal C_t(\rho_{t-1}^0),\\
-\rho_t^a&=(\mathcal E_{a,\lambda}\otimes\mathrm{id}_A)
-              \mathcal C_t(\rho_{t-1}^a),\\
-\rho_0^a&=\rho_0^0=\rho_{\mathrm{in}}.
+\rho_t^e&=(\mathcal E_{e,\lambda}\otimes\mathrm{id}_A)
+              \mathcal C_t(\rho_{t-1}^e),\\
+\rho_0^e&=\rho_0^0=\rho_{\mathrm{in}}.
 \end{aligned}
 \tag{M3}
 ```
@@ -111,13 +111,13 @@ C=\log_2D-H(\rho_{\mathrm{in}}),\qquad
 0\le C\le\log_2\mathcal P,
 ```
 
-where $`H`$ is von Neumann entropy in bits. This is an entropy deficit, distinct from collision purity. A product of $`c`$ clean qubits and otherwise maximally mixed qubits has both $`C=c`$ and $`\mathcal P=2^c`$. If all protected memory has at most $`k`$ qubits, $`C\le n+k`$. Any retained classical records must be included for that dimension bound; a coherent-only width convention with free classical history supplies a different resource. Appending independent maximally mixed memory leaves $`C`$ unchanged.
+where $`H`$ is von Neumann entropy in bits. This is an entropy deficit, distinct from collision purity. A product of $`c`$ clean qubits and otherwise maximally mixed qubits has both $`C=c`$ and $`\mathcal P=2^c`$. If all protected memory has at most $`k_{\mathrm{phys}}`$ qubits, $`C\le n+k_{\mathrm{phys}}`$. Any retained classical records must be included for that dimension bound; a coherent-only width convention with free classical history supplies a different resource. Appending independent maximally mixed memory leaves $`C`$ unchanged.
 
 Collision purity is a resource parameter for this theorem. It is not a measured heat expenditure or the von Neumann entropy removed by an implementation. We make no universal thermodynamic conversion claim.
 
 ## 4. Decision statistics and error conventions
 
-For a fixed terminal effect $0\le F\le I$, let outcome one occur with probability $p_a=\mathrm{Tr}(F\rho_T^a)$ and let $p_0=\mathrm{Tr}(F\rho_T^0)$. The same effect must handle every hidden label.
+For a fixed terminal effect $0\le F\le I$, let outcome one occur with probability $p_e=\mathrm{Tr}(F\rho_T^e)$ and let $p_0=\mathrm{Tr}(F\rho_T^0)$. The same effect must handle every hidden label.
 
 We use the halved trace norm
 
@@ -129,13 +129,13 @@ D_{\mathrm{tr}}(\rho,\sigma)
 \tag{M7}
 ```
 
-The uniform-mixture output is $\bar\rho_T=M^{-1}\sum_a\rho_T^a$. Its trace distance from the null equals the largest absolute difference in the probability of one event:
+The uniform-mixture output is $\bar\rho_T=M^{-1}\sum_{e\ne0}\rho_T^e$. Its trace distance from the null equals the largest absolute difference in the probability of one event:
 
 ```math
 \begin{aligned}
 D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 =\max_{0\le F\le I}
-\left|\frac1M\sum_a p_a-p_0\right|.
+\left|\frac1M\sum_{e\ne0} p_e-p_0\right|.
 \end{aligned}
 \tag{M8}
 ```
@@ -146,8 +146,8 @@ A worst-case error guarantee $\delta\lt1/2$ requires one decision rule with
 
 ```math
 \begin{aligned}
-p_0\le\delta,\qquad p_a\ge1-\delta
-\quad\text{for every }a.
+p_0\le\delta,\qquad p_e\ge1-\delta
+\quad\text{for every }e.
 \end{aligned}
 \tag{M9}
 ```

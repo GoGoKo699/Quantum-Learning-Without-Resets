@@ -9,7 +9,7 @@ The first construction attains the whole decision-bias scaling. A second, cohere
 For $M=4^n-1$ and $0\le\lambda\lt1$, let
 
 ```math
-s=\frac{\lambda}{M(1-\lambda)}.
+z=\frac{\lambda}{M(1-\lambda)}.
 ```
 
 The quantity $\Delta_1(n,\lambda)$ is defined in (M10). The [decision converse](decision_bound.md) and the algorithms below establish
@@ -17,9 +17,9 @@ The quantity $\Delta_1(n,\lambda)$ is defined in (M10). The [decision converse](
 ```math
 \begin{aligned}
 \boxed{
-\frac1{128}\min\{1,s\}
+\frac1{128}\min\{1,z\}
 \le\Delta_1(n,\lambda)
-\le\min\{1,s/2\}.
+\le\min\{1,z/2\}.
 }
 \end{aligned}
 \tag{A1}
@@ -31,7 +31,7 @@ The two constructive branches use
 
 ```math
 \begin{aligned}
-Q&=
+T&=
 \begin{cases}
 1,&0\lt\lambda\le1/2,\\
 M\left\lceil 32/g\right\rceil
@@ -51,13 +51,13 @@ Initialize $S$ in $I/d$ and let the pointer state be $\sigma$. For a known nonid
 
 ```math
 \begin{aligned}
-V_b=I_S\otimes|0\rangle\langle0|
+W_b=I_S\otimes|0\rangle\langle0|
 +P_b\otimes|1\rangle\langle1|.
 \end{aligned}
 \tag{A3}
 ```
 
-Apply $V_b$, query the unknown channel on $S$, and apply $V_b$ again. The exact effect is
+Apply $W_b$, query the unknown channel on $S$, and apply its inverse $W_b^\dagger=W_b$. The exact effect is
 
 ```math
 \begin{aligned}
@@ -68,9 +68,9 @@ Apply $V_b$, query the unknown channel on $S$, and apply $V_b$ again. The exact 
 \tag{A4}
 ```
 
-where $\mathcal Z_\eta$ keeps the pointer's diagonal entries and multiplies its off-diagonal entries by $\eta$. Under the null $\eta_b=0$. Under alternative $a$, $\eta_b=\lambda$ if $b=a$, and zero otherwise.
+where $\mathcal Z_\eta$ keeps the pointer's diagonal entries and multiplies its off-diagonal entries by $\eta$. Under the null $\eta_b=0$. Under alternative $e$, $\eta_b=\lambda$ if $b=e$, and zero otherwise.
 
-To verify this, expand $\sigma$ into its two-by-two pointer blocks. The diagonal query blocks are $I/d$. After the first $V_b$, each off-diagonal block is proportional to $P_b/d$. The unknown channel maps that Pauli to $\eta_bP_b$, and the final $V_b$ restores the block to $\eta_bI/d$. Thus $S$ returns exactly to its initial mixed state, uncorrelated with the pointer. The statement remains true when the pointer is correlated with other protected registers, by linearity on its operator-valued blocks.
+To verify this, expand $\sigma$ into its two-by-two pointer blocks. The diagonal query blocks are $I/d$. After the first $W_b$, each off-diagonal block is proportional to $P_b/d$. The unknown channel maps that Pauli to $\eta_bP_b$, and the final $W_b$ restores the block to $\eta_bI/d$. Thus $S$ returns exactly to its initial mixed state, uncorrelated with the pointer. The statement remains true when the pointer is correlated with other protected registers, by linearity on its operator-valued blocks.
 
 This is a controlled **known** gate surrounding an ordinary unknown-channel call. It does not assume controlled-channel or dilation access. For $b=0$, the identity Pauli, the gadget leaves the pointer unchanged under either hypothesis.
 
@@ -82,8 +82,8 @@ The pointer's $X$ expectations are
 
 ```math
 \begin{aligned}
-x_0=\frac1{M+1},\qquad
-x_a=\frac{1+\lambda}{M+1}.
+m_0^X=\frac1{M+1},\qquad
+m_e^X=\frac{1+\lambda}{M+1}.
 \end{aligned}
 \tag{A5}
 ```
@@ -93,13 +93,13 @@ The identity trial contributes in both cases; exactly one additional trial contr
 ```math
 \begin{aligned}
 \Delta_{\mathrm{small}}=\frac{\lambda}{2(M+1)}
-=\frac{M(1-\lambda)}{2(M+1)}s
-\ge\frac3{16}s.
+=\frac{M(1-\lambda)}{2(M+1)}z
+\ge\frac3{16}z.
 \end{aligned}
 \tag{A6}
 ```
 
-Here $M\ge3$ and $s\le1/3$. This proves more than the lower constant required in (A1) in this regime.
+Here $M\ge3$ and $z\le1/3$. This proves more than the lower constant required in (A1) in this regime.
 
 The implementation uses $n$ mixed query qubits, $2n$ mixed label qubits and one pure pointer. Its collision purity is exactly two. Conditional Pauli synthesis costs $O(n)$ known gates, with no uniformly sampled non-power-of-two classical seed required.
 
@@ -150,8 +150,8 @@ Put $k_0=c^L$ and $k_\ell=(A_\ell^L)_{22}$. Every block begins with zero $x$ com
 
 ```math
 \begin{aligned}
-z_0=k_0^M,\qquad
-z_a=k_0^{M-1}k_\ell,
+m_0^Z=k_0^M,\qquad
+m_e^Z=k_0^{M-1}k_\ell,
 \end{aligned}
 \tag{A9}
 ```
@@ -273,7 +273,7 @@ At $\lambda=1$, the active block is exactly $R_y(\pi)$ and flips the pointer. Wi
 
 ```math
 \begin{aligned}
-z_0=c^{ML},\qquad z_a=-c^{(M-1)L}.
+m_0^Z=c^{ML},\qquad m_e^Z=-c^{(M-1)L}.
 \end{aligned}
 \tag{A20}
 ```
@@ -311,9 +311,9 @@ At $\lambda=1$, taking arbitrarily large finite $L$ in (A20) drives both errors 
 
 ## 6. Implementation and accuracy accounting
 
-A known dephasing $\mathcal Z_q$ is unital. It can also be implemented using only known unitaries and an initially maximally mixed coin: condition opposite rotations $R_z(\phi)$ and $R_z(-\phi)$ on the coin, where $\cos\phi=q$, and ignore that coin thereafter. Preallocate one coin per use, retain all coins, and let the final POVM ignore them. This requires $O(Q)$ extra mixed qubits and still only one pure qubit. Correlations with used coins do not alter the analyzed reduced evolution because those coins are never used again.
+A known dephasing $\mathcal Z_q$ is unital. It can also be implemented using only known unitaries and an initially maximally mixed coin: condition opposite rotations $R_z(\phi)$ and $R_z(-\phi)$ on the coin, where $\cos\phi=q$, and ignore that coin thereafter. Preallocate one coin per use, retain all coins, and let the final POVM ignore them. This requires $O(T)$ extra mixed qubits and still only one pure qubit. Correlations with used coins do not alter the analyzed reduced evolution because those coins are never used again.
 
-The abstract unital-control implementation has $O(nQ)$ known controlled-Pauli and one-qubit gates. Counts treat parameterized rotations as primitives. For an implementation with $N_g$ imperfect known gates, if each gate has diamond error at most $\varepsilon_g$, a hybrid argument bounds the final probability error by $N_g\varepsilon_g/2$. Choosing this smaller than a fixed fraction of the desired probability gap preserves the claimed scaling. We do not claim an optimized fault-tolerant synthesis cost or hardware runtime.
+The abstract unital-control implementation has $O(nT)$ known controlled-Pauli and one-qubit gates. Counts treat parameterized rotations as primitives. For an implementation with $N_g$ imperfect known gates, if each gate has diamond error at most $\varepsilon_g$, a hybrid argument bounds the final probability error by $N_g\varepsilon_g/2$. Choosing this smaller than a fixed fraction of the desired probability gap preserves the claimed scaling. We do not claim an optimized fault-tolerant synthesis cost or hardware runtime.
 
 For every construction, the pointer distributions are the same for all hidden labels. A gap $\Delta$ gives equal-prior success $(1+\Delta)/2$. If balanced errors are needed, final classical postprocessing can balance them while keeping at least half the gap, giving worst-case success at least $1/2+\Delta/4$. This is part of the final POVM, with no intermediate purity supply. The small constant in (A1) alone is not a $2/3$-success guarantee; use (A21) for a specified error.
 

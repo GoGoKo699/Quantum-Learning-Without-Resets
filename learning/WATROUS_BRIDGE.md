@@ -42,9 +42,9 @@ The Chapter 5 locators were checked in the author's standard-layout chapter PDF.
 
 Watrous explicitly calls the full trace norm “trace distance” immediately after Eq. (1.181), printed p. 34. Every distance and success conversion below uses the project's halved convention.
 
-Here $d=2^n$, with $n\ge1$, is the query dimension, $K$ the finite protected-workspace dimension, and $D=dK$ the processor dimension. This scalar $K$ is unrelated to the natural representation $\mathrm K(\Phi)$. There are $M=d^2-1$ nonidentity Pauli labels. The hidden label $a$ is fixed throughout the finite run.
+Here $d=2^n$, with $n\ge1$, is the query dimension, $K$ the finite protected-workspace dimension, and $D=dK$ the processor dimension. This scalar $K$ is unrelated to the natural representation $\mathrm K(\Phi)$. There are $M=d^2-1$ nonidentity Pauli labels. The hidden label $e$ is fixed throughout the finite run.
 
-A call implements $\mathcal E_{a,\lambda}\otimes\mathrm{id}_A$ on the current joint state. A Stinespring representation proves that a channel is physically realizable; it does not give the learner its environment or inverse. The constructive circuits control known Pauli gates before and after an ordinary call. Their strength $\lambda$ is known. The converses apply even with that knowledge.
+A call implements $\mathcal E_{e,\lambda}\otimes\mathrm{id}_A$ on the current joint state. A Stinespring representation proves that a channel is physically realizable; it does not give the learner its environment or inverse. The constructive circuits control known Pauli gates before and after an ordinary call. Their strength $\lambda$ is known. The converses apply even with that knowledge.
 
 ## Preparation and purity accounting
 
@@ -91,7 +91,7 @@ D_{\mathrm{nat}}=(\ln2)D_{\mathrm{bits}},
 H_{\mathrm{nat}}=(\ln2)H.
 ```
 
-Relative entropy is not a metric and its order matters. The new converse follows $D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)$, with the null in the first argument. Corollary 5.33 supplies joint convexity and Theorem 5.35 supplies data processing; neither permits exchanging those arguments.
+Relative entropy is not a metric and its order matters. The new converse follows $D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^e)$, with the null in the first argument. Corollary 5.33 supplies joint convexity and Theorem 5.35 supplies data processing; neither permits exchanging those arguments.
 
 For the full initialized processor, define
 
@@ -119,7 +119,7 @@ p_{\mathrm{succ}}
 ```
 A probability gap $\Delta$ is twice the success advantage above one half.
 
-When $a$ is hidden, the same effect must be used for every alternative. The relevant state is $\bar\rho=M^{-1}\sum_a\rho^a$, so the decision objective is $D_{\mathrm{tr}}(\bar\rho,\rho^0)$. In contrast, $M^{-1}\sum_aD_{\mathrm{tr}}(\rho^a,\rho^0)$ optimizes a different effect for each label.
+When $e$ is hidden, the same effect must be used for every alternative. The relevant state is $\bar\rho=M^{-1}\sum_{e\ne0}\rho^e$, so the decision objective is $D_{\mathrm{tr}}(\bar\rho,\rho^0)$. In contrast, $M^{-1}\sum_{e\ne0}D_{\mathrm{tr}}(\rho^e,\rho^0)$ optimizes a different effect for each label.
 
 A simple state example makes the distinction visible. Let $\rho^0=I/2$ and $\rho^\pm=(I\pm rZ)/2$, with $0\le r\le1$. Each individual distance is $r/2$, but their equal mixture is exactly $\rho^0$. No common decision distinguishes that mixture from the null. This illustrates the optimization issue; the project itself uses the [positive Pauli-spike promise](../science/model.md), not this two-state ensemble.
 
@@ -127,44 +127,44 @@ A worst-case decision with error at most $\delta\lt1/2$ must have null acceptanc
 
 ## A complete one-query example
 
-Take $n=1$, so the candidate nonidentity Paulis are $X,Y,Z$ and $M=3$. The null channel sends every qubit state to $I/2$. Alternative $a$ retains only its Bloch component:
+Take $n=1$, so the candidate nonidentity Paulis are $X,Y,Z$ and $M=3$. The null channel sends every qubit state to $I/2$. Alternative $e$ retains only its Bloch component:
 ```math
 \frac12(I+r_xX+r_yY+r_zZ)
 \longmapsto
-\frac12(I+\lambda r_aP_a).
+\frac12(I+\lambda r_eP_e).
 ```
 The label remains unknown.
 
-Prepare a mixed query qubit $S$, a two-qubit maximally mixed label register $L$ covering $I,X,Y,Z$, and a pure pointer $B$ in $|+\rangle$:
+Prepare a mixed query qubit $S$, a two-qubit maximally mixed label register $L$ covering $I,X,Y,Z$, and a pure pointer $R$ in $|+\rangle$:
 ```math
 \rho_{\mathrm{in}}
 =\frac{I_S}{2}\otimes\frac{I_L}{4}
-\otimes|+\rangle\langle+|_B.
+\otimes|+\rangle\langle+|_R.
 ```
 There are four qubits in total, exactly one pure. The total dimension is $16$, the state purity is $1/8$, and $\mathcal P=2$.
 
 For each label value $b$, the known controlled gate is
 ```math
-V_b=I_S\otimes|0\rangle\langle0|_B
-+P_b\otimes|1\rangle\langle1|_B.
+W_b=I_S\otimes|0\rangle\langle0|_R
++P_b\otimes|1\rangle\langle1|_R.
 ```
-Apply the label-controlled choice of $V_b$, make one ordinary query on $S$, and apply the same known gate again. No measurement or pure-state preparation occurs between these operations.
+Apply the label-controlled choice of $W_b$, make one ordinary query on $S$, and apply the same known gate again. No measurement or pure-state preparation occurs between these operations.
 
-For a nonidentity candidate, the pointer off-diagonal block of the query state becomes proportional to $P_b/2$. The channel kills it unless $b=a$, in which case it multiplies it by $\lambda$. The second controlled gate returns the query register to $I/2$. The identity candidate leaves the pointer unchanged under either hypothesis.
+For a nonidentity candidate, the pointer off-diagonal block of the query state becomes proportional to $P_b/2$. The channel kills it unless $b=e$, in which case it multiplies it by $\lambda$. The second controlled gate returns the query register to $I/2$. The identity candidate leaves the pointer unchanged under either hypothesis.
 
 Consequently, after ignoring the label, the pointer states are
 ```math
 \sigma_0=\frac12\left(I+\frac14X\right),
 \qquad
-\sigma_a=\frac12\left(I+\frac{1+\lambda}{4}X\right).
+\sigma_e=\frac12\left(I+\frac{1+\lambda}{4}X\right).
 ```
 The final event $X=+1$ has probabilities
 ```math
 p_0=\frac58,\qquad
-p_a=\frac{5+\lambda}{8},\qquad
-p_a-p_0=\frac{\lambda}{8}.
+p_e=\frac{5+\lambda}{8},\qquad
+p_e-p_0=\frac{\lambda}{8}.
 ```
-They are the same for every hidden $a$. At $\lambda=1/2$, the gap is $1/16$ and equal-prior success is $17/32$. This is a complete small-bias protocol, not a $2/3$-success protocol.
+They are the same for every hidden $e$. At $\lambda=1/2$, the gap is $1/16$ and equal-prior success is $17/32$. This is a complete small-bias protocol, not a $2/3$-success protocol.
 
 Its gap is compatible with the finite-query converse: for $T=1$, $M=3$, and $\mathcal P=2$, the mixture-distance upper bound is $\lambda/6$. The [general one-query construction](../science/protocols.md), (A5)–(A6), gives $\lambda/[2(M+1)]$ and accounts for the mixed label register explicitly.
 
@@ -172,21 +172,21 @@ Its gap is compatible with the finite-query converse: for $T=1$, $M=3$, and $\ma
 
 The book's tensor and partial-trace rules turn the Pauli basis into an operator-space decomposition. For an operator $X$ on $SA$, put
 ```math
-X_a=\mathrm{Tr}_S[(P_a\otimes I_A)X],
+X_e=\mathrm{Tr}_S[(P_e\otimes I_A)X],
 \qquad
-X=\frac1d\sum_{a=0}^{M}P_a\otimes X_a.
+X=\frac1d\sum_{e\in\mathbb F_2^{2n}}P_e\otimes X_e.
 ```
 The factor is $1/d$, not $1/D$: only the query basis is being expanded. Orthogonality gives
 ```math
-\|X\|_2^2=\frac1d\sum_{a=0}^{M}\|X_a\|_2^2.
+\|X\|_2^2=\frac1d\sum_{e\in\mathbb F_2^{2n}}\|X_e\|_2^2.
 ```
-The maps $Q_a(X)=P_a\otimes X_a/d$ are mutually orthogonal Hilbert–Schmidt projections. In particular,
+The maps $Q_e(X)=P_e\otimes X_e/d$ are mutually orthogonal Hilbert–Schmidt projections. In particular,
 ```math
 Q_0(X)=\frac{I_S}{d}\otimes\mathrm{Tr}_S X,
 \qquad
-\mathcal E_{a,\lambda}\otimes\mathrm{id}_A=Q_0+\lambda Q_a.
+\mathcal E_{e,\lambda}\otimes\mathrm{id}_A=Q_0+\lambda Q_e.
 ```
-Only the complete sum is the alternative channel. A nonidentity $Q_a$ is a mathematical projection and need not preserve positivity. Physicality of the full channel has a direct measure-and-prepare explanation: measure the two effects $(I\pm P_a)/2$, then prepare $(I\pm\lambda P_a)/d$ with the corresponding sign. These are valid output states for $0\le\lambda\le1$, and the resulting channel is exactly $\mathcal E_{a,\lambda}$. This is one physical representation; the learner receives the ordinary channel, not its internal measurement outcome.
+Only the complete sum is the alternative channel. A nonidentity $Q_e$ is a mathematical projection and need not preserve positivity. Physicality of the full channel has a direct measure-and-prepare explanation: measure the two effects $(I\pm P_e)/2$, then prepare $(I\pm\lambda P_e)/d$ with the corresponding sign. These are valid output states for $0\le\lambda\le1$, and the resulting channel is exactly $\mathcal E_{e,\lambda}$. This is one physical representation; the learner receives the ordinary channel, not its internal measurement outcome.
 
 The null leaves every $I_S/d\otimes X_A$ unchanged. Therefore, it does not strictly contract every traceless processor operator. The [query-and-swap example](../science/interpretation.md) makes this operational: a $Z$ signal obtained from a pure query qubit can be swapped into protected memory and remain there while later calls act on a mixed query register.
 
@@ -215,15 +215,15 @@ The [purity proof](../science/purity_bound.md), (P4), also gives the short Kadis
 
 ## The individual-distance purity budget
 
-Let $\sigma$ be the null state before a step and $\delta_a$ the alternative-minus-null deviation. The [one-step update](../science/purity_bound.md) is
+Let $\sigma$ be the null state before a step and $\delta_e$ the alternative-minus-null deviation. The [one-step update](../science/purity_bound.md) is
 ```math
-\delta'_a
-=Q_0\mathcal C(\delta_a)
-+\lambda Q_a\mathcal C(\delta_a+\sigma).
+\delta'_e
+=Q_0\mathcal C(\delta_e)
++\lambda Q_e\mathcal C(\delta_e+\sigma).
 ```
-Write $x=Q_a\mathcal C(\delta_a)$ for returning signal and $y=Q_a\mathcal C(\sigma)$ for the source. Orthogonality and contraction imply
+Write $x=Q_e\mathcal C(\delta_e)$ for returning signal and $y=Q_e\mathcal C(\sigma)$ for the source. Orthogonality and contraction imply
 ```math
-\|\delta'_a\|_2^2-\|\delta_a\|_2^2
+\|\delta'_e\|_2^2-\|\delta_e\|_2^2
 \le-\|x\|_2^2+\lambda^2\|x+y\|_2^2
 \le\frac{\lambda^2}{1-\lambda^2}\|y\|_2^2,
 \qquad \lambda\lt1.
@@ -232,12 +232,12 @@ The final step completes a square in $x$. Returning information is allowed; its 
 
 Summing the source energy over all hidden directions gives
 ```math
-\sum_{a=1}^{M}\|Q_a\mathcal C(\sigma)\|_2^2
+\sum_{e\ne0}\|Q_e\mathcal C(\sigma)\|_2^2
 \le\|\sigma\|_2^2-\|Q_0\mathcal C(\sigma)\|_2^2.
 ```
 This is a drop along one common null trajectory. Summing over time cancels all intermediate terms. The trace-norm conversion $\lVert X\rVert_1\le\sqrt D\lVert X\rVert_2$, followed by Cauchy–Schwarz across labels, yields
 ```math
-\frac1M\sum_aD_{\mathrm{tr}}(\rho_T^a,\rho_T^0)
+\frac1M\sum_{e\ne0}D_{\mathrm{tr}}(\rho_T^e,\rho_T^0)
 \le
 \min\left\{1,
 \frac{\lambda\sqrt{\mathcal P-1}}{2\sqrt{M(1-\lambda^2)}}
@@ -249,9 +249,9 @@ The initial purity and the minimal final purity $1/D$ absorb the full processor 
 
 The common-decision argument additionally budgets one final effect. Its auxiliary construction is linear algebra on operator space, not a new physical oracle interface.
 
-For one hidden sector, temporarily replace its return by arbitrary inputs $v_t\in\mathrm{ran}(Q_a)$ and collect outputs $u_t\in\mathrm{ran}(Q_a)$:
+For one hidden sector, temporarily replace its return by arbitrary inputs $v_t\in\mathrm{ran}(Q_e)$ and collect outputs $u_t\in\mathrm{ran}(Q_e)$:
 ```math
-u_t=Q_a\mathcal C_t(x_{t-1}),
+u_t=Q_e\mathcal C_t(x_{t-1}),
 \qquad
 x_t=Q_0\mathcal C_t(x_{t-1})+v_t.
 ```
@@ -260,31 +260,31 @@ Because the retained and injected sectors are orthogonal,
 \|x_t\|_2^2+\|u_t\|_2^2
 \le\|x_{t-1}\|_2^2+\|v_t\|_2^2.
 ```
-Summing makes the entire input-output map a contraction. Write its blocks as $x_T=\mathcal N x_0+B_av$ and $u=F_ax_0+G_av$. Closing $v=\lambda u$ reproduces the actual alternative.
+Summing makes the entire input-output map a contraction. Write its blocks as $x_T=\mathcal N x_0+B_ev$ and $u=F_ex_0+G_ev$. Closing $v=\lambda u$ reproduces the actual alternative.
 
-Time ordering is essential: a port output depends only on earlier injections. Therefore $G_a^T=0$, where the superscript is the integer power equal to the number of calls. For $T\ge1$ the feedback inverse is a finite sum:
+Time ordering is essential: a port output depends only on earlier injections. Therefore $G_e^T=0$, where the superscript is the integer power equal to the number of calls. For $T\ge1$ the feedback inverse is a finite sum:
 ```math
-(I-\lambda G_a)^{-1}
-=\sum_{j=0}^{T-1}\lambda^jG_a^j,
+(I-\lambda G_e)^{-1}
+=\sum_{j=0}^{T-1}\lambda^jG_e^j,
 \qquad
-\|(I-\lambda G_a)^{-1}\|_{2\to2}
+\|(I-\lambda G_e)^{-1}\|_{2\to2}
 \le h_T(\lambda):=\sum_{j=0}^{T-1}\lambda^j.
 ```
 This gives
 ```math
-\rho_T^a-\rho_T^0
-=\lambda B_a(I-\lambda G_a)^{-1}F_a(\rho_{\mathrm{in}}).
+\rho_T^e-\rho_T^0
+=\lambda B_e(I-\lambda G_e)^{-1}F_e(\rho_{\mathrm{in}}).
 ```
 
 Along the null evolution, sector orthogonality supplies the forward bound
 ```math
-\sum_a\|F_ax_0\|_2^2\le\|x_0\|_2^2.
+\sum_{e\ne0}\|F_ex_0\|_2^2\le\|x_0\|_2^2.
 ```
 Propagating the same final effect backward through adjoint null controls supplies
 ```math
-\sum_a\|B_a^\dagger F\|_2^2\le\|F\|_2^2.
+\sum_{e\ne0}\|B_e^\dagger F\|_2^2\le\|F\|_2^2.
 ```
-The backward trajectory includes the final sector insertion $Q_aF$. Omitting this endpoint would change the budget. The protected-memory algebra may survive in both directions; the bounds concern the total energy that enters nonidentity query sectors.
+The backward trajectory includes the final sector insertion $Q_eF$. Omitting this endpoint would change the budget. The protected-memory algebra may survive in both directions; the bounds concern the total energy that enters nonidentity query sectors.
 
 Center both ends:
 ```math
@@ -314,7 +314,7 @@ This application of the forward and backward budgets, including their centering 
 The original collision-purity theorem applies immediately to any restricted orthogonal label family: in the two exposure budgets, a subset sum is at most the full sum. For the $3n$ weight-one labels and $\lambda=1/2$, it gives
 
 ```math
-D_{\mathrm{tr}}\!\left(\rho_T^0,\frac1{3n}\sum_a\rho_T^a\right)
+D_{\mathrm{tr}}\!\left(\rho_T^0,\frac1{3n}\sum_{|e|=1}\rho_T^e\right)
 \le\min\left\{1,\frac{\sqrt{\mathcal P-1}}{6n}\right\}.
 ```
 
@@ -322,14 +322,14 @@ At error $1/3$ and $\mathcal P=2^c$, this inherited result requires only $c\ge\l
 
 ### One local query with memory-bearing alternatives
 
-Let $R_a=Q_0+Q_a$, which is a physical conditional expectation although $Q_a$ alone need not be positive. For arbitrary null and alternative prequery states $\sigma,\rho$, set $\sigma'=R_a\sigma$, $\rho'=R_a\rho$, $\omega=Q_0\sigma$, and $\zeta=Q_0\rho$. The two positive Pauli-eigenspace blocks of $\sigma'$ can be exchanged by an anticommuting Pauli, producing $\sigma_{\mathrm{flip}}=2\omega-\sigma'$. This hidden-label-dependent flip is used in a proof; it is not a supplied learner operation.
+Let $R_e=Q_0+Q_e$, which is a physical conditional expectation although $Q_e$ alone need not be positive. For arbitrary null and alternative prequery states $\sigma,\rho$, set $\sigma'=R_e\sigma$, $\rho'=R_e\rho$, $\omega=Q_0\sigma$, and $\zeta=Q_0\rho$. The two positive Pauli-eigenspace blocks of $\sigma'$ can be exchanged by an anticommuting Pauli, producing $\sigma_{\mathrm{flip}}=2\omega-\sigma'$. This hidden-label-dependent flip is used in a proof; it is not a supplied learner operation.
 
 At attenuation $1/2$, the null output is the average of $\sigma'$ and its flip, while the alternative output is $(\rho'+\zeta)/2$. Joint convexity, the conditional-expectation entropy identity, and data processing give the query inequality
 
 ```math
-D_{\mathrm{bits}}(Q_0\sigma\Vert\mathcal E_{a,1/2}\rho)
+D_{\mathrm{bits}}(Q_0\sigma\Vert\mathcal E_{e,1/2}\rho)
 \le D_{\mathrm{bits}}(\sigma\Vert\rho)
-+\frac12D_{\mathrm{bits}}(R_a\sigma\Vert Q_0\sigma).
++\frac12D_{\mathrm{bits}}(R_e\sigma\Vert Q_0\sigma).
 ```
 
 The source term depends only on the null input even when protected memory has made $\rho$ different. This is the extra step that a source-only or pointwise contraction argument would miss. Arbitrary noncommuting side-memory blocks remain allowed. The support argument and complete derivation belong to [the entropy proof](../science/entropy_bound.md).
@@ -355,27 +355,27 @@ Two distinct Pauli pinchings compose to complete local depolarization. The condi
 This is a complementary-basis uncertainty statement with quantum memory; [Berta et al.](https://arxiv.org/abs/0909.0950) is a primary antecedent, not an additional educational anchor. Here the required form is derived directly from the same data-processing foundation. Summing null-query entropy gains over time costs at most $C$, because known unital controls cannot reduce entropy. Combining with the query coefficient $1/2$ gives
 
 ```math
-\sum_{|a|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)\le\frac34C,
+\sum_{|e|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^e)\le\frac34C,
 \qquad
-D_{\mathrm{tr}}\!\left(\rho_T^0,\frac1{3n}\sum_a\rho_T^a\right)
+D_{\mathrm{tr}}\!\left(\rho_T^0,\frac1{3n}\sum_{|e|=1}\rho_T^e\right)
 \le\min\left\{1,\frac{\sqrt{C\ln2}}{\sqrt{8n}}\right\}.
 ```
 
 A common final rule with null error and every alternative error at most $\delta<1/2$ has binary relative entropy at least $(1-2\delta)\log_2[(1-\delta)/\delta]$ for each label. Hence $C\ge4n(1-2\delta)\log_2[(1-\delta)/\delta]$, and $C\ge4n/3$ at error $1/3$. Logarithmic initially clean qubits are insufficient for **every finite query count**, even with unlimited initially mixed protected memory. No matching linear-resource protocol or complete frontier is asserted.
 
-## The sister model interface
+## The companion model interface
 
 [Pauli-Learning-Memory-Thresholds](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds) studies width-constrained learning with fresh probe preparation, resets, and an unrestricted classical history. Its [no-reset transfer account](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/no_reset_frontier.md) owns the consequence for that resource model; the proof and exact entropy statement are owned here in [entropy_bound.md](../science/entropy_bound.md). Each scientific account states the common attenuated task and its assumptions before linking to the other.
 
 At weight one the old width exponent by itself causes no polynomial-query barrier. Its fresh upper construction still consumes initialized probe and record resources. Our entropy result supplies a genuinely stronger fixed-initialization obstruction, rather than asserting that the old collision-purity lower bound is tight or that two existing upper protocols compose.
 
-The sister's original efficient rank detector retains a hidden mode exactly, including under its known identity-mixture parameter $\tau$. It is not the attenuated $\lambda=1/2$ promise. Setting $\tau=1/2$ cannot import its preserved-mode algorithm here.
+The companion's original efficient rank detector retains a hidden mode exactly, including under its known identity-mixture parameter $\tau$. It is not the attenuated $\lambda=1/2$ promise. Setting $\tau=1/2$ cannot import its preserved-mode algorithm here.
 
-When **every** protected register and retained record fits in $`k`$ qubits, the complete processor has $`n+k`$ qubits and $`C\le n+k`$; the error $`1/3`$ theorem then also forces $`k\ge n/3`$. This width corollary is not justified by a coherent-only width convention that exempts an additional classical history. The initial-purity obstruction remains true with any initially mixed extra history, provided all initial purity is charged. Fresh clean pointers, pure measurement records, an accessible purification, nonunital cooling, and new independent runs change that contract.
+When **every** protected register and retained record fits in $`k_{\mathrm{phys}}`$ qubits, the complete processor has $`n+k_{\mathrm{phys}}`$ qubits and $`C\le n+k_{\mathrm{phys}}`$; the error $`1/3`$ theorem then also forces $`k_{\mathrm{phys}}\ge n/3`$. This width corollary is not justified by a coherent-only width convention that exempts an additional classical history. The initial-purity obstruction remains true with any initially mixed extra history, provided all initial purity is charged. Fresh clean pointers, pure measurement records, an accessible purification, nonunital cooling, and new independent runs change that contract.
 
 ## Pointer dynamics and boundary dephasing
 
-The exact gadget in the one-query example works for arbitrary pointer inputs. For a known nonidentity trial $b$, it implements $\mathcal Z_{\lambda}$ if $b=a$ and $\mathcal Z_0$ otherwise, while returning $S$ to $I/d$. Reusing that system is possible because of the gadget identity, not because a reset is supplied.
+The exact gadget in the one-query example works for arbitrary pointer inputs. For a known nonidentity trial $b$, it implements $\mathcal Z_{\lambda}$ if $b=e$ and $\mathcal Z_0$ otherwise, while returning $S$ to $I/d$. Reusing that system is possible because of the gadget identity, not because a reset is supplied.
 
 The scans start the pointer in $|0\rangle$, with $z=1$. For the real pointer states encountered during the scan, write
 ```math
@@ -399,8 +399,8 @@ The parameterized dephasing is physical because
 
 At each candidate-block boundary the canonical protocols apply complete $Z$ dephasing. Every block then begins with $x=0$, while its $z$ value retains the accumulated signal. For block length $L$, set $k_0=c^L$ and $k_\eta=(A_\eta^L)_{22}$. With one active block among $M$,
 ```math
-z_0=k_0^M,\qquad
-z_a=k_0^{M-1}k_\eta.
+m_0^Z=k_0^M,\qquad
+m_e^Z=k_0^{M-1}k_\eta.
 ```
 These are independent of the active block's position. The common final event $Z=-1$ has gap $k_0^{M-1}(k_0-k_\eta)/2$.
 
@@ -430,14 +430,14 @@ The finite proof does more than take a small-angle limit. It shows that the two 
 ```
 with the final minimum interpreted as one at $\lambda=1$. The query count is
 ```math
-Q=ML\le33M\min\{(1-\lambda)^{-1},M\}.
+T=ML\le33M\min\{(1-\lambda)^{-1},M\}.
 ```
 At the endpoint the right side is $33M^2$. The [characteristic-root estimates](../science/protocols.md), (A11)–(A19), explain why these constants hold for a finite algorithm.
 
 A prescribed error needs a separate guarantee. Use the gadget without clipping, take $\theta=\pi/L$, and retain the same boundary dephasing. At $\lambda=1$, the active block rotates the pointer by $\pi$ while inactive blocks suppress its rotation:
 ```math
-z_0=c^{ML},\qquad
-z_a=-c^{(M-1)L},
+m_0^Z=c^{ML},\qquad
+m_e^Z=-c^{(M-1)L},
 \qquad c=\cos(\pi/L).
 ```
 Writing $\gamma=1-\lambda$, the noisy active dephasing differs from the identity in diamond norm by exactly $\gamma$. This follows from its representation as a mixture of identity and $Z$, whose outputs on $|+\rangle$ are orthogonal. Only $L$ calls in the active block change. The composition bound in Watrous Proposition 3.48 therefore changes any final probability by at most $L\gamma/2$.
@@ -456,9 +456,9 @@ At exact conservation, taking larger and larger finite $L$ makes the error appro
 
 The one-query branch uses one pure pointer and $3n$ mixed qubits: $n$ query qubits and $2n$ label qubits. The scans use one pure pointer and $n$ mixed query qubits when unital dephasing is admitted directly.
 
-Known dephasing can alternatively be realized using a fresh maximally mixed coin that selects opposite known $Z$ rotations. Preallocating these coins, retaining them, and never interacting with a used coin again reproduces the reduced dynamics. This increases mixed width by $O(Q)$ while leaving $\mathcal P=2$. It supplies no fresh pure state.
+Known dephasing can alternatively be realized using a fresh maximally mixed coin that selects opposite known $Z$ rotations. Preallocating these coins, retaining them, and never interacting with a used coin again reproduces the reduced dynamics. This increases mixed width by $O(T)$ while leaving $\mathcal P=2$. It supplies no fresh pure state.
 
-Each scan step uses one ordinary call, two controlled known Pauli-string gates, and one pointer rotation, with any clipping and boundary maps counted separately. A string has at most $n$ nonidentity local factors, giving $O(nQ)$ known-gate cost in the stated primitive model. This is not a platform-specific fault-tolerant runtime.
+Each scan step uses one ordinary call, two controlled known Pauli-string gates, and one pointer rotation, with any clipping and boundary maps counted separately. A string has at most $n$ nonidentity local factors, giving $O(nT)$ known-gate cost in the stated primitive model. This is not a platform-specific fault-tolerant runtime.
 
 If $N_g$ known gates each have diamond error at most $\varepsilon_g$, the final probability error is at most $N_g\varepsilon_g/2$. Maintaining a small signal requires choosing this error relative to that signal. The claim does not treat fixed gate precision as sufficient for arbitrarily small bias.
 
@@ -470,16 +470,16 @@ Those limits concern the implementation, not the mathematical theorem. Finite di
 
 For one pure qubit with otherwise maximally mixed workspace, define $\Delta_1(n,\lambda)$ as the supremum of common-decision mixture distinguishability over all finite query budgets and finite workspaces. The converse and constructions give, for $0\le\lambda\lt1$,
 ```math
-\frac1{128}\min\{1,s\}
+\frac1{128}\min\{1,z\}
 \le\Delta_1(n,\lambda)
-\le\min\{1,s/2\},
+\le\min\{1,z/2\},
 \qquad
-s=\frac{\lambda}{M(1-\lambda)}.
+z=\frac{\lambda}{M(1-\lambda)}.
 ```
 At $\lambda=0$ the value is zero; at $\lambda=1$ the supremum is one.
 
 At fixed nonzero strength below one, the best signal is of order $1/M$. More time and more maximally mixed protected memory cannot turn it into a constant signal. Near conservation, the lifetime scale $(1-\lambda)^{-1}$ becomes comparable to the number of hidden directions, and a finite scan attains nonvanishing bias. A chosen worst-case error requires the stronger, error-dependent condition supplied by the separate $\pi$ scan.
 
-The result concerns the best attainable bias, not optimal query complexity, hidden-label identification, or complete channel tomography. The collision-purity converse does not establish a matching tradeoff for every number of clean qubits or every initial spectrum. The separate weight-one entropy theorem strengthens the necessary initial resource at attenuation $1/2$ to $C\ge4n/3$ for error $1/3$. It rules out the proposed logarithmic-purity starting corner but does not determine the matching linear-resource protocol, optimal constants, or the full $(k,c,T)$ frontier. No theorem for attenuation above $1/2$ is claimed from that entropy argument. Reinitialization, nonunital cooling, and environment or inverse access change the model.
+The result concerns the best attainable bias, not optimal query complexity, hidden-label identification, or complete channel tomography. The collision-purity converse does not establish a matching tradeoff for every number of clean qubits or every initial spectrum. The separate weight-one entropy theorem strengthens the necessary initial resource at attenuation $1/2$ to $C\ge4n/3$ for error $1/3$. It rules out the proposed logarithmic-purity starting corner but does not determine the matching linear-resource protocol, optimal constants, or the full joint width--purity--query frontier. No theorem for attenuation above $1/2$ is claimed from that entropy argument. Reinitialization, nonunital cooling, and environment or inverse access change the model.
 
 The [related-work account](../references/RELATED_WORK.md) credits the Pauli task, serial tests, weak driving, Zeno discrimination, noisy-oracle purity arguments, and norm foundations. The collision-purity result combines finite exposure of the initial state and one final effect with a construction under the same preparation budget. The entropy result instead adds a reverse-relative-entropy query coupling and charges its weight-one sources to the finite null entropy budget; standard joint convexity, data processing, strong subadditivity, and complementary-basis uncertainty retain their attribution. [M10](MILESTONES.md#m10-the-complete-operational-question) integrates the model, and [M30](MILESTONES.md#m30-the-complete-scientific-story) integrates this full resource conclusion.

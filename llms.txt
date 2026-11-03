@@ -15,10 +15,11 @@ Authoritative scientific files:
 - verification/README.md: executable checks, independent representations and numerical limitations.
 - verification/protocols.py: reusable formulas and finite protocol APIs.
 - verification/run_checks.py: deterministic numerical reconstruction checks.
+- verification/Graph/generate_signal_bounds.py: analytical signal-envelope plot generator; pinned plotting dependencies and the resulting signal_bounds.pdf are in the same directory.
 - verification/results.json: output of the committed check suite.
 
 Learning entrypoints:
-- learning/report/Quantum_Learning_Without_Resets_Report.pdf: self-contained explanatory account of this project and its scientific relationship to the sister repository.
+- learning/report/Quantum_Learning_Without_Resets_Report.pdf: self-contained explanatory account of this project and its scientific relationship to the companion repository.
 - learning/source/Quantum_Learning_Without_Resets_Report.tex: matching editable report source; rebuild using verification/report/build_report.py as documented in verification/README.md.
 - learning/MILESTONES.md: the canonical project-defined map of exactly M01 through M30, with 10 background/preliminaries targets and 20 narrative/innovation targets. Each has dependencies, a conceptual connection and source pointers.
 - learning/WATROUS_BRIDGE.md: the single selected educational anchor, John Watrous's The Theory of Quantum Information (2018), with verified source locations, notation mapping, worked explanations and the additional project-specific reasoning.
@@ -32,13 +33,13 @@ Reader routes:
 
 Essential conventions:
 - D_tr is half the trace norm. Equal-prior success advantage is D_tr/2.
-- The hidden Pauli label is fixed across queries. Lambda is known for the constructive algorithms.
+- The hidden Pauli label e is a nonzero binary Pauli label, fixed across queries. lambda is known for the constructive algorithms.
 - Mixture distance and the average of individually optimized distances are different.
 - The weight-one lambda=1/2 task has 3n alternatives, separate from the full-family M=4^n-1 definition of Delta_1.
 - In entropy_bound.md, D_bits means ordinary quantum relative entropy with base-two logarithms, not Renyi order two. C is the initial von Neumann entropy deficit in bits; C<=log2(P).
-- Error at most 1/3 for the weight-one task requires C>=4n/3. If every protected register and retained record fits in k qubits, then k>=n/3. No attaining linear-resource protocol or sharp frontier is claimed.
+- Error at most 1/3 for the weight-one task requires C>=4n/3. If every protected register and retained record fits in k_phys qubits, then k_phys>=n/3. No attaining linear-resource protocol or sharp frontier is claimed.
 - The width corollary charges all side records. It does not cover a coherent-only convention with unlimited free classical history.
-- Pauli-Learning-Memory-Thresholds is the sister project: https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds . It owns the fresh-experiment support-memory frontier and the no-reset learning/width consequence; this repository owns science/entropy_bound.md as the shared complete proof.
+- Pauli-Learning-Memory-Thresholds is the companion repository: https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds . It owns the fresh-experiment support-memory frontier and the no-reset learning/width consequence; this repository owns science/entropy_bound.md as the shared complete proof.
 - Initial purity counts every accessible register. Maximally mixed workspace is free in amount; pure resets and fresh pure records are not.
 - A common terminal POVM is arbitrary. Its physical readout cost is outside the premeasurement initialized-purity model.
 - The one-clean result optimizes over all finite query counts, not polynomial runtime.
