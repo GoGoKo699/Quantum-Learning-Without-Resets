@@ -75,7 +75,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** How can an unknown direction in operator space be specified precisely?
 
-**Understanding target.** Use the Hermitian Pauli strings, including the identity, as an orthogonal basis with trace normalization $\mathrm{Tr}(P_aP_b)=d\delta_{ab}$. Distinguish an operator coefficient from an eigenvalue of a state. Understand why $n$ qubits give $M=d^2-1=4^n-1$ nonidentity directions rather than $d-1$.
+**Understanding target.** Use the Hermitian Pauli strings, including the identity, as an orthogonal basis with trace normalization $\mathrm{Tr}(P_eP_b)=d\delta_{eb}$. Distinguish an operator coefficient from an eigenvalue of a state. Understand why $n$ qubits give $M=d^2-1=4^n-1$ nonidentity directions rather than $d-1$.
 
 **Dependencies and story role.** [M01](#m01-states-and-observable-probabilities), [M02](#m02-the-complete-processor-and-its-marginals). Provides coordinates for the hidden mode and the later energy accounting.
 
@@ -111,7 +111,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** Which distinguishability quantity corresponds to a hidden-label decision?
 
-**Understanding target.** Use halved trace distance as the largest probability difference of one event. Convert it to equal-prior success without losing a factor of two. Distinguish the distance between an averaged alternative state and the null from the average of individually optimized distances; the latter can use a different effect for each label. For the entropy route, preserve the order $D_{\mathrm{bits}}(\rho^0\Vert\rho^a)$, apply data processing to the final binary measurement, and identify the lower bound $d_{\mathrm{bits}}(\delta\Vert1-\delta)$ when both errors are at most $\delta$.
+**Understanding target.** Use halved trace distance as the largest probability difference of one event. Convert it to equal-prior success without losing a factor of two. Distinguish the distance between an averaged alternative state and the null from the average of individually optimized distances; the latter can use a different effect for each label. For the entropy route, preserve the order $D_{\mathrm{bits}}(\rho^0\Vert\rho^e)$, apply data processing to the final binary measurement, and identify the lower bound $d_{\mathrm{bits}}(\delta\Vert1-\delta)$ when both errors are at most $\delta$.
 
 **Dependencies and story role.** [M01](#m01-states-and-observable-probabilities), [M02](#m02-the-complete-processor-and-its-marginals), [M06](#m06-operator-geometry-and-channel-adjoints). Connects operator estimates to the actual output and fixes the two converse objectives.
 
@@ -149,7 +149,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** Why is the spike promise both physically valid and geometrically useful?
 
-**Understanding target.** Explain how complete depolarization is modified to retain one nonidentity Pauli coefficient with strength $\lambda$. Use the Pauli-error or measure-and-prepare representation to establish that the full oracle is a channel. Lift it to $SA$ as $Q_0+\lambda Q_a$, while recognizing that a nonidentity sector projection $Q_a$ alone need not be positive.
+**Understanding target.** Explain how complete depolarization is modified to retain one nonidentity Pauli coefficient with strength $\lambda$. Use the Pauli-error or measure-and-prepare representation to establish that the full oracle is a channel. Lift it to $SA$ as $Q_0+\lambda Q_e$, while recognizing that a nonidentity sector projection $Q_e$ alone need not be positive.
 
 **Dependencies and story role.** [M03](#m03-channels-and-ordinary-oracle-access), [M05](#m05-pauli-coordinates-for-operators), [M10](#m10-the-complete-operational-question). Starts the research argument with its particular physical family and mathematical decomposition.
 
@@ -221,7 +221,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** How can channel feedback be represented without granting a new physical interface?
 
-**Understanding target.** Replace the hidden-sector return temporarily by arbitrary operator inputs $v_t$ in $\mathrm{ran}(Q_a)$ and collect outgoing sector components $u_t$ in the same range. Derive the one-step direct-sum norm inequality and its telescoping block contraction. Identify $\mathcal N$, $B_a$, $F_a$, and $G_a$ as linear response maps, not accessible environment registers or extra oracle calls.
+**Understanding target.** Replace the hidden-sector return temporarily by arbitrary operator inputs $v_t$ in $\mathrm{ran}(Q_e)$ and collect outgoing sector components $u_t$ in the same range. Derive the one-step direct-sum norm inequality and its telescoping block contraction. Identify $\mathcal N$, $B_e$, $F_e$, and $G_e$ as linear response maps, not accessible environment registers or extra oracle calls.
 
 **Dependencies and story role.** [M06](#m06-operator-geometry-and-channel-adjoints), [M11](#m11-a-physical-channel-with-one-hidden-pauli-mode), [M12](#m12-why-protected-memory-defeats-naive-contraction), [M16](#m16-a-common-measurement-as-a-second-resource-constraint). Builds a local-to-global linear system for one hidden sector.
 
@@ -233,7 +233,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** Why does the decision bound remain meaningful at exact conservation?
 
-**Understanding target.** Explain strict time ordering of the feedback matrix and the resulting nilpotence $G_a^T=0$, where the superscript is an integer power. Close the port with $v=\lambda u$ and express the response using a finite geometric series. Interpret $h_T(\lambda)$, including $h_0=0$ and $h_T(1)=T$, without invoking an infinite-time inverse.
+**Understanding target.** Explain strict time ordering of the feedback matrix and the resulting nilpotence $G_e^T=0$, where the superscript is an integer power. Close the port with $v=\lambda u$ and express the response using a finite geometric series. Interpret $h_T(\lambda)$, including $h_0=0$ and $h_T(1)=T$, without invoking an infinite-time inverse.
 
 **Dependencies and story role.** [M17](#m17-opening-a-mathematical-signal-port). Converts the open system into the exact finite-query alternative map.
 
@@ -245,7 +245,7 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** How do the initial state and one final effect each have a finite exposure to all hidden directions?
 
-**Understanding target.** Interpret $F_ax_0$ as one sector's history along the common forward null trajectory and telescope its squared norm over labels and time. Propagate a common terminal effect backward through adjoint null controls, identify $B_a^\dagger E$ including the last port, and telescope that exposure too. Explain why both budgets remain finite although protected memory can retain information indefinitely.
+**Understanding target.** Interpret $F_ex_0$ as one sector's history along the common forward null trajectory and telescope its squared norm over labels and time. Propagate a common terminal effect backward through adjoint null controls, identify $B_e^\dagger F$ including the last port, and telescope that exposure too. Explain why both budgets remain finite although protected memory can retain information indefinitely.
 
 **Dependencies and story role.** [M06](#m06-operator-geometry-and-channel-adjoints), [M14](#m14-one-null-trajectory-pays-for-every-direction), [M16](#m16-a-common-measurement-as-a-second-resource-constraint), [M17](#m17-opening-a-mathematical-signal-port), [M18](#m18-finite-feedback-and-the-geometric-query-factor). Joins the forward and backward halves before the collision-purity decision theorem.
 
@@ -317,12 +317,12 @@ Each milestone contains a central question, an understanding target, dependencie
 
 **Central question.** How can the entropy proof handle signal that an alternative returns from protected memory?
 
-**Understanding target.** At attenuation $1/2$, use arbitrary null and alternative inputs $\sigma,\rho$ and the physical conditional expectation $R_a=Q_0+Q_a$. Identify $R_a\sigma$, its positive Pauli-conjugate flipped state, and their average $Q_0\sigma$. Use joint convexity, the conditional-expectation entropy identity, and data processing to derive
+**Understanding target.** At attenuation $1/2$, use arbitrary null and alternative inputs $\sigma,\rho$ and the physical conditional expectation $R_e=Q_0+Q_e$. Identify $R_e\sigma$, its positive Pauli-conjugate flipped state, and their average $Q_0\sigma$. Use joint convexity, the conditional-expectation entropy identity, and data processing to derive
 
 ```math
-D_{\mathrm{bits}}(Q_0\sigma\Vert\mathcal E_{a,1/2}\rho)
+D_{\mathrm{bits}}(Q_0\sigma\Vert\mathcal E_{e,1/2}\rho)
 \le D_{\mathrm{bits}}(\sigma\Vert\rho)
-+\frac12D_{\mathrm{bits}}(R_a\sigma\Vert Q_0\sigma).
++\frac12D_{\mathrm{bits}}(R_e\sigma\Vert Q_0\sigma).
 ```
 
 Explain why neither the two inputs nor the protected blocks must coincide or commute, and why the proof's hidden-label-dependent flip supplies no learner oracle.
@@ -373,9 +373,9 @@ Explain why neither the two inputs nor the protected blocks must coincide or com
 
 **Central question.** What stronger resource obstruction appears when the hidden family is only weight one?
 
-**Understanding target.** Telescope M25 through common controls and combine it with M20's local charge to derive $\sum_{|a|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)\le3C/4$, uniformly in every finite $T$ and protected dimension. Convert a common final error guarantee into $C\ge4n(1-2\delta)\log_2[(1-\delta)/\delta]$, hence $c\ge4n/3$ for error $1/3$. Credit the inherited restricted-label collision bound, which only forces $c\ge\log_2(1+4n^2)$, and explain the new gain. Separate the pure-initialization impossibility from the additional $k\ge n/3$ conclusion when all records fit in $n+k$ qubits.
+**Understanding target.** Telescope M25 through common controls and combine it with M20's local charge to derive $\sum_{|e|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^e)\le3C/4$, uniformly in every finite $T$ and protected dimension. Convert a common final error guarantee into $C\ge4n(1-2\delta)\log_2[(1-\delta)/\delta]$, hence $c\ge4n/3$ for error $1/3$. Credit the inherited restricted-label collision bound, which only forces $c\ge\log_2(1+4n^2)$, and explain the new gain. Separate the pure-initialization impossibility from the additional $k_{\mathrm{phys}}\ge n/3$ conclusion when all records fit in $n+k_{\mathrm{phys}}$ qubits.
 
-**Dependencies and story role.** [M07](#m07-collision-purity-and-mixed-workspace), [M08](#m08-one-final-decision-and-two-distance-questions), [M10](#m10-the-complete-operational-question), [M20](#m20-entropy-sources-and-complementary-local-axes), [M21](#m21-the-finite-query-common-decision-theorem), [M25](#m25-a-reverse-relative-entropy-query-coupling), [M27](#m27-implementation-resources-and-numerical-scope), [M28](#m28-the-matched-one-clean-qubit-law). Assembles the new local mechanism into the global no-reset boundary and its transfer to the sister project.
+**Dependencies and story role.** [M07](#m07-collision-purity-and-mixed-workspace), [M08](#m08-one-final-decision-and-two-distance-questions), [M10](#m10-the-complete-operational-question), [M20](#m20-entropy-sources-and-complementary-local-axes), [M21](#m21-the-finite-query-common-decision-theorem), [M25](#m25-a-reverse-relative-entropy-query-coupling), [M27](#m27-implementation-resources-and-numerical-scope), [M28](#m28-the-matched-one-clean-qubit-law). Assembles the new local mechanism into the global no-reset boundary and its transfer to the companion repository.
 
 **Conceptual connection.** Logarithmic initial purity cannot be amplified into constant success by any finite number of ordinary calls, even with unrestricted mixed memory. The old width-only upper protocols permit fresh probes and records, and their identity-mixture parameter preserves a mode exactly. Keep this model distinction, inherited entropy/uncertainty foundations, the new query coupling, and finite-versus-analytic evidence explicit. No matching linear-resource upper bound or full frontier is established.
 

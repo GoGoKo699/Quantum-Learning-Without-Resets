@@ -225,12 +225,12 @@ def scan_costs(n: int, block_length: int) -> dict[str, int]:
     L = _nonnegative_integer(block_length, "block_length")
     if L == 0:
         raise ValueError("block_length must be positive")
-    Q = M * L
+    T = M * L
     return {
-        "queries": Q,
-        "controlled_pauli_string_calls": 2 * Q,
+        "queries": T,
+        "controlled_pauli_string_calls": 2 * T,
         "controlled_single_pauli_gates": 6 * n * 4**(n - 1) * L,
-        "pointer_y_rotations": Q,
+        "pointer_y_rotations": T,
     }
 
 
@@ -311,11 +311,12 @@ class WeakScanParameters:
 def weak_scan_parameters(n: int, strength: float) -> WeakScanParameters:
     """Construct the proved finite weak scan for 1/2 < strength <= 1.
 
-    gamma=max(1-strength,1/M), ell=1-gamma,
+    gamma=max(1-strength,1/M), ell=1-gamma, where gamma is g in the
+    scientific account.
     h=(1+ell)/gamma, L=ceil(32/gamma), t=1/[16(M+h)],
     sin(angle)**2=2t/L. A known dephasing ell/strength follows every
     gadget, and full Z dephasing follows every candidate block.
-    The scan uses Q=M*L <= 33M*min(1/(1-strength),M) queries.
+    The scan uses T=M*L <= 33M*min(1/(1-strength),M) queries.
     This parameter API is not restricted to the numerical output domain;
     floating-point parameters alone are not an accuracy certificate.
     """
@@ -337,7 +338,7 @@ def weak_scan_parameters(n: int, strength: float) -> WeakScanParameters:
 def weak_scan_output(n: int, strength: float) -> PointerOutput:
     """Numerically evaluate the finite weak scan, identical for every label.
 
-    Returns z_null=k0**M and z_alt=k0**(M-1)*kell, with
+    Returns pointer moments m_0^Z=k0**M and m_e^Z=k0**(M-1)*kell, with
     k0=cos(angle)**L and kell=(A_ell**L)[1,1]. The fixed Z=-1 outcome
     declares alternative. Uses complete dephasing at block boundaries.
     Evaluation is restricted to 1 <= n <= 5 and 2 <= L <= 100M.
@@ -385,7 +386,7 @@ def near_unit_scan_output(
     gadget. Complete Z dephasing follows every candidate block. The
     default L=50M gives the conservative fixed-error construction.
     There is no clipping. For every hidden label the output is exactly
-        z_null=k0**M, z_alt=k0**(M-1)*k_strength,
+        m_0^Z=k0**M, m_e^Z=k0**(M-1)*k_strength,
     where k0=cos(pi/L)**L and k_strength=(A_strength**L)[1,1].
     At strength=1, k_strength=-1. Unlike the explicitly separate
     coherent_scan_output function, this canonical protocol has identical
@@ -444,7 +445,7 @@ def coherent_scan_output(
     by that candidate's pointer gadget. There is no boundary dephasing
     and no clipping. hidden_position is zero based. The default
     L=50M is the conservative fixed-error construction. At strength=1,
-    z_null=cos(pi/L)**(ML) and z_alt=-cos(pi/L)**((M-1)L), independent
+    m_0^Z=cos(pi/L)**(ML) and m_e^Z=-cos(pi/L)**((M-1)L), independent
     of the hidden position. Away from that endpoint the position can
     affect the output, so it is an explicit argument.
     Numerical evaluation is restricted to 1 <= n <= 5 and

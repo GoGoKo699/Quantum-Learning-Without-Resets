@@ -13,9 +13,9 @@ On operators of $SA$, define
 ```math
 \begin{aligned}
 Q_0(X)&=\frac{I}{d}\otimes\mathrm{Tr}_S X,\\
-Q_a(X)&=\frac{P_a}{d}\otimes
-\mathrm{Tr}_S[(P_a\otimes I_A)X],
-\qquad 1\le a\le M.
+Q_e(X)&=\frac{P_e}{d}\otimes
+\mathrm{Tr}_S[(P_e\otimes I_A)X],
+\qquad e\in\mathbb F_2^{2n}\setminus\{0\}.
 \end{aligned}
 \tag{P1}
 ```
@@ -24,8 +24,8 @@ These are orthogonal projections for the Hilbert–Schmidt inner product, and
 
 ```math
 \begin{aligned}
-Q_a^\dagger=Q_a,\quad Q_aQ_b=\delta_{ab}Q_a,
-\quad \sum_{a=0}^{M}Q_a=\mathrm{id}.
+Q_e^\dagger=Q_e,\quad Q_eQ_b=\delta_{eb}Q_e,
+\quad \sum_{e\in\mathbb F_2^{2n}}Q_e=\mathrm{id}.
 \end{aligned}
 \tag{P2}
 ```
@@ -34,7 +34,7 @@ Only $Q_0$ must itself be a channel. The individual nonidentity sector projectio
 
 ```math
 \begin{aligned}
-\mathcal E_{a,\lambda}\otimes\mathrm{id}_A=Q_0+\lambda Q_a.
+\mathcal E_{e,\lambda}\otimes\mathrm{id}_A=Q_0+\lambda Q_e.
 \end{aligned}
 \tag{P3}
 ```
@@ -60,8 +60,8 @@ For $0\le\lambda\lt1$ and every finite $T$,
 
 ```math
 \begin{aligned}
-\frac1M\sum_{a=1}^{M}
-\|\rho_T^a-\rho_T^0\|_2^2
+\frac1M\sum_{e\ne0}
+\|\rho_T^e-\rho_T^0\|_2^2
 \le
 \frac{\lambda^2}{M(1-\lambda^2)}
 \left[
@@ -77,8 +77,8 @@ Consequently,
 ```math
 \begin{aligned}
 \boxed{
-\frac1M\sum_{a=1}^{M}
-D_{\mathrm{tr}}(\rho_T^a,\rho_T^0)
+\frac1M\sum_{e\ne0}
+D_{\mathrm{tr}}(\rho_T^e,\rho_T^0)
 \le
 \min\!\left\{1,
 \frac{\lambda\sqrt{\mathcal P-1}}{2\sqrt{M(1-\lambda^2)}}
@@ -92,25 +92,25 @@ The bound has no factor depending on the number of calls. The dimension of prote
 
 ## 3. One-step signal growth
 
-Let $\sigma=\rho_{t-1}^0$ and $\delta_a=\rho_{t-1}^a-\rho_{t-1}^0$. At the next call, with $\mathcal C=\mathcal C_t$,
+Let $\sigma=\rho_{t-1}^0$ and $\delta_e=\rho_{t-1}^e-\rho_{t-1}^0$. At the next call, with $\mathcal C=\mathcal C_t$,
 
 ```math
 \begin{aligned}
-\delta'_a
-=Q_0\mathcal C(\delta_a)
-+\lambda Q_a\mathcal C(\delta_a+\sigma).
+\delta'_e
+=Q_0\mathcal C(\delta_e)
++\lambda Q_e\mathcal C(\delta_e+\sigma).
 \end{aligned}
 \tag{P7}
 ```
 
-Put $x=Q_a\mathcal C(\delta_a)$ and $y=Q_a\mathcal C(\sigma)$. Orthogonality and (P4) imply
+Put $x=Q_e\mathcal C(\delta_e)$ and $y=Q_e\mathcal C(\sigma)$. Orthogonality and (P4) imply
 
 ```math
 \begin{aligned}
-\|\delta'_a\|_2^2
-&=\|Q_0\mathcal C(\delta_a)\|_2^2
+\|\delta'_e\|_2^2
+&=\|Q_0\mathcal C(\delta_e)\|_2^2
 +\lambda^2\|x+y\|_2^2\\
-&\le\|\delta_a\|_2^2-\|x\|_2^2
+&\le\|\delta_e\|_2^2-\|x\|_2^2
 +\lambda^2\|x+y\|_2^2.
 \end{aligned}
 \tag{P8}
@@ -137,7 +137,7 @@ The null state after this step is $\sigma'=Q_0\mathcal C(\sigma)$. Summing the s
 
 ```math
 \begin{aligned}
-\sum_{a=1}^{M}\|Q_a\mathcal C(\sigma)\|_2^2
+\sum_{e\ne0}\|Q_e\mathcal C(\sigma)\|_2^2
 &=\|\mathcal C(\sigma)\|_2^2-\|\sigma'\|_2^2\\
 &\le\|\sigma\|_2^2-\|\sigma'\|_2^2.
 \end{aligned}
@@ -150,9 +150,9 @@ Finally, $\lVert X\rVert_1\le\sqrt D\lVert X\rVert_2$, Cauchy–Schwarz over lab
 
 ```math
 \begin{aligned}
-\frac1M\sum_a D_{\mathrm{tr}}(\rho_T^a,\rho_T^0)
+\frac1M\sum_{e\ne0} D_{\mathrm{tr}}(\rho_T^e,\rho_T^0)
 &\le\frac{\sqrt D}{2\sqrt M}
-\sqrt{\sum_a\|\rho_T^a-\rho_T^0\|_2^2}\\
+\sqrt{\sum_{e\ne0}\|\rho_T^e-\rho_T^0\|_2^2}\\
 &\le
 \frac{\lambda\sqrt{D\mathrm{Tr}(\rho_{\mathrm{in}}^2)-1}}
 {2\sqrt{M(1-\lambda^2)}}.
