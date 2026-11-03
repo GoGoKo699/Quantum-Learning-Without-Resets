@@ -52,7 +52,7 @@ The [signal-figure guide](Graph/README.md) gives the generator, pinned plotting 
 | `near_unit_scan_error_bound(n, strength, block_length)` | Uniform analytical worst-case error certificate |
 | `scan_costs`, `small_strength_costs`, `near_unit_scan_costs` | Counts in the explicitly documented known-gate primitives |
 
-The API names `strength` and `queries` denote the retained coefficient $\lambda$ and total channel-call count $T$. `purity` denotes $\mathcal P=D\operatorname{Tr}(\rho_{\mathrm{in}}^2)$. Internal enumerated Pauli indices represent the binary labels $e$ used in the scientific account. The pointer output fields report $m_0^X,m_e^X$ or $m_0^Z,m_e^Z$ according to the measurement axis; local in-block Bloch coordinates remain $x,z$.
+The API names `strength` and `queries` denote the retained coefficient $\lambda$ and total channel-call count $T$. `purity` denotes $`\mathcal P=D\operatorname{Tr}(\rho_{\mathrm{in}}^2)`$. Internal enumerated Pauli indices represent the binary labels $e$ used in the scientific account. The pointer output fields report $m_0^X,m_e^X$ or $m_0^Z,m_e^Z$ according to the measurement axis; local in-block Bloch coordinates remain $x,z$.
 
 An output reports its measurement axis, both pointer expectations, the declared-alternative outcome, null and alternative errors, probability gap and equal-prior success. The probability gap is twice the success advantage above one half. It need not imply balanced errors.
 
