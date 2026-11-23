@@ -68,9 +68,11 @@ For any false candidate its likelihood ratio along the full potential sequence i
 For the true candidate, the reciprocal likelihood ratio is a nonnegative martingale under its own law. The probability of ever reaching the lower boundary on the likelihood ratio is at most $a=\delta/4$. If this candidate never crosses the lower boundary and its unconstrained $T$-sample ratio reaches or exceeds $A$ by round $T$, it is accepted. The log-likelihood after $T$ potential samples is a sum with mean $TD$ whose increments lie in an interval of length $\ln 3$. Hoeffding's inequality gives
 
 ```math
+\begin{aligned}
 \Pr_e\{\ln L_{e,T}\lt\ln A\}
-\leq \exp\!\left[-\frac{2(TD-\ln A)^2}{T(\ln 3)^2}\right]
-\leq\delta/4 .
+&\leq \exp\!\left[-\frac{2(TD-\ln A)^2}{T(\ln 3)^2}\right]\\
+&\leq\delta/4 .
+\end{aligned}
 \tag{L4}
 ```
 
@@ -131,8 +133,10 @@ Under the null all $T$ labels are uniform. Let $L_{e,T}$ be the likelihood ratio
 The alternative mixture has likelihood ratio $\overline L=m^{-1}\sum_e L_{e,T}$. The exact untruncated second moment gives a simple finite query bound:
 
 ```math
+\begin{aligned}
 \mathrm{TV}(P_0,\overline P)
-\leq\frac12\sqrt{\frac{(5/4)^T-1}{m}}.
+&\leq\tfrac12\sqrt{\frac{(5/4)^T-1}{m}}.
+\end{aligned}
 \tag{L6}
 ```
 
@@ -150,7 +154,9 @@ Indeed, $\mathbb E_0L_{e,T}^2=(5/4)^T$ and the cross terms have mean one. To rea
 The discarded likelihood mass and the shift in mean each contribute $p_B/2$. Under $P_e$, the log-likelihood has mean $TD$ and increments spanning an interval of length $\ln 3$. For $T\geq1$ and $\ln B\geq TD$, Hoeffding gives
 
 ```math
-p_B\leq \exp\!\left[-\frac{2(\ln B-TD)^2}{T(\ln 3)^2}\right].
+\begin{aligned}
+p_B&\leq \exp\!\left[-\frac{2(\ln B-TD)^2}{T(\ln 3)^2}\right].
+\end{aligned}
 \tag{L8}
 ```
 
