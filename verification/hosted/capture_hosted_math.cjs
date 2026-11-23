@@ -74,7 +74,10 @@ function inspectArticle(root, expected) {
     if (['annotation','annotation-xml','mspace'].includes(tag)) return [];
     const variant=e.getAttribute('mathvariant') || inherited;
     if (['mi','mo','mn','mtext','ms'].includes(tag)) {
-      const text=e.textContent.trim();
+      let text=e.textContent.trim();
+      // MathJax emits U+2225 for a TeX ordinary double bar, while GitHub
+      // emits U+2016. Keep the parallel relation and other tokens distinct.
+      if (tag==='mo' && text==='∥' && e.getAttribute('data-mjx-texclass')==='ORD') text='‖';
       return text?[[tag,text,variant]]:[];
     }
     // Preserve each structural child slot: flattening numerator and denominator

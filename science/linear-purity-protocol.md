@@ -82,7 +82,7 @@ In the ideal experiment, the indicators of off-target site activity are independ
 
 ```math
 \mathbb E[2^{X_t}]
-  =\prod_i[1+\Pr\{\text{site }i\text{ active}}]
+  =\prod_i[1+\Pr(\text{site }i\text{ active})]
   \leq e^{\mu_t}.
 ```
 
