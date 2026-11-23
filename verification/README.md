@@ -13,6 +13,10 @@ python verification/run_checks.py
 
 The runner writes [results.json](results.json) and raises an assertion if a tested quantity is non-finite or an identity or inequality exceeds its stated tolerance. The committed run used NumPy 2.3.5 and seed 2026103102. Floating-point residuals may vary slightly with numerical libraries.
 
+## Linear-purity protocol
+
+Run `python verification/verify_linear_purity.py` to check finite instances of the [weight-one protocol and query converse](../science/linear-purity-protocol.md). The standard-library verifier checks the explicit Bell/SWAP circuit, the sign marginals, sequential stopping, the fixed tape capacity and the likelihood-mixture moments. It prints its results and accepts an optional output path. The proof establishes the uniform resource guarantees and the sharp asymptotic rate.
+
 ## What the checks reconstruct
 
 | Check | Independent comparison | Committed cases |

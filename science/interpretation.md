@@ -59,7 +59,7 @@ This is a lower bound, not a complete tradeoff for arbitrary $c$. The matching c
 
 The [individual-distance theorem](purity_bound.md) answers a different question: it allows a separately optimized terminal measurement for each hidden label. The complementary [mixture theorem](decision_bound.md) uses one common decision and improves the scaling away from conservation. Neither gives the hidden label itself or estimates all channel eigenvalues.
 
-## 6. Weight one still needs a linear entropy supply
+## 6. Weight one needs and attains a linear entropy supply
 
 The companion repository [Pauli Learning Memory Thresholds](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds) permits fresh experiments and reusable records. In that contract, bounded Pauli weight is compatible with polynomial queries and small coherent reference width. The shared [entropy theorem](entropy_bound.md) asks what survives when every initialization and retained record is charged to one complete processor.
 
@@ -67,14 +67,14 @@ For the $`3n`$ weight-one alternatives at $`\lambda=1/2`$, one does not need to 
 
 If all protected registers and retained records fit in $`k_{\mathrm{phys}}`$ qubits, then $`C\le n+k_{\mathrm{phys}}`$ and $`k_{\mathrm{phys}}\ge n/3`$ is necessary. This stronger width conclusion charges the entire side register. Unlimited free external classical history is a different model. The [companion's no-reset frontier](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/no_reset_frontier.md) states the transfer to its learning task and width convention.
 
-The distinction is operational: more clean qubits and greater side dimension cannot be traded freely when a single fixed initialization must survive all noisy calls. The proof establishes necessary conditions; it supplies no attaining linear-resource protocol or sharp joint frontier. It also does not change the near-conserved $`\lambda\simeq1`$ constructions. The companion's identity-mixture strength is not $`\lambda`$: mixing an exactly preserving spike channel with the identity still preserves its spike exactly.
+The [parallel Bell-probe protocol](linear-purity-protocol.md) uses the same fixed initialization budget for probing and recording. Probing every site for every round would allocate a number of clean qubits of order the register size times the query count. Instead, rejecting fair-coin candidates early leaves geometrically fewer sites to probe, so a linearly sized tape suffices with bounded error. The one terminal decision identifies the site and axis at the same optimal leading query count as binary detection. The companion's identity mixture preserves its spike exactly, whereas the promise here fixes the retained coefficient at one half.
 
 ## 7. Scope of the algorithmic conclusion
 
-The finite construction has exponentially many calls in the near-conserved regime. This work establishes the optimal scale of attainable decision bias over all finite query budgets. It does not provide an efficient general learning algorithm, the optimal number of calls, or a practical advantage over ordinary fresh-probe tomography.
+The full-family one-clean-qubit construction has exponentially many calls in the near-conserved regime. Its optimality concerns attainable decision bias over all finite query budgets. The restricted weight-one contribution separately resolves the leading ordinary-query asymptotic at fixed error.
 
 All bounds refer to ordinary memoryless channels. Access to a unitary dilation, its environment or an inverse changes the model. Likewise, known nonunital cooling or resetting changes the resource budget. One should not transfer the conclusion to those interfaces without a new argument.
 
 The role of purity here is operational and mathematical. No temperature, work reservoir or heat-flow model has been specified, so the result is not a thermodynamic work theorem. A finite-purity information obstruction can be physically meaningful without identifying collision purity with a particular energetic cost.
 
-The open questions left by the results are concrete: optimal finite query complexity, tight dependence on several clean qubits, attainability of the linear entropy and fully charged width necessities for the restricted promise, and extensions to other hidden channel families. None is needed for the matched one-clean-qubit bias law proved here.
+Open questions include optimal finite query complexity, sharper jointly attainable purity and width constants, tight dependence on a few clean qubits for the full family, and extensions to other weights and attenuation values.
