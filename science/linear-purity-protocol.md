@@ -11,7 +11,7 @@ D=\frac34\ln\frac32+\frac14\ln\frac12
  =\frac34\ln 3-\ln 2.
 ```
 
-Write $j(\delta)=(1-2\delta)\log_2[(1-\delta)/\delta]$. The entropy theorem gives $C\geq 4n j(\delta)$ bits of initial entropy deficit for detection, with no dependence on the finite query count. For product clean and maximally mixed initialization, $C$ is the number of initially clean qubits. If all protected qubits and records fit in $k_{\mathrm{phys}}$ qubits, then $k_{\mathrm{phys}}\geq \max\{0,4n j(\delta)-n\}$. In particular, at error $1/3$ these lower bounds are $4n/3$ on clean qubits and $n/3$ on protected width.
+Write $j(\delta)=(1-2\delta)\log_2[(1-\delta)/\delta]$. The entropy theorem gives $C\geq 4n j(\delta)$ bits of initial entropy deficit for detection, with no dependence on the finite query count. For product clean and maximally mixed initialization, $C$ is the number of initially clean qubits. If all protected qubits and records fit in $k_{\mathrm{phys}}$ qubits, then $`k_{\mathrm{phys}}\geq \max\{0,4n j(\delta)-n\}`$. In particular, at error $1/3$ these lower bounds are $4n/3$ on clean qubits and $n/3$ on protected width.
 
 For a finite attaining protocol, choose likelihood boundaries $a=\delta/4$ and $A=4m/\delta$. Define $h=\ln(3)\sqrt{\ln(4/\delta)/2}$ and use the fixed number of calls
 
@@ -42,8 +42,10 @@ Consequently, at constant error the optimal initial entropy deficit has order $n
 Use binary symplectic labels and write $\chi_e(v)=(-1)^{[e,v]}$. The [Pauli channel representation](model.md#1-the-channel-promise) expresses one unknown call as a Pauli error $P_v$ drawn with probability
 
 ```math
-p_0(v)=4^{-n},\qquad
-p_e(v)=4^{-n}(1+\chi_e(v)/2).
+\begin{aligned}
+p_0(v)&=4^{-n},\\
+p_e(v)&=4^{-n}(1+\chi_e(v)/2).
+\end{aligned}
 \tag{L3}
 ```
 
@@ -66,9 +68,11 @@ For any false candidate its likelihood ratio along the full potential sequence i
 For the true candidate, the reciprocal likelihood ratio is a nonnegative martingale under its own law. The probability of ever reaching the lower boundary on the likelihood ratio is at most $a=\delta/4$. If this candidate never crosses the lower boundary and its unconstrained $T$-sample ratio reaches or exceeds $A$ by round $T$, it is accepted. The log-likelihood after $T$ potential samples is a sum with mean $TD$ whose increments lie in an interval of length $\ln 3$. Hoeffding's inequality gives
 
 ```math
+\begin{aligned}
 \Pr_e\{\ln L_{e,T}\lt\ln A\}
-\leq \exp\!\left[-\frac{2(TD-\ln A)^2}{T(\ln 3)^2}\right]
-\leq\delta/4 .
+&\leq \exp\!\left[-\frac{2(TD-\ln A)^2}{T(\ln 3)^2}\right]\\
+&\leq\delta/4 .
+\end{aligned}
 \tag{L4}
 ```
 
@@ -76,13 +80,13 @@ Here (L1) ensures $TD-\ln A\geq h\sqrt T$. Along a path where the true candidate
 
 ### The initialized capacity is sufficient
 
-For a fair comparator that is still active at the start of round $t$, its $t-1$ sample likelihood ratio exceeds $a$. Under the fair law, $\mathbb E_0\sqrt{L_{t-1}}=q^{t-1}$. Markov's inequality and a union bound over three axes give the probability of an off-target site being active at most $\min\{1,3a^{-1/2}q^{t-1}\}$.
+For a fair comparator that is still active at the start of round $t$, its $t-1$ sample likelihood ratio exceeds $a$. Under the fair law, $\mathbb E_0\sqrt{L_{t-1}}=q^{t-1}$. Markov's inequality and a union bound over three axes give the probability of an off-target site being active at most $`\min\{1,3a^{-1/2}q^{t-1}\}`$.
 
 In the ideal experiment, the indicators of off-target site activity are independent across sites. Each is a function only of that site's potential error sequence. Their sum $X_t$ has mean at most $\mu_t$. Under the null every site is off-target. Under any alternative the actual active count is at most $X_t+1$. The bound on the moment generating function at base two is
 
 ```math
 \mathbb E[2^{X_t}]
-  =\prod_i[1+\Pr\{\text{site }i\text{ active}}]
+  =\prod_i[1+\Pr(\text{site }i\text{ active})]
   \leq e^{\mu_t}.
 ```
 
@@ -99,10 +103,12 @@ using $2\ln 2\gt 1$. The capped and ideal experiments agree until their first ov
 Finally,
 
 ```math
+\begin{aligned}
 \sum_{t=1}^T b_t
-\leq \frac{6na^{-1/2}}{1-q}
- + T[\log_2(4T/\delta)+2]
-= O_\delta(n).
+&\leq \frac{6na^{-1/2}}{1-q}
+ + T[\log_2(4T/\delta)+2]\\
+&=O_\delta(n).
+\end{aligned}
 \tag{L5}
 ```
 
@@ -127,24 +133,30 @@ Under the null all $T$ labels are uniform. Let $L_{e,T}$ be the likelihood ratio
 The alternative mixture has likelihood ratio $\overline L=m^{-1}\sum_e L_{e,T}$. The exact untruncated second moment gives a simple finite query bound:
 
 ```math
+\begin{aligned}
 \mathrm{TV}(P_0,\overline P)
-\leq\frac12\sqrt{\frac{(5/4)^T-1}{m}}.
+&\leq\tfrac12\sqrt{\frac{(5/4)^T-1}{m}}.
+\end{aligned}
 \tag{L6}
 ```
 
-Indeed, $\mathbb E_0L_{e,T}^2=(5/4)^T$ and the cross terms have mean one. To reach the sharp leading constant, truncate at any $B\gt0$. Put $Z_e=L_{e,T}\mathbf1\{L_{e,T}\leq B\}$ and $p_B=P_e(L_{e,T}\gt B)$, whose value is the same for all $e$. Change of measure gives $\mathbb E_0Z_e=1-p_B$, and $\mathbb E_0Z_e^2\leq B$. Pairwise independence then bounds the variance of the average of the $Z_e$ by $B/m$. The triangle inequality yields the finite bound
+Indeed, $\mathbb E_0L_{e,T}^2=(5/4)^T$ and the cross terms have mean one. To reach the sharp leading constant, truncate at any $B\gt0$. Put $`Z_e=L_{e,T}\mathbf1\{L_{e,T}\leq B\}`$ and $p_B=P_e(L_{e,T}\gt B)$, whose value is the same for all $e$. Change of measure gives $\mathbb E_0Z_e=1-p_B$, and $\mathbb E_0Z_e^2\leq B$. Pairwise independence then bounds the variance of the average of the $Z_e$ by $B/m$. The triangle inequality yields the finite bound
 
 ```math
+\begin{aligned}
 \mathrm{TV}(P_0,\overline P)
-   =\frac12 \mathbb E_0|\overline L-1|
-   \leq p_B+\frac12\sqrt{B/m}.
+&=\tfrac12\mathbb E_0\bigl|\overline L-1\bigr|\\
+&\leq p_B+\tfrac12\sqrt{B/m}.
+\end{aligned}
 \tag{L7}
 ```
 
 The discarded likelihood mass and the shift in mean each contribute $p_B/2$. Under $P_e$, the log-likelihood has mean $TD$ and increments spanning an interval of length $\ln 3$. For $T\geq1$ and $\ln B\geq TD$, Hoeffding gives
 
 ```math
-p_B\leq \exp\!\left[-\frac{2(\ln B-TD)^2}{T(\ln 3)^2}\right].
+\begin{aligned}
+p_B&\leq \exp\!\left[-\frac{2(\ln B-TD)^2}{T(\ln 3)^2}\right].
+\end{aligned}
 \tag{L8}
 ```
 
