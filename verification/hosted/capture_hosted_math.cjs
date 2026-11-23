@@ -87,7 +87,18 @@ function inspectArticle(root, expected) {
     // A table cell is an inferred row (a sequence), not a fixed-arity operator.
     // GitHub inserts empty mrow alignment nodes; ignore those inside the cell
     // while preserving the cell and row themselves, including empty cells.
-    return [[tag,semantic,tag==='mtd'?children.flat():children]];
+    if (tag==='mtd') {
+      const tokens=children.flat();
+      // GitHub may split a displayed equation label into three text tokens.
+      // Preserve the exact label and keep every equation-body token separate.
+      if (e.parentElement?.localName==='mlabeledtr' && e.parentElement.firstElementChild===e &&
+          tokens.length && tokens.every(([kind,,font])=>kind==='mtext' && font===variant)) {
+        const label=tokens.map(([,text])=>text).join('');
+        return [[tag,semantic,[['mtext',label,variant]]]];
+      }
+      return [[tag,semantic,tokens]];
+    }
+    return [[tag,semantic,children]];
   }
   function plain(math) {
     const copy=math.cloneNode(true);

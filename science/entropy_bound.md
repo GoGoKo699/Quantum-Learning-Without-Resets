@@ -96,7 +96,7 @@ Therefore $`c=O(\log n)`$ clean qubits cannot attain this error, even with unres
 \tag{E7}
 ```
 
-These are necessary conditions. They do not assert an attaining protocol at linear resources, sharp constants, or a complete frontier in $`(k_{\mathrm{phys}},c,T)`$.
+These are the necessary conditions for initial purity and width. The [matching protocol and query converse](linear-purity-protocol.md) attain their orders together with the optimal leading ordinary-query count.
 
 ## 3. One query charges reverse relative entropy to a null source
 
@@ -293,6 +293,6 @@ The learning consequences follow by reduction. Suppose an acquisition procedure,
 
 Joint convexity, data processing, pinching identities and strong subadditivity are standard quantum-information tools; see [Watrous, Chapter 5](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf). Entropic uncertainty with quantum memory has established antecedents, including [Berta et al.](https://arxiv.org/abs/0909.0950). Equation (E13) supplies the special Pauli version needed here without importing a stronger general uncertainty theorem. The shared contribution is the query coupling (E11), its combination with the finite null entropy budget, and the resulting attenuated-spike obstruction. Broader purity-loss and noisy-oracle antecedents retain their [separate attribution](../references/RELATED_WORK.md).
 
-The result is specifically proved for weight one and $`\lambda=1/2`$. It establishes necessary initial-entropy and fully charged width conditions, not a matching linear-resource protocol, sharp constants, a full joint width--purity--query frontier, or a theorem for $`\lambda>1/2`$. Independent finite checks in [verification](../verification/README.md) test the coupling, complementarity charge and complete small trajectories; the all-time statement is analytical.
+The result is specifically proved for weight one and $`\lambda=1/2`$. It establishes necessary initial-entropy and fully charged width conditions. The [matching protocol](linear-purity-protocol.md) deals with attainment at this same attenuation. The optimal purity and width constants and the full joint frontier remain open. Independent finite checks in [verification](../verification/README.md) test the coupling, complementarity charge and complete small trajectories; the all-time statement is analytical.
 
 Fresh preparation, nonunital reset and free external records change the resource contract. The [partial-Bell protocol in the companion account](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/partial_bell.md) uses independently prepared experiments and stored outcomes. Its [identity-mixture parameter](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/weak_noise.md) is also different from this attenuation parameter: an identity mixture with an exactly preserved spike still preserves that spike. Setting its mixture strength to $`1/2`$ does not create the present $`\lambda=1/2`$ channel. The theorem therefore does not contradict those protocols or the [exact-conservation scan](protocols.md#5-specified-worst-case-error-near-conservation).

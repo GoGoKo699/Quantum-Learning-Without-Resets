@@ -76,13 +76,19 @@ The [weight-one entropy theorem](../science/entropy_bound.md) is a shared contri
 \sum_{e:\,|e|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^e)\le\frac34C,
 ```
 
-where $`D_{\mathrm{bits}}`$ is quantum relative entropy in bits and $`C`$ is the initial von Neumann entropy deficit. Error at most $`1/3`$ requires $`C\ge4n/3`$. If all side registers and retained records occupy $`k_{\mathrm{phys}}`$ qubits, then $`C\le n+k_{\mathrm{phys}}`$ and $`k_{\mathrm{phys}}\ge n/3`$ is necessary. A matching linear-resource protocol, sharp constants and the full joint frontier are not claimed.
+where $`D_{\mathrm{bits}}`$ is quantum relative entropy in bits and $`C`$ is the initial von Neumann entropy deficit. Error at most $`1/3`$ requires $`C\ge4n/3`$. If all side registers and retained records occupy $`k_{\mathrm{phys}}`$ qubits, then $`C\le n+k_{\mathrm{phys}}`$ and $`k_{\mathrm{phys}}\ge n/3`$ is necessary. The [linear-purity protocol](../science/linear-purity-protocol.md) attains these orders and the optimal leading query count. The exact optimal purity and width constants remain open.
 
 The [restricted-label collision-purity estimate](../science/decision_bound.md#7-restricted-labels-the-immediate-purity-corollary) is an immediate consequence of the pre-existing energy argument, also visible at [revision 690dbd3](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/690dbd3f98c466d535fa531785ac64217380603d/science/decision_bound.md). It gives $`c\ge\log_2(1+4n^2)`$ at the same error. That logarithmic necessity is credited as inherited; it is not the new entropy obstruction.
 
 The proof uses established joint convexity, data processing, pinching identities and strong subadditivity, as developed in [Watrous, Chapter 5](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf). **Mario Berta, Matthias Christandl, Roger Colbeck, Joseph M. Renes and Renato Renner, [*The uncertainty principle in the presence of quantum memory*](https://doi.org/10.1038/nphys1734), Nature Physics 6, 659–662 (2010), [arXiv:0909.0950](https://arxiv.org/abs/0909.0950)** is a primary antecedent for complementary-basis entropy bounds with quantum memory. The particular Pauli inequality needed here is derived directly by pinching and data processing. These entropy foundations are not new claims. The query-specific contribution is the reverse-relative-entropy increment, its charge to the shared null trajectory, and the resulting no-reset obstruction.
 
 This strengthens the present restricted promise rather than characterizing every initial spectrum. The comparison does not assert that this is a new general entropy-loss principle or an optimal theorem for all strengths and weights.
+
+## Bell readout and sequential tests
+
+**Xuan Du Trinh and Nengkun Yu, [*Adaptivity is not helpful for Pauli channel learning*](https://doi.org/10.22331/q-2025-09-24-1864), Quantum 9, 1864 (2025).** Their reduction equates unrestricted Pauli-channel experiments to classical Pauli-error samples obtained through Bell measurements. The unrestricted query converse here uses this established representation. The linear-purity implementation charges the Bell preparations and retained records to one initial resource.
+
+**Matthew L. Malloy and Robert D. Nowak, [*Sequential Testing for Sparse Recovery*](https://arxiv.org/abs/1212.1801v2) (2014).** Their classical independent-coordinate analysis gives a relative-entropy threshold for exact support recovery and includes parallel sequential likelihood tests. **Malloy, Gongguo Tang and Robert D. Nowak, [*The Sample Complexity of Search over Multiple Populations*](https://arxiv.org/abs/1209.1380) (2013)** develops sequential likelihood screening in a classical sampling-budget model. These works supply the statistical antecedents for rejecting unpromising axes early. The proof here uses a fixed pure tape and joint Bell outcomes from one channel query per round. Its binary-detection lower bound works with the dependent triple of Pauli scores at each site using pairwise independence under the null.
 
 ## Educational anchor: Watrous
 

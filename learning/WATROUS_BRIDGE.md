@@ -1,12 +1,12 @@
 # From Watrous to quantum learning without resets
 
-An unknown noisy device is available for repeated use. A learner can keep a protected quantum memory, apply known controls, and finally read one decision bit. This project asks whether an arbitrarily long experiment can replace a missing supply of fresh initialization.
+An unknown noisy device is available for repeated use. A learner can keep a protected quantum memory, apply known controls, and read a terminal measurement result. This project asks how much initialization is needed to learn from the device.
 
-The question is made precise for a channel that either erases every nonidentity Pauli coefficient or retains one unknown coefficient. The processor begins with a fixed amount of purity. All known controls are unital quantum channels, so a reset to a pure state is an additional resource. The result bounds the information in the final decision for every finite number of ordinary channel calls and gives finite protocols that attain the one-clean-qubit scaling. A second, stronger entropy theorem for weight-one spikes at attenuation $1/2$ rules out logarithmic initial purity even with arbitrary protected memory and query time.
+The question is made precise for a channel that either erases every nonidentity Pauli coefficient or retains one unknown coefficient. The processor begins with a fixed amount of purity. All known controls are unital quantum channels, so a reset to a pure state is an additional resource. The first results bound the final decision signal for every finite number of ordinary calls and give protocols that attain the one-clean-qubit scaling. For weight-one spikes at attenuation $1/2$, the entropy theorem forces linear initial purity at fixed error. The Bell protocol attains the linear resource order and identifies the hidden label or null with the optimal leading query count.
 
 The sole educational anchor is **John Watrous, *The Theory of Quantum Information*, Cambridge University Press (2018)**. Source locations below refer to the author's 2018 prepublication manuscript, available through the [author's book page](https://cs.uwaterloo.ca/~watrous/TQI/) and [free complete PDF](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf). The book is linked, not reproduced here. The [30-milestone map](MILESTONES.md) organizes the understanding route; [science/model.md](../science/model.md) owns the assumptions and [the scientific reading route](../science/README.md) locates the complete proofs.
 
-Watrous supplies states, channels, measurements, operator norms, channel-distance tools, and entropy inequalities. The Pauli exposure budgets, finite feedback argument, matched construction, and reverse-relative-entropy query coupling are additional steps developed in this project. They are explained below rather than attributed to a textbook theorem.
+Watrous supplies states, channels, measurements, operator norms, channel-distance tools, entropy inequalities, and the Bell basis. The Pauli exposure budgets, finite feedback argument, pointer construction, reverse-relative-entropy query coupling, and bounded Bell-pair schedule are additional steps developed in this project.
 
 ## Targeted reading from Watrous
 
@@ -21,6 +21,7 @@ These are focused lookups within one source.
 | Unital contraction | [Chapter 4](https://cs.uwaterloo.ca/~watrous/TQI/TQI.4.pdf), §4.2.2, Theorem 4.27, printed p. 231 | Induced Hilbert–Schmidt contractivity |
 | Dephasing | Chapter 2, §2.2.3, Eqs. (2.162)–(2.169) | A physical unital operation |
 | Final decisions | Chapter 2, §2.3.1, Definition 2.34 and Eqs. (2.199)–(2.201), printed pp. 100–101; [Chapter 3](https://cs.uwaterloo.ca/~watrous/TQI/TQI.3.pdf), §3.1.1, Theorem 3.4, pp. 128–129 | Effects and optimal binary discrimination |
+| Bell probes | Chapter 2, §2.2.2, Eq. (2.90); [Chapter 6](https://cs.uwaterloo.ca/~watrous/TQI/TQI.6.pdf), §6.3.1, Eq. (6.331), printed p. 366 | Channel action on a maximally entangled state and the four Bell outcomes |
 | Accumulated implementation error | Chapter 3, §3.3.2: Definition 3.43, Theorem 3.46, Proposition 3.48(2), Eq. (3.273), printed pp. 170–174 | Diamond norm, protected auxiliaries, and composition bounds |
 | Relative entropy of mixed states | [Chapter 5](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf), §5.2; Corollary 5.33, printed p. 279, and Theorem 5.35, pp. 280–281 | Joint convexity and data processing; foundations of the reverse-query coupling |
 | Local-to-global entropy | Chapter 5, Theorem 5.36, printed pp. 281–282 | Strong subadditivity with quantum side information |
@@ -39,6 +40,7 @@ The Chapter 5 locators were checked in the author's standard-layout chapter PDF.
 | Natural matrix representation $\mathrm K(\Phi)$ | A matrix representing $\mathcal C$ on operator space | Its spectral norm is the induced Hilbert–Schmidt norm, not the diamond norm |
 | Full norm $\lVert\rho-\sigma\rVert_1$ called trace distance | $D_{\mathrm{tr}}(\rho,\sigma)=\lVert\rho-\sigma\rVert_1/2$ | An explicit factor-of-two translation |
 | Prior parameter $\lambda$ in Theorem 3.4 | Prior $p$ in this bridge | The project's $\lambda$ is reserved for channel strength |
+| Choi operator $J(\Phi)$ formed with an unnormalized vector | $J(\Phi)/d$ for input dimension $d$ | The normalized output of one call on half of a maximally entangled probe |
 
 Watrous explicitly calls the full trace norm “trace distance” immediately after Eq. (1.181), printed p. 34. Every distance and success conversion below uses the project's halved convention.
 
@@ -361,13 +363,30 @@ D_{\mathrm{tr}}\!\left(\rho_T^0,\frac1{3n}\sum_{|e|=1}\rho_T^e\right)
 \le\min\left\{1,\frac{\sqrt{C\ln2}}{\sqrt{8n}}\right\}.
 ```
 
-A common final rule with null error and every alternative error at most $\delta<1/2$ has binary relative entropy at least $(1-2\delta)\log_2[(1-\delta)/\delta]$ for each label. Hence $C\ge4n(1-2\delta)\log_2[(1-\delta)/\delta]$, and $C\ge4n/3$ at error $1/3$. Logarithmic initially clean qubits are insufficient for **every finite query count**, even with unlimited initially mixed protected memory. No matching linear-resource protocol or complete frontier is asserted.
+A common final rule with null error and every alternative error at most $\delta<1/2$ has binary relative entropy at least $(1-2\delta)\log_2[(1-\delta)/\delta]$ for each label. Hence $C\ge4n(1-2\delta)\log_2[(1-\delta)/\delta]$, and $C\ge4n/3$ at error $1/3$. The inequality holds for **every finite query count**, even with unlimited initially mixed protected memory. Its linear order is attainable by the Bell protocol below.
+
+## Bell probes and the weight-one query constant
+
+Applying a Pauli to half of a Bell pair maps it to one of four orthogonal states. Up to phases and a relabeling, these are the states in Watrous's Eq. (6.331). For the null channel the four outcomes are uniform. At the true site of an $X$ spike with attenuation $1/2$, the errors $I$ and $X$ have probability $3/8$ each, and $Y$ and $Z$ have probability $1/8$ each. The commutation sign for $X$ is therefore positive with probability $3/4$. The signs for $Y$ and $Z$ remain fair, as do all axis signs at other sites. A single Bell outcome supplies all three signs at its site.
+
+For each proposed site and axis, multiply its likelihood ratio by $3/2$ on a positive sign and $1/2$ on a negative sign. A low threshold rejects that candidate. A high threshold makes its label eligible for the terminal decision. Stop spending Bell pairs at a site once all three tests have stopped. Under the null the log likelihood has negative drift, so the fraction of sites that still need a pair decreases geometrically. The fixed Bell-pair tape allocates slots for that decreasing demand and accounts for overflow in the error probability. Known swaps route unused pairs into the query register. Bell-basis conversion and unital dephasing leave readable records in the charged workspace for conditional routing and one final measurement. The [resource proof](../science/linear-purity-protocol.md) gives the exact allocation and error bounds.
+
+The true log likelihood gains
+
+```math
+I_{\mathrm{Bell}}=D_{\mathrm{nat}}\bigl(\mathrm{Bern}(3/4)\Vert\mathrm{Bern}(1/2)\bigr)
+=\frac34\ln\frac32+\frac14\ln\frac12
+```
+
+per call on average. This is a forward alternative-to-null divergence in nats. The entropy converse above uses the reverse null-to-alternative divergence in bits to budget initial purity. For any fixed error $\delta\in(0,1/2)$, the Bell protocol identifies the exact label or null with $(1+o(1))\ln(3n)/I_{\mathrm{Bell}}$ ordinary calls, using $O_\delta(n)$ pure qubits and $O_\delta(n)$ protected qubits in one initialization.
+
+The [query converse](../science/linear-purity-protocol.md#the-query-constant-is-optimal) represents each channel use as an independent sample of the Pauli error followed by its corresponding unitary. Conditional on the complete list of sampled errors, the learner's controls and measurement give a postprocessing rule independent of the hidden hypothesis. The likelihood concentration argument gives the same leading query requirement even with unrestricted initialization.
 
 ## The companion model interface
 
 [Pauli-Learning-Memory-Thresholds](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds) studies width-constrained learning with fresh probe preparation, resets, and an unrestricted classical history. Its [no-reset transfer account](https://github.com/GoGoKo699/Pauli-Learning-Memory-Thresholds/blob/main/science/no_reset_frontier.md) owns the consequence for that resource model; the proof and exact entropy statement are owned here in [entropy_bound.md](../science/entropy_bound.md). Each scientific account states the common attenuated task and its assumptions before linking to the other.
 
-At weight one the old width exponent by itself causes no polynomial-query barrier. Its fresh upper construction still consumes initialized probe and record resources. Our entropy result supplies a genuinely stronger fixed-initialization obstruction, rather than asserting that the old collision-purity lower bound is tight or that two existing upper protocols compose.
+At weight one the original coherent-width exponent by itself causes no polynomial-query barrier. Its fresh upper construction consumes initialized probe and record resources. The fixed-initialization entropy converse quantifies that resource, and the Bell protocol supplies a construction that explicitly budgets the probes and records it uses.
 
 The companion's original efficient rank detector retains a hidden mode exactly, including under its known identity-mixture parameter $\tau$. It is not the attenuated $\lambda=1/2$ promise. Setting $\tau=1/2$ cannot import its preserved-mode algorithm here.
 
@@ -480,6 +499,6 @@ At $\lambda=0$ the value is zero; at $\lambda=1$ the supremum is one.
 
 At fixed nonzero strength below one, the best signal is of order $1/M$. More time and more maximally mixed protected memory cannot turn it into a constant signal. Near conservation, the lifetime scale $(1-\lambda)^{-1}$ becomes comparable to the number of hidden directions, and a finite scan attains nonvanishing bias. A chosen worst-case error requires the stronger, error-dependent condition supplied by the separate $\pi$ scan.
 
-The result concerns the best attainable bias, not optimal query complexity, hidden-label identification, or complete channel tomography. The collision-purity converse does not establish a matching tradeoff for every number of clean qubits or every initial spectrum. The separate weight-one entropy theorem strengthens the necessary initial resource at attenuation $1/2$ to $C\ge4n/3$ for error $1/3$. It rules out the proposed logarithmic-purity starting corner but does not determine the matching linear-resource protocol, optimal constants, or the full joint width--purity--query frontier. No theorem for attenuation above $1/2$ is claimed from that entropy argument. Reinitialization, nonunital cooling, and environment or inverse access change the model.
+The one-clean-qubit result concerns the best attainable binary bias. For the weight-one family at attenuation $1/2$, the entropy theorem requires $C\ge4n/3$ and protected width $k_{\mathrm{phys}}\ge n/3$ at error $1/3$. The Bell protocol attains both linear orders at that error. At every fixed error below one half it attains the linear order of the initial purity and the optimal leading query count for identification. The optimal linear resource constants and the full joint tradeoff between width, purity, and queries remain open. The scope of these matched weight-one results is the fixed attenuation $1/2$.
 
-The [related-work account](../references/RELATED_WORK.md) credits the Pauli task, serial tests, weak driving, Zeno discrimination, noisy-oracle purity arguments, and norm foundations. The collision-purity result combines finite exposure of the initial state and one final effect with a construction under the same preparation budget. The entropy result instead adds a reverse-relative-entropy query coupling and charges its weight-one sources to the finite null entropy budget; standard joint convexity, data processing, strong subadditivity, and complementary-basis uncertainty retain their attribution. [M10](MILESTONES.md#m10-the-complete-operational-question) integrates the model, and [M30](MILESTONES.md#m30-the-complete-scientific-story) integrates this full resource conclusion.
+The [related-work account](../references/RELATED_WORK.md) credits the inherited Pauli task, statistical and physical ingredients, and norm foundations. [M10](MILESTONES.md#m10-the-complete-operational-question) integrates the model, [M29](MILESTONES.md#m29-the-all-time-entropy-obstruction-and-sister-boundary) connects the full weight-one proof to the attaining experiment, and [M30](MILESTONES.md#m30-the-complete-scientific-story) synthesizes the resource conclusions.
