@@ -1,0 +1,60 @@
+name: Exact hosted mathematics audit
+
+on:
+  push:
+    branches: [gwen/computing-core-batch-14-hosted-audit]
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CAPTURE_REVISION: 8aa1b208520c254e7efa28e1741dcaa26b1742b4
+    steps:
+      - name: Check out the verification helpers
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Check out the pinned scientific source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ env.CAPTURE_REVISION }}
+          path: checked-source
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Install the browser and reference renderer
+        run: |
+          npm install --prefix "$RUNNER_TEMP/math-runtime" playwright@1.56.1 mathjax-full@3.2.1
+          node "$RUNNER_TEMP/math-runtime/node_modules/playwright/cli.js" install chromium
+      - name: Compare every commit-pinned Markdown page
+        run: |
+          export NODE_PATH="$RUNNER_TEMP/math-runtime/node_modules"
+          bash verification/hosted_math/run_capture_with_transport_resume.sh
+      - name: Preserve full-page rendering evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: hosted-proof-${{ env.CAPTURE_REVISION }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/hosted-math
+          if-no-files-found: error
+          retention-days: 14
+      - name: Record representative rendered sections
+        timeout-minutes: 5
+        run: |
+          export NODE_PATH="$RUNNER_TEMP/math-runtime/node_modules"
+          node verification/hosted_math/capture_sections.cjs "$RUNNER_TEMP/hosted-math/math-source.json" "$RUNNER_TEMP/hosted-math/visual-review" verification/hosted_math/visual-sections.json
+      - name: Retain the hosted report and screen captures
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: hosted-math-${{ env.CAPTURE_REVISION }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/hosted-math
+            ${{ runner.temp }}/hosted-math-attempt-*
+          if-no-files-found: error
+          retention-days: 14

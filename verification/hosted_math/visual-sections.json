@@ -1,0 +1,14 @@
+{
+  "README.md": [
+    "Run the weight-one characterization"
+  ],
+  "science/protocols.md": [
+    "2. Extracting a known trial mode onto a pointer"
+  ],
+  "science/linear-purity-protocol.md": [
+    "Finite resource statement",
+    "The Bell outcome law",
+    "Stop probing rejected sites",
+    "Compile the experiment into one initialized processor"
+  ]
+}
