@@ -18,7 +18,7 @@ Q_e(X)&=\frac{P_e}{d}\otimes
 R_e&=Q_0+Q_e,\qquad
 E_e=Q_0+\frac12Q_e.
 \end{aligned}
-\tag{E1}
+\qquad\text{(E1)}
 ```
 
 The null query is $`Q_0`$; the alternative is $`E_e`$ for one unknown label fixed throughout the run. Both are ordinary memoryless channels on $`S`$ tensored with the identity on $`A`$. The map $`R_e`$ is also a channel: it retains the binary Pauli eigenspace information and the protected memory. None of these definitions grants the learner the hidden label.
@@ -31,7 +31,7 @@ D_{\mathrm{bits}}(\rho\Vert\sigma)
 &=\mathrm{Tr}\rho(\log_2\rho-\log_2\sigma),\\
 C&=\log_2\dim(SA)-H(\rho_{\mathrm{in}}).
 \end{aligned}
-\tag{E2}
+\qquad\text{(E2)}
 ```
 
 The subscript in $`D_{\mathrm{bits}}`$ records the units. This is ordinary quantum relative entropy, distinct from Rényi divergence of order two. The usual support convention assigns infinite relative entropy when the support of the first state is not contained in that of the second.
@@ -42,7 +42,7 @@ The entropy deficit $`C`$ is measured in bits. For $`c`$ initially clean qubits 
 \begin{aligned}
 0\le C\le\log_2\mathcal P.
 \end{aligned}
-\tag{E3}
+\qquad\text{(E3)}
 ```
 
 Appending independent maximally mixed memory leaves both $`C`$ and $`\mathcal P`$ unchanged. If all protected registers fit in $`k_{\mathrm{phys}}`$ qubits, then $`C\le n+k_{\mathrm{phys}}`$. This last dimension bound charges classical records as well as coherent workspace; it does not apply to a convention that leaves an unlimited classical history outside the processor.
@@ -58,7 +58,7 @@ Let $`\rho_T^0`$ and $`\rho_T^e`$ be the complete states after any finite $`T`$ 
 \le\frac34 C.
 }
 \end{aligned}
-\tag{E4}
+\qquad\text{(E4)}
 ```
 
 The direction of relative entropy is part of the statement: the null state is its first argument. The bound allows arbitrary protected memory and arbitrary return of previously acquired signal from that memory. It has no factor depending on $`T`$.
@@ -75,7 +75,7 @@ The theorem implies
 \begin{aligned}
 \boxed{C\ge4n\,j(\delta).}
 \end{aligned}
-\tag{E5}
+\qquad\text{(E5)}
 ```
 
 In particular, error at most $`1/3`$ requires
@@ -84,7 +84,7 @@ In particular, error at most $`1/3`$ requires
 \begin{aligned}
 \boxed{C\ge\frac43n.}
 \end{aligned}
-\tag{E6}
+\qquad\text{(E6)}
 ```
 
 Therefore $`c=O(\log n)`$ clean qubits cannot attain this error, even with unrestricted additional mixed memory and an arbitrarily large finite query budget. If the entire protected register has at most $`k_{\mathrm{phys}}`$ qubits, (E6) and $`C\le n+k_{\mathrm{phys}}`$ also require
@@ -93,7 +93,7 @@ Therefore $`c=O(\log n)`$ clean qubits cannot attain this error, even with unres
 \begin{aligned}
 \boxed{k_{\mathrm{phys}}\ge\frac13n.}
 \end{aligned}
-\tag{E7}
+\qquad\text{(E7)}
 ```
 
 These are the necessary conditions for initial purity and width. The [matching protocol and query converse](linear-purity-protocol.md) attain their orders together with the optimal leading ordinary-query count.
@@ -116,7 +116,7 @@ The two output states have decompositions
 \omega&=\frac{\sigma'+\sigma_{\mathrm{flip}}}{2},\\
 E_e\rho&=\frac{\rho'+\zeta}{2}.
 \end{aligned}
-\tag{E8}
+\qquad\text{(E8)}
 ```
 
 Joint convexity of quantum relative entropy gives
@@ -127,7 +127,7 @@ D_{\mathrm{bits}}(\omega\Vert E_e\rho)
 &\le\frac12D_{\mathrm{bits}}(\sigma'\Vert\rho')\\
 &\quad+\frac12D_{\mathrm{bits}}(\sigma_{\mathrm{flip}}\Vert\zeta).
 \end{aligned}
-\tag{E9}
+\qquad\text{(E9)}
 ```
 
 Because $`\omega=I_S/d\otimes\sigma_A`$ and $`\zeta=I_S/d\otimes\rho_A`$, the conditional-expectation identity is
@@ -138,7 +138,7 @@ D_{\mathrm{bits}}(\sigma_{\mathrm{flip}}\Vert\zeta)
 &=D_{\mathrm{bits}}(\sigma'\Vert\omega)\\
 &\quad+D_{\mathrm{bits}}(\omega\Vert\zeta).
 \end{aligned}
-\tag{E10}
+\qquad\text{(E10)}
 ```
 
 One can check (E10) directly by expanding the logarithms: the first term is the entropy deficit of $`\sigma'`$ relative to $`I_S/d\otimes\sigma_A`$; the second is $`D_{\mathrm{bits}}(\sigma_A\Vert\rho_A)`$. The sign flip preserves the first entropy and the memory marginal. Data processing bounds both $`D_{\mathrm{bits}}(\sigma'\Vert\rho')`$ and $`D_{\mathrm{bits}}(\omega\Vert\zeta)`$ by $`D_{\mathrm{bits}}(\sigma\Vert\rho)`$. Thus
@@ -151,7 +151,7 @@ D_{\mathrm{bits}}(Q_0\sigma\Vert E_e\rho)
 &\quad+\frac12D_{\mathrm{bits}}(R_e\sigma\Vert Q_0\sigma).
 \end{aligned}}
 \end{aligned}
-\tag{E11}
+\qquad\text{(E11)}
 ```
 
 This inequality compares different alternative and null prequery states. It therefore includes feedback through protected memory; it does not assume those states remain equal. Finite input divergence ensures the needed support inclusions by data processing. The formulas also follow from full-rank regularization and continuity on the relevant supports. Starting from identical initial states, (E11) keeps every divergence used below finite.
@@ -167,7 +167,7 @@ Fix one null prequery state $`\sigma`$. For site $`i`$, write
 g_i&=D_{\mathrm{bits}}(\tau_i\Vert\omega_i)=1-H(S_i|A)_\sigma,\\
 d_{i,\alpha}&=D_{\mathrm{bits}}(\Delta_\alpha\tau_i\Vert\omega_i).
 \end{aligned}
-\tag{E12}
+\qquad\text{(E12)}
 ```
 
 Here $`\Delta_\alpha`$ is dephasing of qubit $`i`$ in Pauli basis $`\alpha`$, with $`A`$ untouched. Depolarizing all other query qubits shows that the source term in (E11) for $`e=(i,\alpha)`$ is exactly $`d_{i,\alpha}`$.
@@ -181,7 +181,7 @@ g_i-d_{i,\alpha}
 &\ge D_{\mathrm{bits}}(\Delta_\beta\tau_i\Vert\omega_i)
 =d_{i,\beta}.
 \end{aligned}
-\tag{E13}
+\qquad\text{(E13)}
 ```
 
 Sum the three pairwise inequalities. Each $`d_{i,\alpha}`$ appears twice, so
@@ -190,7 +190,7 @@ Sum the three pairwise inequalities. Each $`d_{i,\alpha}`$ appears twice, so
 \begin{aligned}
 \sum_{\alpha\in\{X,Y,Z\}}d_{i,\alpha}\le\frac32g_i.
 \end{aligned}
-\tag{E14}
+\qquad\text{(E14)}
 ```
 
 This is the complementary-basis entropy inequality with quantum side information, derived directly here. The memory blocks need not commute. Strong subadditivity implies conditional subadditivity, $`\sum_i H(S_i|A)\ge H(S|A)`$. Consequently
@@ -202,7 +202,7 @@ This is the complementary-basis entropy inequality with quantum side information
 &\le\frac32[n-H(S|A)_\sigma]\\
 &=\frac32[H(Q_0\sigma)-H(\sigma)].
 \end{aligned}
-\tag{E15}
+\qquad\text{(E15)}
 ```
 
 Thus all $`3n`$ local directions are charged to the entropy created by one null query.
@@ -217,7 +217,7 @@ D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^e)
 &\le\frac12\sum_{t=1}^T
 D_{\mathrm{bits}}(R_e\sigma_t\Vert Q_0\sigma_t).
 \end{aligned}
-\tag{E16}
+\qquad\text{(E16)}
 ```
 
 Sum over all weight-one labels and use (E15):
@@ -228,7 +228,7 @@ Sum over all weight-one labels and use (E15):
 &\le\frac34\sum_{t=1}^T\\
 &\quad[H(\rho_t^0)-H(\sigma_t)].
 \end{aligned}
-\tag{E17}
+\qquad\text{(E17)}
 ```
 
 A unital control cannot decrease von Neumann entropy. Therefore the entropy gains at null queries satisfy
@@ -239,7 +239,7 @@ A unital control cannot decrease von Neumann entropy. Therefore the entropy gain
 &\le H(\rho_T^0)-H(\rho_{\mathrm{in}})\\
 &\le\log_2\dim(SA)-H(\rho_{\mathrm{in}})=C.
 \end{aligned}
-\tag{E18}
+\qquad\text{(E18)}
 ```
 
 Equations (E17)–(E18) prove (E4). Protected memory may preserve state components indefinitely; the proof only charges their cumulative exposure to the noisy query sectors. It makes no assertion of strict contraction on every traceless processor operator.
@@ -255,7 +255,7 @@ D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^e)
 &\ge d_{\mathrm{bits}}(\delta\Vert1-\delta)
 =j(\delta),
 \end{aligned}
-\tag{E19}
+\qquad\text{(E19)}
 ```
 
 where $`d_{\mathrm{bits}}`$ is binary relative entropy in bits. Sum (E19) over the $`3n`$ alternatives and combine with (E4) to obtain (E5). At $`\delta=1/3`$, $`j(1/3)=1/3`$, giving (E6)–(E7).
@@ -268,7 +268,7 @@ D_{\mathrm{bits}}(\rho_T^0\Vert\bar\rho_T)&\le\frac{C}{4n},\\
 D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 &\le\min\left\{1,\frac{\sqrt{C\ln2}}{\sqrt{8n}}\right\}.
 \end{aligned}
-\tag{E20}
+\qquad\text{(E20)}
 ```
 
 Here $`D_{\mathrm{tr}}`$ is half the trace norm, as throughout this repository. Averaging the individual Pinsker inequalities and applying Cauchy–Schwarz gives the same upper bound on $`(3n)^{-1}\sum_{|e|=1} D_{\mathrm{tr}}(\rho_T^e,\rho_T^0)`$. Equation (E4) therefore also applies when the terminal measurement may depend on a later-revealed label. For the stated worst-case error, the exact binary-relative-entropy inequality (E19) gives the sharper constant in (E6).
@@ -282,7 +282,7 @@ The [common-decision proof](decision_bound.md) restricts immediately to any set 
 D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 \le\min\left\{1,\frac{\sqrt{\mathcal P-1}}{6n}\right\}.
 \end{aligned}
-\tag{E21}
+\qquad\text{(E21)}
 ```
 
 For a clean/mixed product initialization, error at most $`1/3`$ therefore already requires $`c\ge\log_2(1+4n^2)`$. This logarithmic necessity is not the entropy theorem. Equations (E4)–(E6) replace it by a linear requirement in the regime where collision purity alone allows a polynomial value of $`\mathcal P`$. For small fixed purity, the collision bound can remain numerically stronger; both bounds may be used. No tight arbitrary-purity characterization follows from either converse.

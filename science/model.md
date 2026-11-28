@@ -22,7 +22,7 @@ The null is complete depolarization. An alternative retains one nonidentity Paul
 \lambda P_e\mathrm{Tr}(P_eX)}{d},
 \qquad e\in\mathbb F_2^{2n}\setminus\{0\},\quad 0\le\lambda\le1.
 \end{aligned}
-\tag{M1}
+\qquad\text{(M1)}
 ```
 
 Sums over hidden labels range over $e\ne0$ unless another set is specified. The label $e$ is unknown and is never supplied during the computation. It is fixed across all calls, rather than independently redrawn at each call. The strength $\lambda$ is known to the explicit constructive algorithms. The converses hold for each $\lambda$ even if it is known.
@@ -35,7 +35,7 @@ p_0(v)=\frac1{d^2},\qquad
 p_{e,\lambda}(v)=
 \frac{1+\lambda(-1)^{[e,v]}}{d^2}.
 \end{aligned}
-\tag{M2}
+\qquad\text{(M2)}
 ```
 
 The probabilities are nonnegative and sum to one. Their Pauli eigenvalues are one at the identity, $\lambda$ at $P_e$ and zero elsewhere. Thus (M1) is an ordinary noisy channel, not a nonphysical linear oracle. The channel can also measure the two eigenspaces of $P_e$ and prepare $(I\pm\lambda P_e)/d$ according to the outcome. It is entanglement breaking, including at $\lambda=1$.
@@ -58,7 +58,7 @@ There are $T$ ordinary calls. A known channel $\mathcal C_t$ acts on all of $SA$
               \mathcal C_t(\rho_{t-1}^e),\\
 \rho_0^e&=\rho_0^0=\rho_{\mathrm{in}}.
 \end{aligned}
-\tag{M3}
+\qquad\text{(M3)}
 ```
 
 Every $\mathcal C_t$ is completely positive, trace preserving and **unital**:
@@ -67,7 +67,7 @@ Every $\mathcal C_t$ is completely positive, trace preserving and **unital**:
 \begin{aligned}
 \mathcal C_t(I)=I.
 \end{aligned}
-\tag{M4}
+\qquad\text{(M4)}
 ```
 
 The same map is used under every hypothesis. It may coherently process whatever information has already entered the state. This includes arbitrary known global unitaries, swaps into protected memory, dephasing and more general unital processing. The assumption does not require a product state at query cuts, commuting controls, independent probes or short memory.
@@ -87,7 +87,7 @@ Define the dimension-normalized collision purity
 \mathcal P=D\,\mathrm{Tr}(\rho_{\mathrm{in}}^2),
 \qquad 1\le\mathcal P\le D.
 \end{aligned}
-\tag{M5}
+\qquad\text{(M5)}
 ```
 
 Its excess above one has the useful geometric form
@@ -97,7 +97,7 @@ Its excess above one has the useful geometric form
 \mathcal P-1=
 D\left\|\rho_{\mathrm{in}}-\frac{I}{D}\right\|_2^2.
 \end{aligned}
-\tag{M6}
+\qquad\text{(M6)}
 ```
 
 The subscript 2 denotes the Hilbert–Schmidt norm. A product of $c$ pure qubits and otherwise maximally mixed qubits has $\mathcal P=2^c$. Appending an independent maximally mixed register does not change $\mathcal P$. Unital processing cannot increase it.
@@ -126,7 +126,7 @@ We use the halved trace norm
 D_{\mathrm{tr}}(\rho,\sigma)
 =\frac12\|\rho-\sigma\|_1.
 \end{aligned}
-\tag{M7}
+\qquad\text{(M7)}
 ```
 
 The uniform-mixture output is $\bar\rho_T=M^{-1}\sum_{e\ne0}\rho_T^e$. Its trace distance from the null equals the largest absolute difference in the probability of one event:
@@ -137,7 +137,7 @@ D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 =\max_{0\le F\le I}
 \left|\frac1M\sum_{e\ne0} p_e-p_0\right|.
 \end{aligned}
-\tag{M8}
+\qquad\text{(M8)}
 ```
 
 For equal prior probabilities of the null and this alternative mixture, optimal success is $(1+D_{\mathrm{tr}})/2$. The success advantage over one half is therefore half the trace distance. These conventions are kept separate throughout.
@@ -149,7 +149,7 @@ A worst-case error guarantee $\delta\lt1/2$ requires one decision rule with
 p_0\le\delta,\qquad p_e\ge1-\delta
 \quad\text{for every }e.
 \end{aligned}
-\tag{M9}
+\qquad\text{(M9)}
 ```
 
 Consequently its mixture trace distance is at least $1-2\delta$. A mixture converse therefore rules out a worst-case algorithm. A mixture lower bound by itself need not supply a worst-case algorithm; the constructions below have identical final pointer statistics for all labels, or directly prove (M9).
@@ -163,7 +163,7 @@ For the optimal-bias result, define
 \text{one-clean-qubit protocols}}}
 D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0).
 \end{aligned}
-\tag{M10}
+\qquad\text{(M10)}
 ```
 
 The supremum includes any finite maximally mixed workspace. It concerns an unrestricted finite query budget, rather than an efficient-time class. At $\lambda=1$ the supremum is one; no finite protocol is claimed to attain perfect discrimination.

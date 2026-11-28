@@ -22,7 +22,7 @@ The quantity $\Delta_1(n,\lambda)$ is defined in (M10). The [decision converse](
 \le\min\{1,z/2\}.
 }
 \end{aligned}
-\tag{A1}
+\qquad\text{(A1)}
 ```
 
 At $\lambda=0$, the value is zero. At $\lambda=1$, its supremum is one. Every algorithm used for the lower bounds has a finite number of calls; perfect finite-query discrimination is not asserted at the endpoint.
@@ -40,7 +40,7 @@ M\left\lceil 32/g\right\rceil
 \end{cases}\\
 g&=\max\{1-\lambda,1/M\}.
 \end{aligned}
-\tag{A2}
+\qquad\text{(A2)}
 ```
 
 At $\lambda=1$, the minimum on the right is $M$. These are sufficient query counts. No matching query-complexity theorem is claimed.
@@ -54,7 +54,7 @@ Initialize $S$ in $I/d$ and let the pointer state be $\sigma$. For a known nonid
 W_b=I_S\otimes|0\rangle\langle0|
 +P_b\otimes|1\rangle\langle1|.
 \end{aligned}
-\tag{A3}
+\qquad\text{(A3)}
 ```
 
 Apply $W_b$, query the unknown channel on $S$, and apply its inverse $W_b^\dagger=W_b$. The exact effect is
@@ -65,7 +65,7 @@ Apply $W_b$, query the unknown channel on $S$, and apply its inverse $W_b^\dagge
 \longmapsto
 \frac Id\otimes\mathcal Z_{\eta_b}(\sigma),
 \end{aligned}
-\tag{A4}
+\qquad\text{(A4)}
 ```
 
 where $\mathcal Z_\eta$ keeps the pointer's diagonal entries and multiplies its off-diagonal entries by $\eta$. Under the null $\eta_b=0$. Under alternative $e$, $\eta_b=\lambda$ if $b=e$, and zero otherwise.
@@ -85,7 +85,7 @@ The pointer's $X$ expectations are
 m_0^X=\frac1{M+1},\qquad
 m_e^X=\frac{1+\lambda}{M+1}.
 \end{aligned}
-\tag{A5}
+\qquad\text{(A5)}
 ```
 
 The identity trial contributes in both cases; exactly one additional trial contributes under every alternative. The fixed measurement has probability gap
@@ -96,7 +96,7 @@ The identity trial contributes in both cases; exactly one additional trial contr
 =\frac{M(1-\lambda)}{2(M+1)}z
 \ge\frac3{16}z.
 \end{aligned}
-\tag{A6}
+\qquad\text{(A6)}
 ```
 
 Here $M\ge3$ and $z\le1/3$. This proves more than the lower constant required in (A1) in this regime.
@@ -117,7 +117,7 @@ t&=\frac1{16(M+h)},&
 u&=\frac{2t}{L},\qquad
 \theta=\arcsin\sqrt u.
 \end{aligned}
-\tag{A7}
+\qquad\text{(A7)}
 ```
 
 Here $g$ is the clipped decay scale and $\ell$ the retained active coefficient. The parameter $h$ controls the finite response estimate, $L$ is the number of steps per candidate, and $t$ keeps the accumulated disturbance from inactive blocks small. The quantity $u=\sin^2\theta$ fixes each step’s rotation strength.
@@ -143,7 +143,7 @@ A_\eta=
 -v&c
 \end{pmatrix}.
 \end{aligned}
-\tag{A8}
+\qquad\text{(A8)}
 ```
 
 Put $k_0=c^L$ and $k_\ell=(A_\ell^L)_{22}$. Every block begins with zero $x$ component. Therefore the exact final pointer values are
@@ -153,7 +153,7 @@ Put $k_0=c^L$ and $k_\ell=(A_\ell^L)_{22}$. Every block begins with zero $x$ com
 m_0^Z=k_0^M,\qquad
 m_e^Z=k_0^{M-1}k_\ell,
 \end{aligned}
-\tag{A9}
+\qquad\text{(A9)}
 ```
 
 independent of the active label's position. The final outcome one has probability gap
@@ -163,7 +163,7 @@ independent of the active label's position. The final outcome one has probabilit
 \Delta_{\mathrm{scan}}
 =\frac{k_0^{M-1}}2(k_0-k_\ell).
 \end{aligned}
-\tag{A10}
+\qquad\text{(A10)}
 ```
 
 ### Finite lower bound
@@ -175,7 +175,7 @@ The characteristic roots of $A_\ell$ are
 r_\pm=
 \frac{(1+\ell)c\pm g\sqrt{1-h^2u}}2.
 \end{aligned}
-\tag{A11}
+\qquad\text{(A11)}
 ```
 
 Because $h\ge3$, $h/L\le1/16$ and $t\le1/(16h)$,
@@ -184,7 +184,7 @@ Because $h\ge3$, $h/L\le1/16$ and $t\le1/(16h)$,
 \begin{aligned}
 h^2u=\frac{2h^2t}{L}\le\frac{h}{8L}\le\frac1{128}.
 \end{aligned}
-\tag{A12}
+\qquad\text{(A12)}
 ```
 
 The roots are real, distinct and positive. Their product is $\ell$ and their sum is positive. The sequence $(A_\ell^j)_{22}$ starts at $1,c$, so
@@ -194,7 +194,7 @@ The roots are real, distinct and positive. Their product is $\ell$ and their sum
 k_\ell=(1+b)r_+^L-b r_-^L,\qquad
 b=\frac12\left(\frac{c}{\sqrt{1-h^2u}}-1\right).
 \end{aligned}
-\tag{A13}
+\qquad\text{(A13)}
 ```
 
 Using $(1-y)^{-1/2}\le1+2y$ for $0\le y\le1/2$ gives $0\le b\le h^2u$. Also,
@@ -203,7 +203,7 @@ Using $(1-y)^{-1/2}\le1+2y$ for $0\le y\le1/2$ gives $0\le b\le h^2u$. Also,
 \begin{aligned}
 r_+\le1-\frac{hu}{2}=1-\frac{ht}{L}.
 \end{aligned}
-\tag{A14}
+\qquad\text{(A14)}
 ```
 
 This follows by applying $\sqrt{1-y}\le1-y/2$ separately to the two square roots in (A11). It implies
@@ -213,7 +213,7 @@ This follows by applying $\sqrt{1-y}\le1-y/2$ separately to the two square roots
 k_\ell\le r_+^L+b
 \le1-ht+\frac{(ht)^2}{2}+b.
 \end{aligned}
-\tag{A15}
+\qquad\text{(A15)}
 ```
 
 Bernoulli's inequality gives $k_0=(1-u)^{L/2}\ge1-t$. Let $\tau=(h-1)t$. Then
@@ -227,7 +227,7 @@ Bernoulli's inequality gives $k_0=(1-u)^{L/2}\ge1-t$. Let $\tau=(h-1)t$. Then
 \le\frac{2h^2}{L(h-1)}
 \le\frac3{16}.
 \end{aligned}
-\tag{A16}
+\qquad\text{(A16)}
 ```
 
 Thus
@@ -237,7 +237,7 @@ Thus
 k_0-k_\ell\ge\frac{49}{64}\tau,\qquad
 k_0^{M-1}\ge1-(M-1)t\ge\frac{15}{16}.
 \end{aligned}
-\tag{A17}
+\qquad\text{(A17)}
 ```
 
 Substitution in (A10) proves the explicit finite inequality
@@ -248,7 +248,7 @@ Substitution in (A10) proves the explicit finite inequality
 \ge\frac{\tau}{4}
 =\frac{\ell}{32(Mg+1+\ell)}.
 \end{aligned}
-\tag{A18}
+\qquad\text{(A18)}
 ```
 
 If no clipping occurred, then $\ell=\lambda$ and $g=1-\lambda$. For $\lambda\ge1/2$,
@@ -258,7 +258,7 @@ If no clipping occurred, then $\ell=\lambda$ and $g=1-\lambda$. For $\lambda\ge1
 \frac{\lambda}{M(1-\lambda)+1+\lambda}
 \ge\frac14\min\!\left\{1,\frac{\lambda}{M(1-\lambda)}\right\}.
 \end{aligned}
-\tag{A19}
+\qquad\text{(A19)}
 ```
 
 Indeed, when $M(1-\lambda)\ge\lambda$, use $1+\lambda\le3\lambda\le3M(1-\lambda)$. Otherwise use $\lambda/(1+2\lambda)\ge1/4$.
@@ -275,7 +275,7 @@ At $\lambda=1$, the active block is exactly $R_y(\pi)$ and flips the pointer. Wi
 \begin{aligned}
 m_0^Z=c^{ML},\qquad m_e^Z=-c^{(M-1)L}.
 \end{aligned}
-\tag{A20}
+\qquad\text{(A20)}
 ```
 
 Later inactive blocks preserve the flipped sign. Both error probabilities are at most $M\pi^2/(4L)$, using $1-c^q\le q(1-c)\le q\pi^2/(2L^2)$.
@@ -291,7 +291,7 @@ p_{\mathrm{err,worst}}
 \frac{1-c^{(M-1)L}}2+\frac{L\gamma}2
 \right\}.
 \end{aligned}
-\tag{A21}
+\qquad\text{(A21)}
 ```
 
 Take $L=\lceil\pi^2M/(2\delta)\rceil$ and $\gamma\le\delta/L$. Then both errors are at most $\delta$. In particular,
@@ -302,7 +302,7 @@ L=100M,\qquad 1-\lambda\le10^{-3}/M
 \quad\Longrightarrow\quad
 p_{\mathrm{err,worst}}\lt0.097.
 \end{aligned}
-\tag{A22}
+\qquad\text{(A22)}
 ```
 
 The query count is $ML=O_\delta(M^2)$. The converse (D16) and this construction match the **scale** $1-\lambda\asymp M^{-1}$ for a specified fixed error, with different error-dependent constants. They do not determine the exact constant at the transition.
