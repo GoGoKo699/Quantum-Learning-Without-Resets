@@ -19,7 +19,7 @@ D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 \qquad 0\le\lambda\le1.
 }
 \end{aligned}
-\tag{D1}
+\qquad\text{(D1)}
 ```
 
 For $0\le\lambda\lt1$, this implies the query-independent bound
@@ -34,7 +34,7 @@ D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
 \right\}.
 }
 \end{aligned}
-\tag{D2}
+\qquad\text{(D2)}
 ```
 
 At $\lambda=1$, (D1) reads $D_{\mathrm{tr}}\le \min\lbrace1,T\sqrt{\mathcal P-1}/(2M)\rbrace$. This is a necessary query bound, not a query-optimality claim.
@@ -52,7 +52,7 @@ u_t=Q_e\mathcal C_t(x_{t-1}),
 x_t=Q_0\mathcal C_t(x_{t-1})+v_t,
 \qquad 1\le t\le T.
 \end{aligned}
-\tag{D3}
+\qquad\text{(D3)}
 ```
 
 Because $Q_0$ and $Q_e$ have orthogonal ranges,
@@ -64,7 +64,7 @@ Because $Q_0$ and $Q_e$ have orthogonal ranges,
 +\|v_t\|_2^2+\|Q_e\mathcal C_t(x_{t-1})\|_2^2\\
 &\le\|x_{t-1}\|_2^2+\|v_t\|_2^2.
 \end{aligned}
-\tag{D4}
+\qquad\text{(D4)}
 ```
 
 The last step uses Hilbert–Schmidt contraction of the unital CPTP control. Summing in time proves that the map
@@ -74,7 +74,7 @@ The last step uses Hilbert–Schmidt contraction of the unital CPTP control. Sum
 (x_0,v_1,\ldots,v_T)
 \longmapsto (x_T,u_1,\ldots,u_T)
 \end{aligned}
-\tag{D5}
+\qquad\text{(D5)}
 ```
 
 is a contraction between Hilbert-space direct sums. Write its blocks as
@@ -84,7 +84,7 @@ is a contraction between Hilbert-space direct sums. Write its blocks as
 x_T=\mathcal N x_0+B_e v,\qquad
 u=F_e x_0+G_e v.
 \end{aligned}
-\tag{D6}
+\qquad\text{(D6)}
 ```
 
 Here $\mathcal N=Q_0\mathcal C_T\cdots Q_0\mathcal C_1$ is the null evolution and does not depend on $e$. The matrix $G_e$ is strictly lower triangular in the time index, because $u_t$ depends only on $v_1,\ldots,v_{t-1}$. Therefore $G_e^T=0$, where the superscript $T$ here denotes the integer power equal to the number of calls. Every block of a contraction has operator norm at most one, so $\lVert G_e\rVert_{2\to2}\le1$.
@@ -98,7 +98,7 @@ Close the ports with $v=\lambda u$. Equations (D3) then reproduce the alternativ
 \qquad
 \|\mathcal R_e(\lambda)\|_{2\to2}\le h_T(\lambda).
 \end{aligned}
-\tag{D7}
+\qquad\text{(D7)}
 ```
 
 In particular, no convergence limit or infinite-time inverse is needed at $\lambda=1$. The difference from the null output is
@@ -108,7 +108,7 @@ In particular, no convergence limit or infinite-time inverse is needed at $\lamb
 \rho_T^e-\rho_T^0
 =\lambda B_e\mathcal R_e(\lambda)F_e(\rho_{\mathrm{in}}).
 \end{aligned}
-\tag{D8}
+\qquad\text{(D8)}
 ```
 
 ## 3. One forward budget for every hidden label
@@ -125,7 +125,7 @@ With all ports zero, set $x_t^0=Q_0\mathcal C_t(x_{t-1}^0)$. Then the component 
 &\le\|x_0\|_2^2-\|\mathcal N x_0\|_2^2
 \le\|x_0\|_2^2.
 \end{aligned}
-\tag{D9}
+\qquad\text{(D9)}
 ```
 
 This statement holds for arbitrary operators, not just density matrices. The same null trajectory supplies all labels.
@@ -139,7 +139,7 @@ Fix an arbitrary terminal operator $F$ and set $y_T=F$,
 y_{t-1}=\mathcal C_t^\dagger Q_0(y_t),
 \qquad t=T,\ldots,1.
 \end{aligned}
-\tag{D10}
+\qquad\text{(D10)}
 ```
 
 The adjoint of a unital trace-preserving CP map is again unital and trace preserving, and hence also contracts the Hilbert–Schmidt norm. The response of the final effect to an inserted port input at time $t$ is
@@ -148,7 +148,7 @@ The adjoint of a unital trace-preserving CP map is again unital and trace preser
 \begin{aligned}
 (B_e^\dagger F)_t=Q_e(y_t).
 \end{aligned}
-\tag{D11}
+\qquad\text{(D11)}
 ```
 
 For example, the terminal component is $Q_eF$, while the preceding component is $Q_e\mathcal C_T^\dagger Q_0F$. This checks the time ordering and includes the last port.
@@ -163,7 +163,7 @@ Thus
 \left(\|y_t\|_2^2-\|y_{t-1}\|_2^2\right)
 \le\|F\|_2^2.
 \end{aligned}
-\tag{D12}
+\qquad\text{(D12)}
 ```
 
 A protected memory can preserve both signals and effects. The estimate does not ask that every vector contract strictly; it bounds the total energy that can enter the queried Pauli sectors.
@@ -178,7 +178,7 @@ x_0=\rho_{\mathrm{in}}-\frac{I}{D},
 \qquad
 F_0=F-\frac{\mathrm{Tr}F}{D}I
 \end{aligned}
-\tag{D13}
+\qquad\text{(D13)}
 ```
 
 without changing any signal. This also follows directly from $F_e(I)=0$ and $B_e^\dagger(I)=0$.
@@ -195,7 +195,7 @@ Apply (D7)–(D12), first for each label and then Cauchy–Schwarz across labels
 &\le\frac{\lambda h_T(\lambda)}M
 \|F_0\|_2\|x_0\|_2.
 \end{aligned}
-\tag{D14}
+\qquad\text{(D14)}
 ```
 
 For an effect $0\le F\le I$, its eigenvalues lie in $[0,1]$. Their variance is at most $1/4$. Therefore
@@ -206,7 +206,7 @@ For an effect $0\le F\le I$, its eigenvalues lie in $[0,1]$. Their variance is a
 \qquad
 \|x_0\|_2=\frac{\sqrt{\mathcal P-1}}{\sqrt D}.
 \end{aligned}
-\tag{D15}
+\qquad\text{(D15)}
 ```
 
 Taking the optimal effect proves (D1). Bounding the finite geometric sum by $(1-\lambda)^{-1}$ proves (D2).
@@ -221,7 +221,7 @@ If a single decision rule has error at most $\delta\lt1/2$ under the null and ev
 \le
 \frac{\lambda\sqrt{\mathcal P-1}}{2M(1-\lambda)}.
 \end{aligned}
-\tag{D16}
+\qquad\text{(D16)}
 ```
 
 For one clean qubit, constant error below one half is therefore impossible along any sequence with $M(1-\lambda)/\lambda\to\infty$. At fixed $0\lt\lambda\lt1$, its equal-prior success advantage above one half is at most $\lambda/[4M(1-\lambda)]$ for any number of calls.
@@ -233,7 +233,7 @@ For an initialization of $c$ pure qubits and otherwise mixed qubits, the same ne
 2^c-1\ge
 4M^2(1-2\delta)^2\frac{(1-\lambda)^2}{\lambda^2}.
 \end{aligned}
-\tag{D17}
+\qquad\text{(D17)}
 ```
 
 When $\lambda$ and $\delta$ are fixed away from their trivial endpoints, this gives $c\ge4n-O(1)$ for the full $M=4^n-1$ family. Restricted label sets are treated below. It is a converse for initial purity, not a matching clean-qubit complexity theorem.
@@ -252,7 +252,7 @@ D_{\mathrm{tr}}(\bar\rho_T^{\mathcal L},\rho_T^0)
 \le\min\left\{1,
 \frac{\lambda h_T(\lambda)\sqrt{\mathcal P-1}}{2m}\right\}.
 \end{aligned}
-\tag{D18}
+\qquad\text{(D18)}
 ```
 
 For all $`3n`$ weight-one labels and $`\lambda=1/2`$, the query-independent version is
@@ -262,7 +262,7 @@ For all $`3n`$ weight-one labels and $`\lambda=1/2`$, the query-independent vers
 D_{\mathrm{tr}}(\bar\rho_T^{\mathcal L},\rho_T^0)
 \le\min\left\{1,\frac{\sqrt{\mathcal P-1}}{6n}\right\}.
 \end{aligned}
-\tag{D19}
+\qquad\text{(D19)}
 ```
 
 Thus error at most $`1/3`$ requires $`c\ge\log_2(1+4n^2)`$ for clean/mixed product initialization. This is an immediate restriction of the existing theorem, not the stronger entropy result. The [shared entropy proof](entropy_bound.md) instead gives $`C\ge4n/3`$, where $`C`$ is the initial von Neumann entropy deficit in bits. It uses a reverse-relative-entropy query coupling and complementary local axes. Both bounds remain valid; neither is uniformly sharper at every purity. No matching arbitrary-purity upper protocol is asserted.

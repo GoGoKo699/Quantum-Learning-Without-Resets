@@ -12,7 +12,7 @@ For one clean qubit, write $M=4^n-1$. The [matched law](protocols.md) is
 \right)
 \qquad (0\le\lambda\lt1).
 \end{aligned}
-\tag{I1}
+\qquad\text{(I1)}
 ```
 
 The constants are universal. At exactly $\lambda=1$, the supremum is one. $\Delta_1$ is trace-distance distinguishability; the equal-prior success advantage is half of it.

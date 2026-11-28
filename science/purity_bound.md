@@ -17,7 +17,7 @@ Q_e(X)&=\frac{P_e}{d}\otimes
 \mathrm{Tr}_S[(P_e\otimes I_A)X],
 \qquad e\in\mathbb F_2^{2n}\setminus\{0\}.
 \end{aligned}
-\tag{P1}
+\qquad\text{(P1)}
 ```
 
 These are orthogonal projections for the Hilbert–Schmidt inner product, and
@@ -27,7 +27,7 @@ These are orthogonal projections for the Hilbert–Schmidt inner product, and
 Q_e^\dagger=Q_e,\quad Q_eQ_b=\delta_{eb}Q_e,
 \quad \sum_{e\in\mathbb F_2^{2n}}Q_e=\mathrm{id}.
 \end{aligned}
-\tag{P2}
+\qquad\text{(P2)}
 ```
 
 Only $Q_0$ must itself be a channel. The individual nonidentity sector projections need not be positive; they are mathematical components of the physical map
@@ -36,7 +36,7 @@ Only $Q_0$ must itself be a channel. The individual nonidentity sector projectio
 \begin{aligned}
 \mathcal E_{e,\lambda}\otimes\mathrm{id}_A=Q_0+\lambda Q_e.
 \end{aligned}
-\tag{P3}
+\qquad\text{(P3)}
 ```
 
 The null retains the whole protected-workspace algebra. In particular, $Q_0$ is not full depolarization on $SA$.
@@ -49,7 +49,7 @@ A unital CPTP map contracts the Hilbert–Schmidt norm. For any operator $X$, th
 \le\mathrm{Tr}\mathcal C(X^\dagger X)
 =\|X\|_2^2.
 \end{aligned}
-\tag{P4}
+\qquad\text{(P4)}
 ```
 
 This standard fact is attributed to [Pérez-García et al. and Watrous](../references/RELATED_WORK.md#operator-norm-foundations). General CPTP maps need not satisfy it.
@@ -69,7 +69,7 @@ For $0\le\lambda\lt1$ and every finite $T$,
 -\mathrm{Tr}((\rho_T^0)^2)
 \right].
 \end{aligned}
-\tag{P5}
+\qquad\text{(P5)}
 ```
 
 Consequently,
@@ -85,7 +85,7 @@ D_{\mathrm{tr}}(\rho_T^e,\rho_T^0)
 \right\}.
 }
 \end{aligned}
-\tag{P6}
+\qquad\text{(P6)}
 ```
 
 The bound has no factor depending on the number of calls. The dimension of protected workspace appears only through the initial collision purity.
@@ -100,7 +100,7 @@ Let $\sigma=\rho_{t-1}^0$ and $\delta_e=\rho_{t-1}^e-\rho_{t-1}^0$. At the next 
 =Q_0\mathcal C(\delta_e)
 +\lambda Q_e\mathcal C(\delta_e+\sigma).
 \end{aligned}
-\tag{P7}
+\qquad\text{(P7)}
 ```
 
 Put $x=Q_e\mathcal C(\delta_e)$ and $y=Q_e\mathcal C(\sigma)$. Orthogonality and (P4) imply
@@ -113,7 +113,7 @@ Put $x=Q_e\mathcal C(\delta_e)$ and $y=Q_e\mathcal C(\sigma)$. Orthogonality and
 &\le\|\delta_e\|_2^2-\|x\|_2^2
 +\lambda^2\|x+y\|_2^2.
 \end{aligned}
-\tag{P8}
+\qquad\text{(P8)}
 ```
 
 Completing the square gives
@@ -126,7 +126,7 @@ Completing the square gives
 \left\|x-\frac{\lambda^2}{1-\lambda^2}y\right\|_2^2
 +\frac{\lambda^2}{1-\lambda^2}\|y\|_2^2.
 \end{aligned}
-\tag{P9}
+\qquad\text{(P9)}
 ```
 
 This controls any signal that comes back from protected memory. No assumption that $x$ vanishes is made.
@@ -141,7 +141,7 @@ The null state after this step is $\sigma'=Q_0\mathcal C(\sigma)$. Summing the s
 &=\|\mathcal C(\sigma)\|_2^2-\|\sigma'\|_2^2\\
 &\le\|\sigma\|_2^2-\|\sigma'\|_2^2.
 \end{aligned}
-\tag{P10}
+\qquad\text{(P10)}
 ```
 
 Every alternative uses the same null trajectory. Thus one can sum (P8)–(P10) over time without conditioning on an unknown-label-dependent state. Since every initial difference is zero, the right side telescopes and proves (P5).

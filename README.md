@@ -68,6 +68,14 @@ The algorithm surrounds each ordinary query with a controlled **known** Pauli ga
 
 queries for $\lambda>1/2$, with $O(n)$ known gates per query. These are sufficient costs, not optimal query bounds. A separate finite scan supplies an explicit worst-case error certificate near $\lambda=1$.
 
+## Run the weight-one characterization
+
+1. **Initialize the fixed processor.** Use the [call budget, likelihood bounds, and tape capacities](science/linear-purity-protocol.md#finite-resource-statement) for the desired error. The device is promised to be fully depolarizing or to retain one single-site Pauli component at half strength. Start the query register maximally mixed and allocate every clean Bell-pair slot, flag, and work register at initialization.
+2. **Probe active sites with Bell pairs.** Prepare assigned Bell pairs with Hadamards and CNOTs. Swap one half into each active query site, make one ordinary call on the full query register, then swap the halves back. Undo Bell preparation and dephase the slots in the computational basis. Use the three Pauli signs from each Bell label to [update the likelihood tests on the same tape](science/linear-purity-protocol.md#compile-the-experiment-into-one-initialized-processor). Multiply each active ratio by three halves for a positive sign or one half for a negative sign. Freeze a test when it first crosses either boundary.
+3. **Read the device diagnosis.** If a round exceeds its initialized capacity, record overflow and finish the fixed schedule with calls on the mixed query register. At the terminal measurement, return the first accepted site and axis in the fixed order if one exists and there was no overflow. Otherwise return the null.
+
+The [one-clean-qubit pointer circuit](science/protocols.md#2-extracting-a-known-trial-mode-onto-a-pointer) applies a controlled known Pauli and its inverse around an ordinary device call. Its full-family tests return a binary decision. The weight-one site-and-axis procedure charges its entire fixed purity budget, all device calls, and the reversible processing.
+
 ## Explanatory report
 
 The [explanatory report at the November 3 source revision](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/ba797e1f5aba82d1a9c0dbe5879c9994ec39a8d9/learning/report/Quantum_Learning_Without_Resets_Report.pdf) develops the one-clean-qubit analysis and shared weight-one converse. The current [weight-one protocol and query converse](science/linear-purity-protocol.md) resolve the linear-resource attainability question raised in that report.

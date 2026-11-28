@@ -19,7 +19,7 @@ For a finite attaining protocol, choose likelihood boundaries $a=\delta/4$ and $
 T=\left\lceil
   \left(\frac{h+\sqrt{h^2+4D\ln A}}{2D}\right)^2
 \right\rceil .
-\tag{L1}
+\qquad\text{(L1)}
 ```
 
 For round $t=1,\ldots,T$, define a capacity $b_t$ in Bell-pair slots:
@@ -30,7 +30,7 @@ q&=\frac{\sqrt{3/2}+\sqrt{1/2}}{2}\lt 1,\\
 \mu_t&=n\min\{1,3a^{-1/2}q^{t-1}\},\\
 b_t&=\min\!\left\{n,\left\lceil 2\mu_t+\log_2(4T/\delta)+1\right\rceil\right\}.
 \end{aligned}
-\tag{L2}
+\qquad\text{(L2)}
 ```
 
 The protocol uses $2\sum_t b_t$ clean qubits for the Bell-pair slots. A reversible implementation described below uses at most another $6\sum_t b_t+T$ clean flag qubits and $O(T\log(n+T+2))$ clean working qubits. Their sum bounds the entire protected width and initial entropy deficit when the query register starts maximally mixed. For each fixed $\delta$, $T=\ln(m)/D+O_\delta(\sqrt{\ln(m+1)})$ and the clean-qubit count is $O_\delta(n)$. The error bound holds under the null and separately under every alternative. Under an alternative, success means returning its actual Pauli label.
@@ -46,7 +46,7 @@ Use binary symplectic labels and write $\chi_e(v)=(-1)^{[e,v]}$. The [Pauli chan
 p_0(v)&=4^{-n},\\
 p_e(v)&=4^{-n}(1+\chi_e(v)/2).
 \end{aligned}
-\tag{L3}
+\qquad\text{(L3)}
 ```
 
 Under the null, the two-bit local error labels are independent and uniform. Under alternative $e=(i,\alpha)$, only site $i$ has a different distribution. There it has probability $[1+\chi_{i,\alpha}(v)/2]/4$ for each local Pauli label. The site labels remain independent, and new labels are drawn at each call.
@@ -73,7 +73,7 @@ For the true candidate, the reciprocal likelihood ratio is a nonnegative marting
 &\leq \exp\!\left[-\frac{2(TD-\ln A)^2}{T(\ln 3)^2}\right]\\
 &\leq\delta/4 .
 \end{aligned}
-\tag{L4}
+\qquad\text{(L4)}
 ```
 
 Here (L1) ensures $TD-\ln A\geq h\sqrt T$. Along a path where the true candidate accepts and every false candidate fails to accept, the terminal rule returns the true label.
@@ -109,7 +109,7 @@ Finally,
  + T[\log_2(4T/\delta)+2]\\
 &=O_\delta(n).
 \end{aligned}
-\tag{L5}
+\qquad\text{(L5)}
 ```
 
 This is a bound on the fixed tape capacity supplied at initialization, including enough spare slots to control the overflow probability.
@@ -137,7 +137,7 @@ The alternative mixture has likelihood ratio $\overline L=m^{-1}\sum_e L_{e,T}$.
 \mathrm{TV}(P_0,\overline P)
 &\leq\tfrac12\sqrt{\frac{(5/4)^T-1}{m}}.
 \end{aligned}
-\tag{L6}
+\qquad\text{(L6)}
 ```
 
 Indeed, $\mathbb E_0L_{e,T}^2=(5/4)^T$ and the cross terms have mean one. To reach the sharp leading constant, truncate at any $B\gt0$. Put $`Z_e=L_{e,T}\mathbf1\{L_{e,T}\leq B\}`$ and $p_B=P_e(L_{e,T}\gt B)$, whose value is the same for all $e$. Change of measure gives $\mathbb E_0Z_e=1-p_B$, and $\mathbb E_0Z_e^2\leq B$. Pairwise independence then bounds the variance of the average of the $Z_e$ by $B/m$. The triangle inequality yields the finite bound
@@ -148,7 +148,7 @@ Indeed, $\mathbb E_0L_{e,T}^2=(5/4)^T$ and the cross terms have mean one. To rea
 &=\tfrac12\mathbb E_0\bigl|\overline L-1\bigr|\\
 &\leq p_B+\tfrac12\sqrt{B/m}.
 \end{aligned}
-\tag{L7}
+\qquad\text{(L7)}
 ```
 
 The discarded likelihood mass and the shift in mean each contribute $p_B/2$. Under $P_e$, the log-likelihood has mean $TD$ and increments spanning an interval of length $\ln 3$. For $T\geq1$ and $\ln B\geq TD$, Hoeffding gives
@@ -157,7 +157,7 @@ The discarded likelihood mass and the shift in mean each contribute $p_B/2$. Und
 \begin{aligned}
 p_B&\leq \exp\!\left[-\frac{2(\ln B-TD)^2}{T(\ln 3)^2}\right].
 \end{aligned}
-\tag{L8}
+\qquad\text{(L8)}
 ```
 
 To make the finite implication explicit, write $z=1-2\delta$ and choose $B=m(z/2)^2$. The square-root term in (L7) is then $z/4$. A successful binary test needs $\mathrm{TV}(P_0,\overline P)\geq z$. Thus $p_B\geq 3z/4$, and (L8) implies the following necessary condition:
